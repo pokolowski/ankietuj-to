@@ -1,0 +1,17 @@
+ul {
+    /* display:none; */
+    list-style: none;
+    font-size: 12px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: row;
+    color: #0e3854
+}
+ul li {
+    display: block;
+    /* display: none; */
+    padding: 10px;
+    cursor: pointer;
+}

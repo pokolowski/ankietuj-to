@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import './header.css';
+import HeaderUl from 'components/molecules/HeaderUl/HeaderUl';
+import HeaderSignIn from 'components/molecules/HeaderSignIn/HeaderSignIn';
 
 // const Wrapper = styled.div`
 // margin: 0 !important;
@@ -16,6 +18,8 @@ import './header.css';
 const Header = () => (
   <div className="header">
     <h1> ankietuj to </h1>
+    <HeaderUl />
+    <HeaderSignIn />
   </div>
 );
 export default Header;
