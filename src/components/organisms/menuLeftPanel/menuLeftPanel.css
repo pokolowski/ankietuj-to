@@ -1,35 +1,17 @@
-img{
+.MenuLeftPanel{
+    width: 200px;
+    height: 100vh;
     position: absolute;
-    left: 100px;
-    top: 50%;
-    transform: translateY(-50%);
-}
-.wrapper{
-    position: absolute;
-  top: 100px;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  height: calc(100vh - 100px);
-  color: #067eed;
-  background-color: #067eed;
-  min-width:350px;
+    top: 0;
+    left: -100%;
+    z-index: 2;
+    background-color: white;
+
 }
 .hamburgerIcon{
     display: none;
 }
 @media screen and (max-width: 500px) {
-    img{
-        width: 300px;
-        height: 300px;
-        bottom: 0;
-        left: 50%;
-        transform: translate(-50%, 0);
-    }
-    .wrapper{
-        top:0;
-        height:100vh;
-    }
     .sliderText {
         width: 100%;
         height: 200px;
