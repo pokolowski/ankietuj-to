@@ -1,14 +1,30 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faXRay } from '@fortawesome/free-solid-svg-icons';
 import 'components/organisms/menuLeftPanel/menuLeftPanel.css';
+import HeaderUl from 'components/molecules/HeaderUl/HeaderUl';
+import { IoClose } from 'react-icons/io5';
 
 const MenuLeftPanel = () => {
   const [leftNavBar, setLeftNavBar] = useState(false);
+
   return (
     <>
-      <FontAwesomeIcon icon={faBars} className="hamburgerIcon" />
-      <div className={leftNavBar ? 'menuLeftPanel active': 'menuLeftPanel'}></div>
+      <FontAwesomeIcon
+        icon={faBars}
+        className="hamburgerIcon"
+        onClick={() => setLeftNavBar(!leftNavBar)}
+      />
+      <div className={leftNavBar ? 'MenuLeftPanel active' : 'MenuLeftPanel'}>
+        <IoClose
+          className="hamburgerIcon"
+          onClick={() => setLeftNavBar(!leftNavBar)}
+        />
+        <div className="ulContener">
+          <HeaderUl direction="column" className="leftPanelUl" />
+        </div>
+      </div>
     </>
   );
 };
