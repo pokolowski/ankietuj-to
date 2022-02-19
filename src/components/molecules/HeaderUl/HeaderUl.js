@@ -13,13 +13,19 @@ const Wrapper = styled.ul`
   color: #0e3854;
   justify-content: center;
   align-items: center;
+  // background-color: red;
   // background-color: blue;
   padding: 0;
+  @media (max-width: 500px) {
+    font-size: 18px;
+    width: 100%;
+  }
 `;
 const ListItems = styled.li`
   display: block;
   padding: 20px;
   cursor: pointer;
+  text-align: center;
   // background-color: green;
 `;
 

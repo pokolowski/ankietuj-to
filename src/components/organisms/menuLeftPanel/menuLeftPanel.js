@@ -5,6 +5,8 @@ import { faXRay } from '@fortawesome/free-solid-svg-icons';
 import 'components/organisms/menuLeftPanel/menuLeftPanel.css';
 import HeaderUl from 'components/molecules/HeaderUl/HeaderUl';
 import { IoClose } from 'react-icons/io5';
+import HeaderSignIn from 'components/molecules/HeaderSignIn/HeaderSignIn';
+import Header from '../header/header';
 
 const MenuLeftPanel = () => {
   const [leftNavBar, setLeftNavBar] = useState(false);
@@ -23,6 +25,9 @@ const MenuLeftPanel = () => {
         />
         <div className="ulContener">
           <HeaderUl direction="column" className="leftPanelUl" />
+        </div>
+        <div className="signInContainer">
+          <HeaderSignIn direction="column" />
         </div>
       </div>
     </>

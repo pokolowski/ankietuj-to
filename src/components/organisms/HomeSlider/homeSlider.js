@@ -16,8 +16,15 @@ import './homeSlider.css';
 // `;
 const HomeSlider = () => (
   <div class="wrapper">
-    <img src={gif} />
-    <div className="sliderText">Twórz ankiety już teraz</div>
+    <div className="homeSliderContainer">
+      <img src={gif} />
+      <div className="sliderText">
+        <h1>
+          Twórz ankiety już teraz <br />
+        </h1>
+        <h3>Skorzystaj z naszych szablonów i stwórz swoją własną ankietę</h3>
+      </div>
+    </div>
   </div>
 );
 

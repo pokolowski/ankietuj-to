@@ -9,17 +9,27 @@ const Wrapper = styled.ul`
   right: 50px;
   /* transform: translateX(-50%); */
   display: flex;
-  flex-direction: row;
+  flex-direction: ${(props) => props.direction};
   color: #0e3854;
+  justify-content: center;
+  align-items: center;
+  // background-color: blue;
+  padding: 0;
+  @media (max-width: 500px) {
+    font-size: 18px;
+    width: 100%;
+    right: 0;
+  }
 `;
 const ListItems = styled.li`
   display: block;
-  padding: 10px;
+  padding: 20px;
   cursor: pointer;
+  text-align: center;
 `;
 
-const HeaderSignIn = () => (
-  <Wrapper>
+const HeaderSignIn = ({ direction }) => (
+  <Wrapper direction={direction}>
     <ListItems>Zaloguj się</ListItems>
     <ListItems>Zarejestruj się</ListItems>
   </Wrapper>
