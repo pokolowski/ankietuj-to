@@ -9,6 +9,9 @@ Beway !!!
 # wariant 1
 
 #Colors
+#F0C808 - zolty ciekawy do przyciagaczy oczu
+#04A8D6
+
 $veryDarkblue = #0e3854
 $blue = #067eed
 $orange = #ff7c1f

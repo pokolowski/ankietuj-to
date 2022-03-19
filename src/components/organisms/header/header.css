@@ -1,7 +1,7 @@
 .header{
     margin: 0;
     box-sizing: border-box;
-    position: absolute;
+    position: relative;
     font-family: 'Alata';
     top: 0;
     left: 0;

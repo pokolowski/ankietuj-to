@@ -42,7 +42,7 @@ const HomeSlider = () => {
     return () => clearInterval(textChangeInterval);
   }, [textIndex]);
   return (
-    <div class="wrapper">
+    <div className="wrapper">
       <div className="homeSliderContainer">
         <img src={gif} />
         <div
