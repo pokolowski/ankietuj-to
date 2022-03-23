@@ -38,7 +38,7 @@ const HomeSlider = () => {
     const textChangeInterval = setInterval(() => {
       let index = textIndex + 1 === textcontent.length ? 0 : textIndex + 1;
       setTextIndex(index);
-    }, 10000);
+    }, 15000);
     return () => clearInterval(textChangeInterval);
   }, [textIndex]);
   return (
