@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import './header.css';
+// import './header.css';
+import styles from './header.module.css';
 import HeaderUl from 'components/molecules/HeaderUl/HeaderUl';
 import HeaderSignIn from 'components/molecules/HeaderSignIn/HeaderSignIn';
 
@@ -16,8 +17,8 @@ import HeaderSignIn from 'components/molecules/HeaderSignIn/HeaderSignIn';
 // `;
 
 const Header = () => (
-  <div className="header">
-    <h1> ankietuj to </h1>
+  <div className={styles.header}>
+    <h1 className={styles.styledH1}> ankietuj to </h1>
     <HeaderUl />
     <HeaderSignIn />
   </div>

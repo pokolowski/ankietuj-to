@@ -1,36 +1,48 @@
 import react from 'react';
 import styled from 'styled-components';
 import './InfoSteps.css';
+import NumberInCirle from 'components/atoms/NumberInCircle/numberInCirle';
 
 const Wrapper = styled.div`
+  //float: left;
+  margin: 0;
   display: flex;
   flex-direction: row;
-`;
-const StepNumber = styled.div`
-  width: 50px;
-  height: 50px;
-  position: relative;
-  border: 3px solid #fffcf2;
-  border-radius: 50%;
-  font-size: 24px;
-  //font-weight: bold;
-  display: flex;
   align-items: center;
-  justify-content: center;
+  //background-color: red;
 `;
-const Number = styled.span`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+const WrapperChild = styled.div`
+  max-width: 480px;
+  //height: 100px;
+  margin-left: 50px;
+  //background-color: blue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+const Title = styled.div`
+  width: 100%;
+  height: 40%;
+  //background-color: blue;
+  font-size: 24px;
+  font-weight: bold;
+`;
+const Description = styled.div`
+  width: 100%;
+  //height: 50%;
+  //background-color: green;
+  font-size: 14px;
+  color: #c1e6ff;
 `;
 
 const InfoSteps = ({ num, title, desc }) => {
   return (
     <Wrapper>
-      <StepNumber>
-        <Number>{num}</Number>
-      </StepNumber>
+      <NumberInCirle num={num}></NumberInCirle>
+      <WrapperChild>
+        <Title>{title}</Title>
+        <Description> {desc}</Description>
+      </WrapperChild>
     </Wrapper>
   );
 };
