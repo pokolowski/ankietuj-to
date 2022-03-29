@@ -26,6 +26,22 @@
     height:300px;
     width: 30%;
 }
-.chuj{
-    width: 50%;
+@media screen and (max-width: 500px){
+    .aboutHeader h1{
+        font-size: 24px;
+    }
+    .aboutHeader p{
+        font-size: 14px;
+    }
+    img{
+        width: 200px;
+        height: 200px;
+        margin-bottom: 50px;
+    }
+    .InfoStepsHolder > *{
+        margin-bottom: 20px;
+    }
+    .lastChild{
+        margin-bottom: 150px;
+    }
 }

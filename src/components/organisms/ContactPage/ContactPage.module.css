@@ -1,0 +1,40 @@
+.flexContainer{
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+
+}
+.contactContainer{
+    position: absolute;
+    width: 400px;
+    height: 80%;
+    left: 50px;
+    top: 40px;
+    color: white;
+    /* background-color: blue; */
+}
+.contactContainer h1 {
+    color: white;
+    text-transform:uppercase;
+    /* position: absolute; */
+    text-align: center;
+}
+.formContainer {
+    position: absolute;
+    width: 400px;
+    height: 80%;
+    right: 100px;
+    top: 40px;
+    color: white;
+    /* background-color: yellow; */
+}
+.formContainer h1{
+    text-align: center;
+}

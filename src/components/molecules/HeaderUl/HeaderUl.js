@@ -1,6 +1,8 @@
 import React from 'react';
 // import './HeaderUl.css';
 import styled from 'styled-components';
+import styles from './HeaderUl.module.css';
+// import { scroller } from 'react-scroll';
 
 const Wrapper = styled.ul`
   list-style: none;
@@ -31,9 +33,21 @@ const ListItems = styled.li`
 
 const HeaderUl = ({ direction }) => (
   <Wrapper dir={direction}>
-    <ListItems>Jak to działa?</ListItems>
-    <ListItems>Przykłady ankiet</ListItems>
-    <ListItems>Kontakt</ListItems>
+    <ListItems>
+      <a className={styles.aLink} href="#AboutPage">
+        Jak to działa?
+      </a>
+    </ListItems>
+    <ListItems>
+      <a className={styles.aLink} href="#SurveysExamples">
+        Przykłady ankiet
+      </a>
+    </ListItems>
+    <ListItems>
+      <a className={styles.aLink} href="">
+        Kontakt
+      </a>
+    </ListItems>
   </Wrapper>
 );
 

@@ -4,21 +4,26 @@ import './InfoSteps.css';
 import NumberInCirle from 'components/atoms/NumberInCircle/numberInCirle';
 
 const Wrapper = styled.div`
-  //float: left;
   margin: 0;
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: flex-start;
   //background-color: red;
+  @media screen and (max-width: 500px) {
+    // width: 200px;
+  }
 `;
 const WrapperChild = styled.div`
   max-width: 480px;
-  //height: 100px;
   margin-left: 50px;
   //background-color: blue;
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media screen and (max-width: 500px) {
+    max-width: 480px;
+  }
 `;
 const Title = styled.div`
   width: 100%;
@@ -26,6 +31,9 @@ const Title = styled.div`
   //background-color: blue;
   font-size: 24px;
   font-weight: bold;
+  @media screen and (max-width: 500px) {
+    font-size: 20px;
+  }
 `;
 const Description = styled.div`
   width: 100%;
