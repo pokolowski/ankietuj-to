@@ -44,7 +44,7 @@ const HeaderUl = ({ direction }) => (
       </a>
     </ListItems>
     <ListItems>
-      <a className={styles.aLink} href="">
+      <a className={styles.aLink} href="#ContactPage">
         Kontakt
       </a>
     </ListItems>

@@ -1,0 +1,18 @@
+.inputClass{
+    background-color: transparent;
+    width: 250px;
+    height: 30px;
+    border: 0;
+    border-bottom: 2px solid #067eed;
+    font-size: 16px;
+    transition: .2s;
+    padding: 5px;
+    color: #c1e6ff;
+    
+}
+.inputClass:focus{
+    outline: none;
+    border: 2px solid #067eed;
+    transition: .2s;
+    border-radius: 10px;
+}

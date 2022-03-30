@@ -22,6 +22,7 @@ img{
   z-index:5;
   box-shadow: 0 5px 10px 2px #067eed,
   0 10px 10px 5px #04a8d6;
+  overflow: hidden;
 }
 /* #04a8d6 */
 .hamburgerIcon{
