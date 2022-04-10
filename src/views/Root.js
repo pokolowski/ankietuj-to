@@ -7,15 +7,19 @@ import MenuLeftPanel from 'components/organisms/menuLeftPanel/menuLeftPanel.js';
 import About from 'components/organisms/AboutPage/about';
 import ExampleSurveys from 'components/organisms/ExampleSurveys/examplesurveys.js';
 import ContactPage from 'components/organisms/ContactPage/ContactPage.js';
+import Login from 'components/organisms/LoginPage/login.js';
+import Registry from 'components/organisms/RegistryPage/registry.js';
 
 const Root = () => (
   <ThemeProvider theme={theme}>
-    <Header />
+    {/* <Header />
     <HomeSlider />
     <About />
     <ExampleSurveys />
     <ContactPage />
-    <MenuLeftPanel />
+    <MenuLeftPanel /> */}
+    <Login />
+    {/* <Registry /> */}
   </ThemeProvider>
 );
 

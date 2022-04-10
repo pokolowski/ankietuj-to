@@ -7,7 +7,7 @@
     font-size: 16px;
     transition: .2s;
     padding: 5px;
-    color: #c1e6ff;
+    /* color: #c1e6ff; */
     
 }
 .inputClass:focus{
@@ -15,4 +15,10 @@
     border: 2px solid #067eed;
     transition: .2s;
     border-radius: 10px;
+}
+
+@media screen and (max-width: 500px){
+    .inputClass{
+        width: 250px;
+    }
 }

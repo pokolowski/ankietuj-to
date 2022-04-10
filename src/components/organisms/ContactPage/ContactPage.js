@@ -6,6 +6,8 @@ import ContactForm from 'components/molecules/ContactForm/ContactForm';
 
 const Wrapper = styled.div`
   position: relative;
+  top: 0;
+  left: 0;
   width: 100%;
   min-height: 700px;
   background-color: #0e3854;
@@ -26,7 +28,6 @@ const ContactPage = () => {
         <div className={styles.formContainer}>
           <h1>Napisz do nas</h1>
           <ContactForm />
-          <textarea className={styles.textAreaStyle} />
         </div>
       </div>
     </Wrapper>

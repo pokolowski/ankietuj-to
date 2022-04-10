@@ -1,18 +1,33 @@
-import react from 'react';
+import react, { useState } from 'react';
 import styled from 'styled-components';
 import styles from './FormField.module.css';
 
 const StyledInput = styled.input`
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: ${(props) => props.marginBottom}px;
+  color: ${(props) => props.fontColor} !important;
 `;
 
-const FormField = ({ label, marginBottom = 0 }) => {
+const FormField = ({
+  label,
+  marginBottom = 20,
+  onChange,
+  name,
+  type = 'text',
+  fontColor = '#c1e6ff',
+}) => {
   return (
     <>
       <label> {label} </label>
       <br />
-      <br />
-      <StyledInput type="tekst" className={styles.inputClass}></StyledInput>
+      <StyledInput
+        type={type}
+        name={name}
+        className={styles.inputClass}
+        onChange={onChange}
+        marginBottom={marginBottom}
+        required
+      ></StyledInput>
     </>
   );
 };

@@ -1,10 +1,10 @@
 .flexContainer{
     position: absolute;
-    top: 0;
+    top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    width: 80%;
-    height: 80%;
+    width: 70%;
+    height: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -13,11 +13,11 @@
 
 }
 .contactContainer{
-    position: absolute;
+    position: relative;
     width: 400px;
     height: 80%;
-    left: 50px;
-    top: 40px;
+    /* left: 50px; */
+    /* top: 40px; */
     color: white;
     /* background-color: blue; */
 }
@@ -26,20 +26,21 @@
     text-transform:uppercase;
     /* position: absolute; */
     text-align: center;
+    width: 100%;
 }
 .formContainer {
-    position: absolute;
+    /* position: absolute; */
     width: 400px;
     height: 80%;
-    right: 100px;
-    top: 40px;
+    /* right: 100px; */
+    /* top: 40px; */
     color: white;
     /* background-color: yellow; */
 }
 .formContainer h1{
     text-align: center;
 }
-.textAreaStyle{
+/* .textAreaStyle{
     width: 400px;
     height: 200px;
     font-size: 16px;
@@ -48,14 +49,31 @@
     font-family: Alata;
     transition: .2s;
     padding: 5px;
+    resize: none;
 }
 .textAreaStyle:focus{
     outline: none;
     border: 4px solid #067eed;
-}
+} */
 
 @media screen and (max-width: 500px){
-    .formContainer{
+    .flexContainer{
         flex-direction: column;
+        /* left: 0; */
+        /* justify-content: space-around; */
+        align-items: center;
+        width: 80%;
+    }
+    .contactContainer{
+        align-self: flex-start;
+        width: 100%;
+    }
+    .formContainer{
+        width: 100%;
+    }
+    .textAreaStyle{
+        padding: 10px;
+        width: 250px;
+        resize: none;
     }
 }
