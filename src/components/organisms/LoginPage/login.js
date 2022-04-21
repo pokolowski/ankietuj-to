@@ -4,10 +4,13 @@ import styles from './login.module.css';
 import LoginForm from 'components/molecules/LoginForm/loginForm';
 import Button from 'components/atoms/Button/button';
 import RegistryForm from 'components/molecules/RegistryForm/registry';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { NavLink } from 'react-router-dom';
 
 const Wrapper = styled.div`
   width: 400px;
-  //   height: ${(props) => (props.displayOff ? '700px' : '500px')};
+  // height: 500px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -25,6 +28,13 @@ const Wrapper = styled.div`
 const P = styled.p`
   align-self: center;
 `;
+const StyledDiv = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+`;
 
 const Login = () => {
   const [displayOff, setDisplayOff] = useState(false);
@@ -33,26 +43,34 @@ const Login = () => {
 
   return (
     <Wrapper>
+      <NavLink to="/" className={styles.iconBack}>
+        <FontAwesomeIcon icon={faArrowLeft} />
+      </NavLink>
       <h1 className={styles.styledH1}> ankietuj to </h1>
       <LoginForm display={displayOff ? 'none' : ''} />
       <RegistryForm display={displayOff ? 'none' : ''} />
-      <Button
-        text={displayOff ? 'Zarejestruj się' : 'Zaloguj się'}
-        alignSelf="center"
-        className={styles.styledBtn}
-      />
-      <P>
-        {displayOff ? 'Posiadasz już konto? ' : 'Nie posiadasz jeszcze konta? '}
-        <a
-          href="#"
-          onClick={() => {
-            setDisplayOff(!displayOff);
-            console.log(displayOff);
-          }}
-        >
-          {displayOff ? 'Zaloguj się.' : 'Załóż już teraz!'}
-        </a>
-      </P>
+      <StyledDiv>
+        <Button
+          text={displayOff ? 'Zarejestruj się' : 'Zaloguj się'}
+          alignSelf="center"
+          fontSize="15"
+          className={styles.styledBtn}
+        />
+        <P>
+          {displayOff
+            ? 'Posiadasz już konto? '
+            : 'Nie posiadasz jeszcze konta? '}
+          <a
+            href="#"
+            onClick={() => {
+              setDisplayOff(!displayOff);
+              console.log(displayOff);
+            }}
+          >
+            {displayOff ? 'Zaloguj się.' : 'Załóż już teraz!'}
+          </a>
+        </P>
+      </StyledDiv>
     </Wrapper>
   );
 };

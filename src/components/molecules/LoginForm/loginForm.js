@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   transition: 0.5s;
 `;
 const P = styled.p`
-  margin-bottom: 10px;
+  margin-bottom: 50px;
 `;
 
 const LoginForm = ({ display }) => {
@@ -43,7 +43,7 @@ const LoginForm = ({ display }) => {
         fontColor="red"
         marginBottom="5px"
       ></FormField>
-      <p>Zapomniałeś hasła?</p>
+      <P>Zapomniałeś hasła?</P>
     </Wrapper>
   );
 };

@@ -1,9 +1,10 @@
 import React from 'react';
 // import './HeaderSignIn.css';
 import styled from 'styled-components';
-// import styles from './HeaderSignIn.module.css';
+import { NavLink, Link } from 'react-router-dom';
+import styles from './HeaderSignIn.module.css';
 
-const Wrapper = styled.ul`
+const Wrapper = styled.div`
   list-style: none;
   font-size: 12px;
   position: absolute;
@@ -31,8 +32,18 @@ const ListItems = styled.li`
 
 const HeaderSignIn = ({ direction }) => (
   <Wrapper direction={direction}>
-    <ListItems>Zaloguj się</ListItems>
-    <ListItems>Zarejestruj się</ListItems>
+    {/* <ListItems as="NavLink" to="/Login">
+      Zaloguj się
+    </ListItems>
+    <ListItems as="NavLink" to="/Login">
+      Zarejestruj się
+    </ListItems> */}
+    <NavLink to="/Login" className={styles.StyledNavLink} as="li">
+      Zaloguj się
+    </NavLink>
+    <NavLink to="/Login" className={styles.StyledNavLink} as="li">
+      Zarejestruj się
+    </NavLink>
   </Wrapper>
 );
 

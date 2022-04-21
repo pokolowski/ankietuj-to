@@ -1,20 +1,15 @@
-.ulClass {
-    /* display:none; */
-    list-style: none;
-    font-size: 12px;
-    position: absolute;
-    right: 0 !important;
-    /* transform: translateX(-50%); */
-    display: flex;
-    flex-direction: row;
-    color: #0e3854;
-    /* background-color: red; */
-}
-
-.ulClass li {
+.StyledNavLink{
     display: block;
-    /* display: none; */
-    padding: 10px;
-    cursor: pointer;
-    /* background-color: red; */
+  padding: 10px;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
+  color: #0e3854;
+  font-size: 15px;
+  /* Check gradient on text */
+  /* font-size: 72px; */
+  background: linear-gradient(90deg, #0e3854, #067eed);
+  font-size: 16px;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

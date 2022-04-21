@@ -1,26 +1,20 @@
 import React from 'react';
-import Header from '../components/organisms/header/header.js';
-import HomeSlider from 'components/organisms/HomeSlider/homeSlider.js';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'assets/styles/theme.js';
-import MenuLeftPanel from 'components/organisms/menuLeftPanel/menuLeftPanel.js';
-import About from 'components/organisms/AboutPage/about';
-import ExampleSurveys from 'components/organisms/ExampleSurveys/examplesurveys.js';
-import ContactPage from 'components/organisms/ContactPage/ContactPage.js';
 import Login from 'components/organisms/LoginPage/login.js';
 import Registry from 'components/organisms/RegistryPage/registry.js';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import HomePage from './HomePage';
 
 const Root = () => (
-  <ThemeProvider theme={theme}>
-    {/* <Header />
-    <HomeSlider />
-    <About />
-    <ExampleSurveys />
-    <ContactPage />
-    <MenuLeftPanel /> */}
-    <Login />
-    {/* <Registry /> */}
-  </ThemeProvider>
+  <Router>
+    <ThemeProvider theme={theme}>
+      <Routes>
+        <Route path="/Login" element={<Login />} />
+        <Route path="/" element={<HomePage />} />
+      </Routes>
+    </ThemeProvider>
+  </Router>
 );
 
 export default Root;

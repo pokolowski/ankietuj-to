@@ -9,7 +9,7 @@ const Btn = styled.button`
   border-radius: 20px;
   cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-  font-size: 16px;
+  font-size: ${(props) => props.fontSize} px;
   text-transform: uppercase;
   line-height: 20px;
   font-family: Alata;
@@ -20,7 +20,11 @@ const Btn = styled.button`
   }
 `;
 
-const Button = ({ text, alignSelf }) => {
-  return <Btn alignSelf={alignSelf}>{text}</Btn>;
+const Button = ({ text, alignSelf, fontSize = 16 }) => {
+  return (
+    <Btn alignSelf={alignSelf} fontSize={fontSize}>
+      {text}
+    </Btn>
+  );
 };
 export default Button;
