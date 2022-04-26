@@ -5,10 +5,13 @@ import Button from 'components/atoms/Button/button';
 // import { useState } from 'react/cjs/react.production.min';
 
 const ContactForm = () => {
-  const [formsValues, setFormsValues] = useState({
+  const initialFormState = {
     email: '',
     subject: '',
-  });
+    textarea: '',
+  };
+
+  const [formsValues, setFormsValues] = useState(initialFormState);
 
   const handleValueChange = (e) => {
     // console.log(formsValues);
@@ -19,12 +22,21 @@ const ContactForm = () => {
     });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(`udalo sie submitowac ${e.target.value}`);
+    // console.log(event);
+    setFormsValues(initialFormState);
+    console.log(formsValues);
+  };
+  // console.log(formsValues);
   return (
-    <>
+    <form onSubmit={handleSubmit}>
       <FormField
         label="Twój adres email"
         name="email"
         id="email"
+        value={formsValues.email}
         onChange={handleValueChange}
       />
       <br />
@@ -33,16 +45,23 @@ const ContactForm = () => {
         name="subject"
         id="subject"
         marginBottom="50px"
+        value={formsValues.subject}
         onChange={handleValueChange}
       />
+      <br />
       <br />
       <label>Napisz wiadomość do nas:</label>
       <br />
       <br />
-      <textarea className={styles.textAreaStyle} />
+      <textarea
+        className={styles.textAreaStyle}
+        name="textarea"
+        value={formsValues.textarea}
+        onChange={handleValueChange}
+      />
       <br />
       <Button text="Wyślij"></Button>
-    </>
+    </form>
   );
 };
 

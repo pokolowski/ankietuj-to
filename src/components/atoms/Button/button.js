@@ -22,7 +22,7 @@ const Btn = styled.button`
 
 const Button = ({ text, alignSelf, fontSize = 16 }) => {
   return (
-    <Btn alignSelf={alignSelf} fontSize={fontSize}>
+    <Btn alignSelf={alignSelf} fontSize={fontSize} type="submit">
       {text}
     </Btn>
   );

@@ -41,6 +41,10 @@ const Login = () => {
 
   const ChangeForm = () => {};
 
+  const dupa = () => {
+    console.log(dupa);
+  };
+
   return (
     <Wrapper>
       <NavLink to="/" className={styles.iconBack}>
@@ -50,12 +54,12 @@ const Login = () => {
       <LoginForm display={displayOff ? 'none' : ''} />
       <RegistryForm display={displayOff ? 'none' : ''} />
       <StyledDiv>
-        <Button
+        {/* <Button
           text={displayOff ? 'Zarejestruj się' : 'Zaloguj się'}
           alignSelf="center"
           fontSize="15"
           className={styles.styledBtn}
-        />
+        /> */}
         <P>
           {displayOff
             ? 'Posiadasz już konto? '

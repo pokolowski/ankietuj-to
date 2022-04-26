@@ -15,6 +15,8 @@ const FormField = ({
   name,
   type = 'text',
   fontColor = '#c1e6ff',
+  value = '',
+  ...props
 }) => {
   return (
     <>
@@ -26,6 +28,7 @@ const FormField = ({
         className={styles.inputClass}
         onChange={onChange}
         marginBottom={marginBottom}
+        value={value}
         required
       ></StyledInput>
     </>
