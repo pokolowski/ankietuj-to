@@ -25,7 +25,7 @@ const UnauthenticatedApp = ({ handleSingIn }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <input defaultValue="test" {...register('login')} />
-      <input {...register('haslo', { required: true })} />
+      <input {...register('password', { required: true })} />
       {errors.exampleRequired && <span>This field is required</span>}
       <input type="submit" />
     </form>
@@ -35,13 +35,16 @@ const UnauthenticatedApp = ({ handleSingIn }) => {
 const Root = () => {
   const [user, setUser] = useState(null);
 
-  const handleSignIn = ({ login, password }) => {
-    axios
-      .post('/url', {
-        login,
+  const handleSignIn = async ({ email, password }) => {
+    try {
+      const response = await axios.post('/url', {
+        email,
         password,
-      })
-      .then((res) => console.log(res));
+      });
+      setUser(response.data);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const login = (data) => {};
@@ -53,7 +56,7 @@ const Root = () => {
           <Route path="/Login" element={<Login />} />
           {/* <Route path="/" element={<HomePage />} /> */}
           {user ? (
-            <AuthenticatedApp />
+            <Route path="/" element={<HomePage />} />
           ) : (
             <Route
               path="/"
