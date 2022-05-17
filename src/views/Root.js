@@ -11,14 +11,14 @@ import { useForm } from 'react-hook-form';
 const AuthenticatedApp = () => {
   return <>zalogowano</>;
 };
-const UnauthenticatedApp = ({ handleSingIn }) => {
+const UnauthenticatedApp = ({ handleSignIn }) => {
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = ({ login, password }) => handleSingIn({ login, password });
+  const onSubmit = ({ login, password }) => handleSignIn({ login, password });
 
   console.log(watch('example'));
 
@@ -36,6 +36,7 @@ const Root = () => {
   const [user, setUser] = useState(null);
 
   const handleSignIn = async ({ email, password }) => {
+    console.log(`email: ${email}, haslo: ${password}`);
     try {
       const response = await axios.post('/url', {
         email,
@@ -53,15 +54,19 @@ const Root = () => {
     <Router>
       <ThemeProvider theme={theme}>
         <Routes>
-          <Route path="/Login" element={<Login />} />
+          <Route
+            path="/Login"
+            element={<Login handleSignIn={handleSignIn} />}
+          />
           {/* <Route path="/" element={<HomePage />} /> */}
           {user ? (
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<AuthenticatedApp />} />
           ) : (
-            <Route
-              path="/"
-              element={<UnauthenticatedApp handleSingIn={handleSignIn} />}
-            />
+            // <Route
+            //   path="/"
+            //   element={<UnauthenticatedApp handleSingIn={handleSignIn} />}
+            // />
+            <Route path="/" element={<HomePage />} />
           )}
         </Routes>
       </ThemeProvider>

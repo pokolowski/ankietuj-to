@@ -1,6 +1,7 @@
 import react, { useState } from 'react';
 import styled from 'styled-components';
 import styles from './FormField.module.css';
+import { useForm } from 'react-hook-form';
 
 const StyledInput = styled.input`
   margin-top: 10px;
@@ -18,6 +19,10 @@ const FormField = ({
   value = '',
   ...props
 }) => {
+  const {
+    register,
+    formState: { errors },
+  } = useForm();
   return (
     <>
       <label> {label} </label>
@@ -27,6 +32,7 @@ const FormField = ({
         name={name}
         className={styles.inputClass}
         onChange={onChange}
+        // {...register(name)}
         marginBottom={marginBottom}
         value={value}
         required

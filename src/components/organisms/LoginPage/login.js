@@ -36,7 +36,7 @@ const StyledDiv = styled.div`
   align-items: center;
 `;
 
-const Login = () => {
+const Login = ({ handleSignIn }) => {
   const [displayOff, setDisplayOff] = useState(false);
 
   const ChangeForm = () => {};
@@ -51,7 +51,10 @@ const Login = () => {
         <FontAwesomeIcon icon={faArrowLeft} />
       </NavLink>
       <h1 className={styles.styledH1}> ankietuj to </h1>
-      <LoginForm display={displayOff ? 'none' : ''} />
+      <LoginForm
+        display={displayOff ? 'none' : ''}
+        handleSignIn={handleSignIn}
+      />
       <RegistryForm display={displayOff ? 'none' : ''} />
       <StyledDiv>
         {/* <Button
