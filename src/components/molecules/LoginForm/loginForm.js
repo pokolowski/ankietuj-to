@@ -4,6 +4,7 @@ import styles from './loginForm.module.css';
 import FormField from 'components/atoms/FormField/FormField';
 import Button from 'components/atoms/Button/button';
 import { useForm } from 'react-hook-form';
+import { useAuth } from 'hooks/useAuth';
 
 const Wrapper = styled.div`
   color: black;
@@ -30,43 +31,27 @@ const LoginForm = ({ display, handleSignIn, ...props }) => {
     password: '',
   });
 
+  const auth = useAuth();
+
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = ({ login, password }) => {
-    console.log(`login: ${login}, haslo: ${password}`);
-    handleSignIn({ login, password });
+  const onSubmit = ({ email, password }) => {
+    console.log(`login: ${email}, haslo: ${password}`);
+    handleSignIn({ email, password });
   };
   // console.log(...register('login'));
-
-  const handleValueChange = (e) => {
-    setFormsValues({
-      ...formsValues,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log('udalo sie logowanie');
-  //   setFormsValues({
-  //     login: '',
-  //     password: '',
-  //   });
-  // };
   return (
-    <Wrapper display={display} as="form" onSubmit={handleSubmit(onSubmit)}>
-      {/* <FormField
+    <Wrapper display={display} as="form" onSubmit={handleSubmit(auth.signIn)}>
+      <FormField
         label="Login"
         name="login"
         fontColor="red"
         marginBottom="30"
-        // onChange={handleValueChange}
-        {...register('login')}
-        // value={formsValues.login}
+        {...register('email')}
       ></FormField>
       <br />
       <FormField
@@ -75,14 +60,8 @@ const LoginForm = ({ display, handleSignIn, ...props }) => {
         type="password"
         fontColor="red"
         marginBottom="5px"
-        // onChange={handleValueChange}
         {...register('password')}
-        // {...register('password', { required: true })}
-        // value={formsValues.password}
-      ></FormField> */}
-      <input defaultValue="test" {...register('login')} />
-      <input {...register('password', { required: true })} />
-      {errors.exampleRequired && <span>This field is required</span>}
+      ></FormField>
       <P>Zapomniałeś hasła?</P>
       <BtnContainer>
         <Button text="Zaloguj się" alignSelf="center" fontSize="15" />

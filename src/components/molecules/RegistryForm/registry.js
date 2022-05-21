@@ -3,6 +3,8 @@ import styled from 'styled-components';
 // import styles from './loginForm.module.css';
 import FormField from 'components/atoms/FormField/FormField';
 import Button from 'components/atoms/Button/button';
+import { useForm } from 'react-hook-form';
+import { useAuth } from 'hooks/useAuth';
 
 const Wrapper = styled.div`
   color: black;
@@ -33,6 +35,14 @@ const RegistryForm = ({ display }) => {
     password: '',
     repeatpassword: '',
   });
+  const auth = useAuth();
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
 
   const handleValueChange = (e) => {
     setFormsValues({
@@ -41,33 +51,27 @@ const RegistryForm = ({ display }) => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
   return (
-    <Wrapper display={display} as="form" onSubmit={handleSubmit}>
+    <Wrapper display={display} as="form" onSubmit={handleSubmit(auth.register)}>
       <FormField
         label="Imie"
-        name="FirstName"
+        name="name"
         marginBottom="30"
-        value={formsValues.FirstName}
-        onChange={handleValueChange}
+        {...register('name')}
       ></FormField>
       <br />
       <FormField
         label="Nazwisko"
-        name="LastName"
+        name="surname"
         marginBottom="30"
-        value={formsValues.LastName}
-        onChange={handleValueChange}
+        {...register('surname')}
       ></FormField>
       <br />
       <FormField
         label="Adres Email"
         name="email"
         marginBottom="30"
-        value={formsValues.email}
-        onChange={handleValueChange}
+        {...register('email')}
       ></FormField>
       <br />
       <FormField
@@ -75,8 +79,7 @@ const RegistryForm = ({ display }) => {
         name="password"
         type="password"
         marginBottom="30"
-        value={formsValues.password}
-        onChange={handleValueChange}
+        {...register('password')}
       ></FormField>
       <br />
       <FormField
@@ -84,8 +87,6 @@ const RegistryForm = ({ display }) => {
         name="repeatpassword"
         type="password"
         marginBottom="30"
-        value={formsValues.repeatpassword}
-        onChange={handleValueChange}
       ></FormField>
       <BtnContainer>
         <Button text="Zarejestruj się" alignSelf="center" fontSize="15" />

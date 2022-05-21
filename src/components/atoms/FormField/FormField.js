@@ -9,36 +9,38 @@ const StyledInput = styled.input`
   color: ${(props) => props.fontColor} !important;
 `;
 
-const FormField = ({
-  label,
-  marginBottom = 20,
-  onChange,
-  name,
-  type = 'text',
-  fontColor = '#c1e6ff',
-  value = '',
-  ...props
-}) => {
-  const {
-    register,
-    formState: { errors },
-  } = useForm();
-  return (
-    <>
-      <label> {label} </label>
-      <br />
-      <StyledInput
-        type={type}
-        name={name}
-        className={styles.inputClass}
-        onChange={onChange}
-        // {...register(name)}
-        marginBottom={marginBottom}
-        value={value}
-        required
-      ></StyledInput>
-    </>
-  );
-};
+const FormField = react.forwardRef(
+  (
+    {
+      label,
+      marginBottom = 20,
+      onChange,
+      name,
+      type = 'text',
+      fontColor = '#c1e6ff',
+      value,
+      ...props
+    },
+    ref
+  ) => {
+    return (
+      <>
+        <label> {label} </label>
+        <br />
+        <StyledInput
+          type={type}
+          name={name}
+          className={styles.inputClass}
+          // onChange={onChange}
+          marginBottom={marginBottom}
+          // value={value}
+          {...props}
+          ref={ref}
+          required
+        ></StyledInput>
+      </>
+    );
+  }
+);
 
 export default FormField;

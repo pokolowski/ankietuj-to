@@ -6,10 +6,10 @@ import ExampleSurveys from 'components/organisms/ExampleSurveys/examplesurveys';
 import ContactPage from 'components/organisms/ContactPage/ContactPage';
 import MenuLeftPanel from 'components/organisms/menuLeftPanel/menuLeftPanel';
 
-const HomePage = () => {
+const HomePage = ({ setLoginOrRegister }) => {
   return (
     <>
-      <Header />
+      <Header setLoginOrRegister={setLoginOrRegister} />
       <HomeSlider />
       <About />
       <ExampleSurveys />

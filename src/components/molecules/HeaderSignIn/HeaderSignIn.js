@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 // import './HeaderSignIn.css';
 import styled from 'styled-components';
 import { NavLink, Link } from 'react-router-dom';
@@ -30,21 +30,27 @@ const ListItems = styled.li`
   text-align: center;
 `;
 
-const HeaderSignIn = ({ direction }) => (
-  <Wrapper direction={direction}>
-    {/* <ListItems as="NavLink" to="/Login">
-      Zaloguj się
-    </ListItems>
-    <ListItems as="NavLink" to="/Login">
-      Zarejestruj się
-    </ListItems> */}
-    <NavLink to="/Login" className={styles.StyledNavLink} as="li">
-      Zaloguj się
-    </NavLink>
-    <NavLink to="/Login" className={styles.StyledNavLink} as="li">
-      Zarejestruj się
-    </NavLink>
-  </Wrapper>
-);
+const HeaderSignIn = ({ direction, setLoginOrRegister }) => {
+  return (
+    <Wrapper direction={direction}>
+      <NavLink
+        to="/Login"
+        className={styles.StyledNavLink}
+        as="li"
+        onClick={() => setLoginOrRegister(false)}
+      >
+        Zaloguj się
+      </NavLink>
+      <NavLink
+        to="/Login"
+        className={styles.StyledNavLink}
+        as="li"
+        onClick={() => setLoginOrRegister(true)}
+      >
+        Zarejestruj się
+      </NavLink>
+    </Wrapper>
+  );
+};
 
 export default HeaderSignIn;

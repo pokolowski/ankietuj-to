@@ -16,11 +16,11 @@ import HeaderSignIn from 'components/molecules/HeaderSignIn/HeaderSignIn';
 // box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 // `;
 
-const Header = () => (
+const Header = ({ setLoginOrRegister }) => (
   <div className={styles.header}>
     <h1 className={styles.styledH1}> ankietuj to </h1>
     <HeaderUl />
-    <HeaderSignIn />
+    <HeaderSignIn setLoginOrRegister={setLoginOrRegister} />
   </div>
 );
 export default Header;

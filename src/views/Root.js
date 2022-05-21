@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'assets/styles/theme.js';
@@ -7,6 +7,7 @@ import Registry from 'components/organisms/RegistryPage/registry.js';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import HomePage from './HomePage';
 import { useForm } from 'react-hook-form';
+import { useAuth } from 'hooks/useAuth';
 
 const AuthenticatedApp = () => {
   return <>zalogowano</>;
@@ -33,44 +34,41 @@ const UnauthenticatedApp = ({ handleSignIn }) => {
 };
 
 const Root = () => {
-  const [user, setUser] = useState(null);
-
-  const handleSignIn = async ({ email, password }) => {
-    console.log(`email: ${email}, haslo: ${password}`);
-    try {
-      const response = await axios.post('/url', {
-        email,
-        password,
-      });
-      setUser(response.data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  const login = (data) => {};
+  const [displayOff, setDisplayOff] = useState(false);
+  const auth = useAuth();
+  let goToChoice = 'login';
 
   return (
-    <Router>
-      <ThemeProvider theme={theme}>
-        <Routes>
+    <ThemeProvider theme={theme}>
+      <Routes>
+        <Route
+          path="/Login"
+          element={
+            <Login
+              setLoginOrRegister={setDisplayOff}
+              LoginOrRegister={displayOff}
+            />
+          }
+        />
+        <Route path="/Register" element={<Login />} />
+        {/* <Route path="/" element={<HomePage />} /> */}
+        {auth.user ? (
           <Route
-            path="/Login"
-            element={<Login handleSignIn={handleSignIn} />}
+            path="/"
+            element={<AuthenticatedApp setLoginOrRegister={setDisplayOff} />}
           />
-          {/* <Route path="/" element={<HomePage />} /> */}
-          {user ? (
-            <Route path="/" element={<AuthenticatedApp />} />
-          ) : (
-            // <Route
-            //   path="/"
-            //   element={<UnauthenticatedApp handleSingIn={handleSignIn} />}
-            // />
-            <Route path="/" element={<HomePage />} />
-          )}
-        </Routes>
-      </ThemeProvider>
-    </Router>
+        ) : (
+          // <Route
+          //   path="/"
+          //   element={<UnauthenticatedApp handleSingIn={handleSignIn} />}
+          // />
+          <Route
+            path="/"
+            element={<HomePage setLoginOrRegister={setDisplayOff} />}
+          />
+        )}
+      </Routes>
+    </ThemeProvider>
   );
 };
 

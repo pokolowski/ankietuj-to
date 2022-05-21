@@ -1,12 +1,13 @@
-import react, { useState } from 'react';
+import react, { useState, useContext } from 'react';
 import styled from 'styled-components';
-import styles from './login.module.css';
+import styles from './register.module.css';
 import LoginForm from 'components/molecules/LoginForm/loginForm';
 import Button from 'components/atoms/Button/button';
 import RegistryForm from 'components/molecules/RegistryForm/registry';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
+import { LoginContext } from 'views/Root';
 
 const Wrapper = styled.div`
   width: 400px;
@@ -37,12 +38,12 @@ const StyledDiv = styled.div`
 `;
 
 const Login = ({ handleSignIn, LoginOrRegister, setLoginOrRegister }) => {
-  const [displayOff, setDisplayOff] = useState(false);
-
+  // const display = useContext(LoginContext);
+  // const [displayOff, setDisplayOff] = useState(false);
   const ChangeForm = () => {};
 
   const dupa = () => {
-    console.log(dupa);
+    console.log('dupa');
   };
 
   return (
@@ -71,7 +72,7 @@ const Login = ({ handleSignIn, LoginOrRegister, setLoginOrRegister }) => {
             href="#"
             onClick={() => {
               setLoginOrRegister(!LoginOrRegister);
-              console.log(LoginOrRegister);
+              console.log('poszlo');
             }}
           >
             {LoginOrRegister ? 'Zaloguj się.' : 'Załóż już teraz!'}
