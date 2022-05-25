@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Navigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 // import { useError } from 'hooks/useError';
 
 const AuthContext = React.createContext({});
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
   // const { dispatchError } = useError();
 
   useEffect(() => {
@@ -38,7 +40,7 @@ export const AuthProvider = ({ children }) => {
         password,
       });
       setUser(response.data);
-      // navigate(`/`);
+      navigate(`/`);
       localStorage.setItem('token', response.data.token);
     } catch (e) {
       // dispatchError('Invalid email or password');
@@ -62,8 +64,9 @@ export const AuthProvider = ({ children }) => {
         password,
       });
       setUser(response.data);
-      // navigate(`/`);
+      navigate(`/`);
       localStorage.setItem('token', response.data.token);
+      // history.push('/');
     } catch (e) {
       // dispatchError('Invalid email or password');
       console.log(e);
@@ -77,7 +80,8 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={{ user, signIn, signOut, register }}>
-      {children} {user && <Navigate to="/" replace={true} />}
+      {children}
+      {/* {user && <Navigate to="/" replace={true} />} */}
     </AuthContext.Provider>
   );
 };

@@ -24,6 +24,9 @@ const Wrapper = styled.div`
   //   background-color: red;
   overflow: hidden;
   transition: 0.5s;
+  @media (max-width: 500px) {
+    width: 300px;
+  }
 `;
 const P = styled.p`
   align-self: center;
