@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import HomePage from './HomePage';
 import { useForm } from 'react-hook-form';
 import { useAuth } from 'hooks/useAuth';
+import AuthorizedView from './AuthorizedView';
 
 const AuthenticatedApp = () => {
   return <>zalogowano</>;
@@ -56,10 +57,11 @@ const Root = () => {
             element={<AuthenticatedApp setLoginOrRegister={setDisplayOff} />}
           />
         ) : (
-          <Route
-            path="/"
-            element={<HomePage setLoginOrRegister={setDisplayOff} />}
-          />
+          <Route path="/" element={<AuthorizedView />} />
+          // <Route
+          //   path="/"
+          //   element={<HomePage setLoginOrRegister={setDisplayOff} />}
+          // />
         )}
       </Routes>
     </ThemeProvider>
