@@ -5,6 +5,14 @@ import fillIcon from 'assets/headerIcons/FillOut.svg';
 import profileIcon from 'assets/headerIcons/profile.svg';
 import shareIcon from 'assets/headerIcons/share.svg';
 import surveyIcon from 'assets/headerIcons/survey.svg';
+import surveyIconOrange from 'assets/headerIcons/orange/survey.svg';
+import resultIconOrange from 'assets/headerIcons/orange/results.svg';
+import fillIconOrange from 'assets/headerIcons/orange/FillOut.svg';
+import profileIconOrange from 'assets/headerIcons/orange/profile.svg';
+import shareIconOrange from 'assets/headerIcons/orange/share.svg';
+import logOutIconOrange from 'assets/headerIcons/orange/logOut.svg';
+import logOutIcon from 'assets/headerIcons/logOut.svg';
+import { useAuth } from 'hooks/useAuth';
 
 const Logo = styled.h1`
   position: relative;
@@ -26,8 +34,13 @@ const Wrapper = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  // box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   background-color: white;
+  @media (max-width: 900px) {
+    display: none;
+  }
 `;
 const Bookmarks = styled.div`
   position: absolute;
@@ -40,9 +53,11 @@ const Bookmarks = styled.div`
   // background-color: red;
 `;
 const Icon = styled.img`
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   margin-right: 60px;
+  cursor: pointer;
+  color: green;
 `;
 
 const ProfileContainer = styled.div`
@@ -51,17 +66,94 @@ const ProfileContainer = styled.div`
 `;
 
 const AuthorizedHeader = () => {
+  const auth = useAuth();
+  const handleHover = (e) => {
+    switch (e.target.getAttribute('name')) {
+      case '1':
+        e.target.setAttribute('src', surveyIconOrange);
+        break;
+      case '2':
+        e.target.setAttribute('src', fillIconOrange);
+        break;
+      case '3':
+        e.target.setAttribute('src', shareIconOrange);
+        break;
+      case '4':
+        e.target.setAttribute('src', resultIconOrange);
+        break;
+      case '5':
+        e.target.setAttribute('src', profileIconOrange);
+        break;
+      case '6':
+        e.target.setAttribute('src', logOutIconOrange);
+        break;
+    }
+  };
+  const handleMouseLeave = (e) => {
+    switch (e.target.getAttribute('name')) {
+      case '1':
+        e.target.setAttribute('src', surveyIcon);
+        break;
+      case '2':
+        e.target.setAttribute('src', fillIcon);
+        break;
+      case '3':
+        e.target.setAttribute('src', shareIcon);
+        break;
+      case '4':
+        e.target.setAttribute('src', resultIcon);
+        break;
+      case '5':
+        e.target.setAttribute('src', profileIcon);
+        break;
+      case '6':
+        e.target.setAttribute('src', logOutIcon);
+        break;
+    }
+  };
   return (
     <Wrapper>
       <Logo>Ankietuj to</Logo>
       <Bookmarks>
-        <Icon src={surveyIcon} />
-        <Icon src={fillIcon} />
-        <Icon src={shareIcon} />
-        <Icon src={resultIcon} />
+        <Icon
+          name="1"
+          src={surveyIcon}
+          onMouseOver={handleHover}
+          onMouseLeave={handleMouseLeave}
+        />
+        <Icon
+          name="2"
+          src={fillIcon}
+          onMouseOver={handleHover}
+          onMouseLeave={handleMouseLeave}
+        />
+        <Icon
+          name="3"
+          src={shareIcon}
+          onMouseOver={handleHover}
+          onMouseLeave={handleMouseLeave}
+        />
+        <Icon
+          name="4"
+          src={resultIcon}
+          onMouseOver={handleHover}
+          onMouseLeave={handleMouseLeave}
+        />
       </Bookmarks>
       <ProfileContainer>
-        <Icon src={profileIcon} />
+        <Icon
+          name="5"
+          src={profileIcon}
+          onMouseOver={handleHover}
+          onMouseLeave={handleMouseLeave}
+        />
+        <Icon
+          name="6"
+          src={logOutIcon}
+          onMouseOver={handleHover}
+          onMouseLeave={handleMouseLeave}
+          onClick={auth.singOut}
+        />
       </ProfileContainer>
     </Wrapper>
   );

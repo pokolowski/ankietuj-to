@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const Wrapper = styled.div`
   // padding: 10px;
   position: relative;
-  height: 100%;
+  // height: 50%;
   width: 20%;
   // border-right: 2px solid red;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
@@ -16,6 +16,7 @@ const Wrapper = styled.div`
   transition: 0.7s;
   text-transform: uppercase;
   text-align: center;
+  overflow: hidden;
 
   //flexbox
   display: flex;
@@ -29,6 +30,10 @@ const Wrapper = styled.div`
     // background-color: #ed9f1f;
     // background-color: #a16400;
   }
+  @media (max-width: 600px) {
+    width: 40%;
+    padding: 10px;
+  }
   //#ED9F1F
 `;
 const Icon = styled.img`
@@ -38,11 +43,26 @@ const Icon = styled.img`
   color: blue;
   // background-color: blue;
 `;
+const Label = styled.span`
+  font-size: 24px;
+  text-align: center;
+  font-weight: bold;
+  // overflow: hidden;
+  @media (max-width: 1050px) {
+    font-size: 20px;
+  }
+  @media (max-width: 850px) {
+    font-size: 17px;
+  }
+  @media (max-width: 750px) {
+    font-size: 10px;
+  }
+`;
 
 const CategoryDiv = ({ text, icon }) => {
   return (
     <Wrapper>
-      <h2>{text}</h2>
+      <Label>{text}</Label>
       <Icon src={icon} />
 
       {/* <Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">

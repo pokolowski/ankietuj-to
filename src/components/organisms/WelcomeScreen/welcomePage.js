@@ -13,22 +13,28 @@ const Wrapper = styled.div`
   height: calc(100vh - 100px);
   background-color: #067eed;
   position: relative;
+  overflow: hidden;
   // display: flex;
   // justify-content: center;
   // align-items: center;
+  @media (max-width: 600px) {
+    height: 100vh;
+  }
 `;
 const Question = styled.h1`
   position: absolute;
   // top: 50px;
+  width: 90%;
   left: 50%;
   transform: translateX(-50%);
   color: white;
   font-size: 2em;
   font-family: 'Alata';
   text-align: center;
+  // margin-bottom: 5px;
 `;
 const FlexContainer = styled.div`
-  position: absolute;
+  position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -40,7 +46,14 @@ const FlexContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: center;
+  align-items: stretch;
+  @media (max-width: 910px) {
+    margin-top: 30px;
+    flex-wrap: wrap;
+  }
+  @media (max-width: 490px) {
+    margin-top: 40px;
+  }
 `;
 
 const WelcomePage = () => {
@@ -53,7 +66,7 @@ const WelcomePage = () => {
       <FlexContainer>
         <CategoryDiv text="Zobacz profil" icon={profileIcon}></CategoryDiv>
 
-        <CategoryDiv text="Stywórz ankietę" icon={surveyIcon}></CategoryDiv>
+        <CategoryDiv text="Stwórz ankietę" icon={surveyIcon}></CategoryDiv>
 
         <CategoryDiv text="Wypełnij ankiety" icon={fillIcon}></CategoryDiv>
 
