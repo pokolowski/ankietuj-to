@@ -13,14 +13,17 @@ import shareIconOrange from 'assets/headerIcons/orange/share.svg';
 import logOutIconOrange from 'assets/headerIcons/orange/logOut.svg';
 import logOutIcon from 'assets/headerIcons/logOut.svg';
 import { useAuth } from 'hooks/useAuth';
-
-const Logo = styled.h1`
+import { NavLink } from 'react-router-dom';
+const Logo = styled(NavLink)`
   position: relative;
   //   top: 50%;
   //   line-height: 100%;
   margin-left: 50px;
   color: #0085ff;
   text-transform: uppercase;
+  font-weight: bold;
+  font-size: 2em;
+  text-decoration: none;
 `;
 
 const Wrapper = styled.div`
@@ -113,7 +116,7 @@ const AuthorizedHeader = () => {
   };
   return (
     <Wrapper>
-      <Logo>Ankietuj to</Logo>
+      <Logo to="/">Ankietuj to</Logo>
       <Bookmarks>
         <Icon
           name="1"

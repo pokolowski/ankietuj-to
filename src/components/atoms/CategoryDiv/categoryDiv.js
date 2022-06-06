@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { NavLink } from 'react-router-dom';
 
-const Wrapper = styled.div`
+const Wrapper = styled(NavLink)`
   // padding: 10px;
   position: relative;
   // height: 50%;
@@ -17,6 +18,7 @@ const Wrapper = styled.div`
   text-transform: uppercase;
   text-align: center;
   overflow: hidden;
+  text-decoration: none;
 
   //flexbox
   display: flex;
@@ -59,9 +61,9 @@ const Label = styled.span`
   }
 `;
 
-const CategoryDiv = ({ text, icon }) => {
+const CategoryDiv = ({ text, icon, path = '/' }) => {
   return (
-    <Wrapper>
+    <Wrapper to={`${path}`}>
       <Label>{text}</Label>
       <Icon src={icon} />
 

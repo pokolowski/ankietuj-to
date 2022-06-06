@@ -1,0 +1,9 @@
+.ProfileContainer{
+    /* position: absolute; */
+    left: 50px !important;
+    transform: translateX(0) !important;
+}
+.displayOff{
+    opacity: 1 !important;
+    
+}

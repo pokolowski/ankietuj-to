@@ -7,6 +7,7 @@ import fillIcon from 'assets/headerIcons/FillOut.svg';
 import profileIcon from 'assets/headerIcons/profile.svg';
 import shareIcon from 'assets/headerIcons/share.svg';
 import surveyIcon from 'assets/headerIcons/survey.svg';
+import { NavLink } from 'react-router-dom';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -64,7 +65,11 @@ const WelcomePage = () => {
         Powiedz nam, co chcesz zrobić?
       </Question>
       <FlexContainer>
-        <CategoryDiv text="Zobacz profil" icon={profileIcon}></CategoryDiv>
+        <CategoryDiv
+          text="Zobacz profil"
+          icon={profileIcon}
+          path="/profile"
+        ></CategoryDiv>
 
         <CategoryDiv text="Stwórz ankietę" icon={surveyIcon}></CategoryDiv>
 

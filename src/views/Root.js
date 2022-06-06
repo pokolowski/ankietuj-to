@@ -8,6 +8,7 @@ import HomePage from './HomePage';
 import { useForm } from 'react-hook-form';
 import { useAuth } from 'hooks/useAuth';
 import AuthorizedView from './AuthorizedView';
+import ProfilePage from 'components/organisms/ProfilePage/profilePage';
 
 const AuthenticatedApp = () => {
   return <>zalogowano</>;
@@ -63,6 +64,7 @@ const Root = () => {
           //   element={<HomePage setLoginOrRegister={setDisplayOff} />}
           // />
         )}
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </ThemeProvider>
   );
