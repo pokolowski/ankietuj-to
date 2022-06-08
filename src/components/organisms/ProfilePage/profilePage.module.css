@@ -7,3 +7,8 @@
     opacity: 1 !important;
     
 }
+
+/* @keyframes goLeft{
+    100%{Left: 50px;
+    transform: translateX(0);}
+} */

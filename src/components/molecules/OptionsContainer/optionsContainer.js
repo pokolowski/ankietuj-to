@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Xcross from 'assets/icons/Xcross.svg';
+import UserIcon from 'components/atoms/UserIcon/userIcon';
+import UserData from './UserData/userData';
 
 const Wrapper = styled.div`
   width: 50%;
@@ -22,6 +24,15 @@ const Icon = styled.img`
   right: 30px;
   cursor: pointer;
 `;
+const IconContainer = styled.div`
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  width: 30%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+`;
 
 const OptionsContainer = ({ ...props }) => {
   const Clicked = () => {
@@ -29,6 +40,11 @@ const OptionsContainer = ({ ...props }) => {
   };
   return (
     <Wrapper {...props}>
+      <IconContainer>
+        <UserIcon />
+        <h2>*User*</h2>
+      </IconContainer>
+      <UserData />
       <Icon src={Xcross} onClick={() => Clicked()} />
     </Wrapper>
   );

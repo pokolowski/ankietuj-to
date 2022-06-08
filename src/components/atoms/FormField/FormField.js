@@ -19,6 +19,7 @@ const FormField = react.forwardRef(
       type = 'text',
       fontColor = '#c1e6ff',
       value,
+      floatLeft,
       ...props
     },
     ref
@@ -26,6 +27,7 @@ const FormField = react.forwardRef(
     return (
       <>
         <label> {label} </label>
+        {!floatLeft ? '' : <br />}
         <br />
         <StyledInput
           type={type}
