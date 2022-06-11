@@ -53,16 +53,17 @@ const Root = () => {
         />
         <Route path="/Register" element={<Login />} />
         {auth.user ? (
-          <Route
-            path="/"
-            element={<AuthenticatedApp setLoginOrRegister={setDisplayOff} />}
-          />
-        ) : (
-          <Route path="/" element={<AuthorizedView />} />
           // <Route
           //   path="/"
-          //   element={<HomePage setLoginOrRegister={setDisplayOff} />}
+          //   element={<AuthenticatedApp setLoginOrRegister={setDisplayOff} />}
           // />
+          <Route path="/" element={<AuthorizedView />} />
+        ) : (
+          // <Route path="/" element={<AuthorizedView />} />
+          <Route
+            path="/"
+            element={<HomePage setLoginOrRegister={setDisplayOff} />}
+          />
         )}
         <Route path="/profile" element={<ProfilePage />} />
       </Routes>

@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import styles from './userData.module.css';
 import FormField from 'components/atoms/FormField/FormField';
+import { useAuth } from 'hooks/useAuth';
 
 const Wrapper = styled.div`
   width: 90%;
-  height: 60%;
+  height: 50%;
   position: absolute;
   bottom: 20px;
   left: 50%;
@@ -61,9 +62,10 @@ const StyledButtonSave = styled.button`
 const UserData = ({ ...props }) => {
   const [activeForm, setActiveForm] = useState(false);
   const [activeButton, setActiveButton] = useState(true);
+  const auth = useAuth();
   const [formValue, setFormValue] = useState({
-    name: 'Patryk',
-    surname: 'Okołowski',
+    name: auth.user.imie,
+    surname: auth.user.nazwisko,
     college: '',
   });
   const formHandler = (e) => {
@@ -147,14 +149,14 @@ const UserData = ({ ...props }) => {
           Zmień dane
         </StyledButton>
       ) : (
-        <StyledButtonSave
+        <StyledButton
           onClick={() => {
             setActiveButton(true);
             setActiveForm(false);
           }}
         >
           Zapisz
-        </StyledButtonSave>
+        </StyledButton>
       )}
     </Wrapper>
   );

@@ -44,6 +44,16 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem('token', response.data.token);
     } catch (e) {
       // dispatchError('Invalid email or password');
+      // test przekierowania
+      setUser({
+        imie: 'Patryk',
+        nazwisko: 'Okolowski',
+        email: 'pokolowski@edu.cdv.pl',
+        haslo: 'silneHaslo',
+      });
+      console.log(user);
+      navigate(`/`);
+      // koniec testu
       console.log(e);
     }
   };
@@ -77,9 +87,16 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
     localStorage.removeItem('token');
   };
+  const deleteAccount = () => {
+    setUser(null);
+    navigate(`/`);
+    // localStorage.removeItem('token');
+  };
 
   return (
-    <AuthContext.Provider value={{ user, signIn, signOut, register }}>
+    <AuthContext.Provider
+      value={{ user, signIn, signOut, register, deleteAccount }}
+    >
       {children}
       {/* {user && <Navigate to="/" replace={true} />} */}
     </AuthContext.Provider>

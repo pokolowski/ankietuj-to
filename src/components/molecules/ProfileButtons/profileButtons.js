@@ -17,15 +17,31 @@ const Wrapper = styled.ul`
   align-items: center;
 `;
 
-const ProfileButtons = ({ setMove }) => {
-  const Clicked = () => {
-    setMove(true);
+const ProfileButtons = ({ setMove, move, content }) => {
+  const Clicked = (button = 0) => {
+    if (!move) {
+      setMove(true);
+    }
+    if (content.content != button) {
+      content.setContent(button);
+      console.log(content.content);
+    }
+    if (content.content == button && move) setMove(false);
   };
   return (
     <Wrapper>
-      <ProfileOptionLi value="Twoje dane" onClick={Clicked} />
-      <ProfileOptionLi value="Zmień dane logowania" />
-      <ProfileOptionLi value="Usuń konto" color="#B31614" />
+      <ProfileOptionLi name="1" value="Twoje dane" onClick={Clicked} />
+      <ProfileOptionLi
+        name="2"
+        value="Zmień dane logowania"
+        onClick={Clicked}
+      />
+      <ProfileOptionLi
+        name="3"
+        value="Usuń konto"
+        color="#B31614"
+        onClick={Clicked}
+      />
     </Wrapper>
   );
 };

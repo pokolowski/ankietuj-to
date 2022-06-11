@@ -5,6 +5,7 @@ import styles from './profilePage.module.css';
 import UserIcon from 'components/atoms/UserIcon/userIcon';
 import ProfileButtons from 'components/molecules/ProfileButtons/profileButtons';
 import OptionsContainer from 'components/molecules/OptionsContainer/optionsContainer';
+import { useAuth } from 'hooks/useAuth';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -36,17 +37,24 @@ const ProfileContainer = styled.div`
 
 const ProfilePage = () => {
   const [move, setMove] = useState(false);
+  const [content, setContent] = useState(0);
+  const auth = useAuth();
   return (
     <>
       <AuthorizedHeader />
       <Wrapper>
         <ProfileContainer className={move ? styles.ProfileContainer : ''}>
           <UserIcon />
-          <h1>*User*</h1>
-          <ProfileButtons setMove={setMove} move={move}></ProfileButtons>
+          <h1>{auth.user.imie}</h1>
+          <ProfileButtons
+            setMove={setMove}
+            content={{ content, setContent }}
+            move={move}
+          ></ProfileButtons>
         </ProfileContainer>
         <OptionsContainer
           setMove={setMove}
+          content={{ content, setContent }}
           move={move}
           className={move ? styles.displayOff : ''}
         ></OptionsContainer>

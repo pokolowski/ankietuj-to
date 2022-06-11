@@ -18,9 +18,9 @@ const Wrapper = styled.li`
   color: ${(props) => props.color};
 `;
 
-const ProfileOptionLi = ({ value, color = 'black', onClick }) => {
+const ProfileOptionLi = ({ value, color = 'black', onClick, name = -1 }) => {
   return (
-    <Wrapper color={color} onClick={() => onClick()}>
+    <Wrapper color={color} onClick={() => onClick(name)}>
       {value}
     </Wrapper>
   );

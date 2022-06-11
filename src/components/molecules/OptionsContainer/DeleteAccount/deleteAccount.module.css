@@ -1,0 +1,14 @@
+.inputClass{
+    background-color: transparent;
+    width: 250px;
+    height: 30px;
+    border: 0;
+    border-bottom: 2px solid #067eed;
+    font-size: 16px;
+    transition: .2s;
+    padding: 5px;
+    text-align: center;
+    margin-left: 30px;
+    /* color: #c1e6ff; */
+    
+}
