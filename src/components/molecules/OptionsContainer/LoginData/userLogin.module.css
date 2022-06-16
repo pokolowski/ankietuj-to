@@ -5,7 +5,7 @@
 }
 .inputClass{
     background-color: transparent;
-    width: 250px;
+    width: 180px;
     height: 30px;
     border: 0;
     border-bottom: 2px solid #067eed;
@@ -29,4 +29,31 @@
     border: 2px solid #067eed;
     transition: .2s;
     border-radius: 10px;
+}
+.saveBtn{
+left:25% !important;
+}
+.cancelBtn{
+left: 75% !important;
+}
+@media (max-width: 1000px){
+    .repeatPassword{
+        position: relative;
+        /* left: 0; */
+        transform: translate(0, 0);
+    }
+    .inputClass{
+        position: relative;
+        width: 150px;
+        font-size: 14px;
+        left: 0;
+        margin-top: 30px;
+        margin-left: 20px;
+    }
+}
+@media (min-width: 1001px) and (max-width: 1150px){
+    .inputClass{
+        font-size: 14px;
+        width: 140px;
+    }
 }

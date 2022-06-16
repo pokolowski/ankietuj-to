@@ -16,9 +16,9 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   text-align: center;
   color: black;
-  align-items: center;
   padding: 25px;
   font-weight: bold;
 `;
@@ -53,8 +53,11 @@ const StyledButtonBack = styled.button`
 const Span = styled.div`
   color: red;
 `;
+const Input = styled.input`
+  self-align: felx-start;
+`;
 
-const DeleteAccount = ({ setDeleteAcc }) => {
+const DeleteAccount = ({ setDeleteAcc, close }) => {
   const [inputValue, setInputValue] = useState('');
   const [error, setError] = useState('');
   const auth = useAuth();
@@ -64,8 +67,10 @@ const DeleteAccount = ({ setDeleteAcc }) => {
   };
   const handleDelete = () => {
     if (inputValue === 'usuwam konto') {
-      //   auth.deleteAccount;
-      setDeleteAcc(false);
+      auth.deleteAccount;
+      console.log('usuwanko');
+      // setDeleteAcc(false);
+      // close();
     } else {
       setError('Przepisana fraza nie zgadza się.');
     }
@@ -75,17 +80,22 @@ const DeleteAccount = ({ setDeleteAcc }) => {
       Czy na pewno chcesz usunąć konto? <br />
       Jeśli tak to przepisz poniżej "usuwam konto".
       <br />
-      <input
+      <Input
         name="delete"
         type="text"
         className={styles.inputClass}
         value={inputValue}
         onChange={handleInput}
-      ></input>
+      ></Input>
       <Span>{error}</Span>
       <br />
       <StyledButton onClick={handleDelete}>usuń</StyledButton>
-      <StyledButtonBack onClick={() => setDeleteAcc(false)}>
+      <StyledButtonBack
+        onClick={() => {
+          setDeleteAcc(false);
+          close();
+        }}
+      >
         anuluj
       </StyledButtonBack>
     </Wrapper>

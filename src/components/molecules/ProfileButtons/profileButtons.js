@@ -24,7 +24,6 @@ const ProfileButtons = ({ setMove, move, content }) => {
     }
     if (content.content != button) {
       content.setContent(button);
-      console.log(content.content);
     }
     if (content.content == button && move) setMove(false);
   };

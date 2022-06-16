@@ -6,19 +6,27 @@ import UserIcon from 'components/atoms/UserIcon/userIcon';
 import ProfileButtons from 'components/molecules/ProfileButtons/profileButtons';
 import OptionsContainer from 'components/molecules/OptionsContainer/optionsContainer';
 import { useAuth } from 'hooks/useAuth';
+import RightArrow from 'assets/icons/arrow-right-solid.svg';
 
 const Wrapper = styled.div`
   width: 100%;
+  min-width: 330px;
   height: calc(100vh - 100px);
   background-color: #c1e6ff;
 
   display: flex;
   align-items: center;
   justify-content: center;
+  @media (max-width: 900px) {
+    height: 100vh;
+  }
 `;
 const ProfileContainer = styled.div`
   width: 300px;
   height: 500px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -28,11 +36,32 @@ const ProfileContainer = styled.div`
   border-radius: 50px;
   box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
     rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
-  transition: 1s linear;
-  position: absolute;
+  ${(props) =>
+    props.move ? 'transition: .7s linear;' : 'transition: .7s .7s linear;'}
   z-index: 1;
-  left: 50%;
-  transform: translateX(-50%);
+`;
+const ShowMenu = styled.div`
+  width: 70px;
+  height: 50px;
+  position: absolute;
+  left: -20px;
+  top: calc(50% - 250px);
+  transform: translateY(-50%);
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  overflow: hidden;
+  border-radius: 20px;
+  display: none;
+  transition: display 0.1 7 linear;
+  // background-color: blue;
+`;
+const Arrow = styled.img`
+  width: 70%;
+  height: 70%;
+  position: absolute;
+  top: 50%;
+  left: 60%;
+  transform: translate(-50%, -50%);
 `;
 
 const ProfilePage = () => {
@@ -43,7 +72,16 @@ const ProfilePage = () => {
     <>
       <AuthorizedHeader />
       <Wrapper>
-        <ProfileContainer className={move ? styles.ProfileContainer : ''}>
+        {/* <ShowMenu
+          className={move ? styles.showArrow : ''}
+          onClick={() => setMove(!move)}
+        >
+          <Arrow src={RightArrow} />
+        </ShowMenu> */}
+        <ProfileContainer
+          className={move ? styles.ProfileContainer : ''}
+          move={move}
+        >
           <UserIcon />
           <h1>{auth.user.imie}</h1>
           <ProfileButtons

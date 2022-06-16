@@ -73,7 +73,11 @@ const WelcomePage = () => {
           path="/profile"
         ></CategoryDiv>
 
-        <CategoryDiv text="Stwórz ankietę" icon={surveyIcon}></CategoryDiv>
+        <CategoryDiv
+          text="Twoje ankiety"
+          icon={surveyIcon}
+          path="/surveys"
+        ></CategoryDiv>
 
         <CategoryDiv text="Wypełnij ankiety" icon={fillIcon}></CategoryDiv>
 

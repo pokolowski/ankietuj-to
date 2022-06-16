@@ -31,20 +31,32 @@ const ListItems = styled.li`
   // background-color: green;
 `;
 
-const HeaderUl = ({ direction }) => (
+const HeaderUl = ({ direction, deactivateLeftPanel }) => (
   <Wrapper dir={direction}>
     <ListItems>
-      <a className={styles.aLink} href="#AboutPage">
+      <a
+        className={styles.aLink}
+        href="#AboutPage"
+        onClick={() => deactivateLeftPanel(false)}
+      >
         Jak to działa?
       </a>
     </ListItems>
     <ListItems>
-      <a className={styles.aLink} href="#SurveysExamples">
+      <a
+        className={styles.aLink}
+        href="#SurveysExamples"
+        onClick={() => deactivateLeftPanel(false)}
+      >
         Przykłady ankiet
       </a>
     </ListItems>
     <ListItems>
-      <a className={styles.aLink} href="#ContactPage">
+      <a
+        className={styles.aLink}
+        href="#ContactPage"
+        onClick={() => deactivateLeftPanel(false)}
+      >
         Kontakt
       </a>
     </ListItems>

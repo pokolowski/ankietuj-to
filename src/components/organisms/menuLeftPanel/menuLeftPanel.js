@@ -24,7 +24,11 @@ const MenuLeftPanel = () => {
           onClick={() => setLeftNavBar(!leftNavBar)}
         />
         <div className="ulContener">
-          <HeaderUl direction="column" className="leftPanelUl" />
+          <HeaderUl
+            direction="column"
+            className="leftPanelUl"
+            deactivateLeftPanel={setLeftNavBar}
+          />
         </div>
         <div className="signInContainer">
           <HeaderSignIn direction="column" />

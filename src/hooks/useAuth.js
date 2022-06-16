@@ -86,10 +86,13 @@ export const AuthProvider = ({ children }) => {
   const signOut = () => {
     setUser(null);
     localStorage.removeItem('token');
+    navigate(`/`);
   };
   const deleteAccount = () => {
     setUser(null);
+    localStorage.removeItem('token');
     navigate(`/`);
+
     // localStorage.removeItem('token');
   };
 

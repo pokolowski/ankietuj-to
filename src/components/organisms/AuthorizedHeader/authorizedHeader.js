@@ -13,7 +13,7 @@ import shareIconOrange from 'assets/headerIcons/orange/share.svg';
 import logOutIconOrange from 'assets/headerIcons/orange/logOut.svg';
 import logOutIcon from 'assets/headerIcons/logOut.svg';
 import { useAuth } from 'hooks/useAuth';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 const Logo = styled(NavLink)`
   position: relative;
   //   top: 50%;
@@ -41,6 +41,7 @@ const Wrapper = styled.div`
     rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
   // box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   background-color: white;
+  z-index: 5;
   @media (max-width: 900px) {
     display: none;
   }
@@ -70,6 +71,7 @@ const ProfileContainer = styled.div`
 
 const AuthorizedHeader = () => {
   const auth = useAuth();
+  const navigate = useNavigate();
   const handleHover = (e) => {
     switch (e.target.getAttribute('name')) {
       case '1':
@@ -89,6 +91,25 @@ const AuthorizedHeader = () => {
         break;
       case '6':
         e.target.setAttribute('src', logOutIconOrange);
+        break;
+    }
+  };
+  const handleClick = (e) => {
+    switch (e.target.getAttribute('name')) {
+      case '1':
+        navigate('/surveys');
+        break;
+      case '2':
+        break;
+      case '3':
+        break;
+      case '4':
+        break;
+      case '5':
+        // console.log('jestem');
+        navigate('/profile');
+        break;
+      case '6':
         break;
     }
   };
@@ -123,6 +144,7 @@ const AuthorizedHeader = () => {
           src={surveyIcon}
           onMouseOver={handleHover}
           onMouseLeave={handleMouseLeave}
+          onClick={handleClick}
         />
         <Icon
           name="2"
@@ -149,6 +171,7 @@ const AuthorizedHeader = () => {
           src={profileIcon}
           onMouseOver={handleHover}
           onMouseLeave={handleMouseLeave}
+          onClick={handleClick}
         />
         <Icon
           name="6"

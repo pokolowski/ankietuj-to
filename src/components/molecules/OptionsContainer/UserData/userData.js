@@ -6,7 +6,7 @@ import { useAuth } from 'hooks/useAuth';
 
 const Wrapper = styled.div`
   width: 90%;
-  height: 50%;
+  min-height: 50%;
   position: absolute;
   bottom: 20px;
   left: 50%;
@@ -16,12 +16,27 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: flex-start;
+  @media (max-width: 900px) {
+    flex-direction: column;
+    align-items: center;
+    height: 55%;
+    bottom: 70px;
+    // background-color: red;
+    // justify-content: flex-start;
+  }
 `;
 const Title = styled.h1`
   position: absolute;
   top: -100px;
   left: 50%;
   transform: translateX(-50%);
+  text-align: center;
+  @media (max-width: 900px) {
+    top: -50px;
+  }
+  @media (max-width: 400px) {
+    top: -70px;
+  }
 `;
 const StyledInput = styled.div`
   width: 35%;
@@ -43,6 +58,10 @@ const StyledButton = styled.button`
   font-size: 16px;
   border-radius: 20px;
   cursor: pointer;
+  @media (max-width: 900px) {
+    bottom: 0;
+    transform: translate(-50%, 100%);
+  }
 `;
 const StyledButtonSave = styled.button`
   position: absolute;
@@ -69,7 +88,6 @@ const UserData = ({ ...props }) => {
     college: '',
   });
   const formHandler = (e) => {
-    console.log('idzie zmiana');
     setFormValue({
       ...formValue,
       [e.target.name]: e.target.value,
@@ -149,14 +167,33 @@ const UserData = ({ ...props }) => {
           Zmień dane
         </StyledButton>
       ) : (
-        <StyledButton
-          onClick={() => {
-            setActiveButton(true);
-            setActiveForm(false);
-          }}
-        >
-          Zapisz
-        </StyledButton>
+        <>
+          <StyledButton
+            className={styles.saveBtn}
+            onClick={() => {
+              if (formValue.imie != '' && formValue.surname != '') {
+                setActiveButton(true);
+                setActiveForm(false);
+              }
+            }}
+          >
+            Zapisz
+          </StyledButton>
+          <StyledButton
+            className={styles.cancelBtn}
+            onClick={() => {
+              setFormValue({
+                name: auth.user.imie,
+                surname: auth.user.nazwisko,
+                college: '',
+              });
+              setActiveButton(true);
+              setActiveForm(false);
+            }}
+          >
+            Anuluj
+          </StyledButton>
+        </>
       )}
     </Wrapper>
   );

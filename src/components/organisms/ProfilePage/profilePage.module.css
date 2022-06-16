@@ -7,8 +7,19 @@
     opacity: 1 !important;
     
 }
-
-/* @keyframes goLeft{
-    100%{Left: 50px;
-    transform: translateX(0);}
+.showArrow{
+    display:block;
+}
+/* .ProfileContainerBack{
+    animation: goBack 
 } */
+
+@keyframes goBack{
+    100%{left: 50%;
+  transform: translateX(-50%);}
+}
+@media (max-width: 900px){
+    .ProfileContainer{
+        left: -100% !important;
+    }
+}

@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form';
 import { useAuth } from 'hooks/useAuth';
 import AuthorizedView from './AuthorizedView';
 import ProfilePage from 'components/organisms/ProfilePage/profilePage';
+import Surveys from 'components/organisms/Surveys/surveys';
 
 const AuthenticatedApp = () => {
   return <>zalogowano</>;
@@ -66,6 +67,7 @@ const Root = () => {
           />
         )}
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/surveys" element={<Surveys />} />
       </Routes>
     </ThemeProvider>
   );

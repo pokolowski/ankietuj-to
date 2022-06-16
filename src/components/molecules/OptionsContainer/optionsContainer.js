@@ -16,7 +16,8 @@ const Wrapper = styled.div`
   background-color: #c1e6ff;
   box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
     rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
-  transition: opacity 1s 1s linear;
+  ${(props) =>
+    props.move ? 'transition: .7s .7s linear;' : 'transition: .7s linear;'}
   // transition: filter 0.2s;
   opacity: 0;
   position: relative;
@@ -24,6 +25,17 @@ const Wrapper = styled.div`
     ${(props) => (props.errorPassword || props.deleteAcc ? '2' : '0')}px
   );
   overflow: hidden;
+  @media (max-width: 900px) {
+    width: 90%;
+    min-height: 80%;
+  }
+  @media (min-width: 901px) and (max-width: 1150px) {
+    margin-left: 400px;
+    // display: none;
+  }
+  @media (min-width: 1151px) and (max-width: 1550px) {
+    margin-left: 200px;
+  }
 `;
 const Icon = styled.img`
   width: 20px;
@@ -32,6 +44,7 @@ const Icon = styled.img`
   top: 30px;
   right: 30px;
   cursor: pointer;
+  z-index: 5;
 `;
 const IconContainer = styled.div`
   position: absolute;
@@ -40,11 +53,15 @@ const IconContainer = styled.div`
   width: 30%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  // background-color: red;
+  align-items: center; !important;
+  // background-color: blue;
+  @media (max-width: 900px) {
+    width: 80%;
+  }
 `;
 const H2 = styled.h2`
   margin-left: 20px;
+  // background-color: red;
 `;
 
 const OptionsContainer = ({ ...props }) => {
@@ -57,13 +74,18 @@ const OptionsContainer = ({ ...props }) => {
   return (
     <>
       {errorPassword ? <ErrorPass setErrorPassword={setErrorPassword} /> : ''}
-      {deleteAcc || props.content.content == '3' ? (
-        <DeleteAccount setDeleteAcc={setDeleteAcc} />
-      ) : (
-        ''
-      )}
 
-      <Wrapper {...props} errorPassword={errorPassword} deleteAcc={deleteAcc}>
+      <Wrapper
+        {...props}
+        errorPassword={errorPassword}
+        deleteAcc={deleteAcc}
+        move={props.move}
+      >
+        {deleteAcc || props.content.content == '3' ? (
+          <DeleteAccount setDeleteAcc={setDeleteAcc} close={Clicked} />
+        ) : (
+          ''
+        )}
         <IconContainer>
           <UserIcon />
           <H2>

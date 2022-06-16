@@ -16,12 +16,23 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: flex-start;
+  @media (max-width: 1000px) {
+    bottom: 40px;
+    flex-direction: column;
+    // overflow: hidden;
+    justify-content: flex-start;
+  }
+  @media (min-width: 900px) and (max-width: 1000px) {
+    bottom: 60px;
+    // display: none;
+  }
 `;
 const Title = styled.h1`
   position: absolute;
   top: -100px;
   left: 50%;
   transform: translateX(-50%);
+  text-align: center;
 `;
 const StyledInput = styled.div`
   // width: 100%;
@@ -30,6 +41,15 @@ const StyledInput = styled.div`
   justify-content: flex-start;
   align-items: center;
   font-size: 18px;
+  @media (max-width: 1000px) {
+    width: 100%;
+    position: relative;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    // background-color: white;
+    margin-top: 10px;
+    // border: 2px solid red;
+  }
 `;
 const StyledButton = styled.button`
   position: absolute;
@@ -44,6 +64,12 @@ const StyledButton = styled.button`
   font-size: 16px;
   border-radius: 20px;
   cursor: pointer;
+  @media (max-width: 1000px) {
+    transform: translate(-50%, 80%);
+  }
+  @media (min-width: 900px) and (max-width: 1000px) {
+    transform: translate(-50%, 140%);
+  }
 `;
 const StyledButtonSave = styled.button`
   position: absolute;
@@ -58,6 +84,9 @@ const StyledButtonSave = styled.button`
   font-size: 16px;
   border-radius: 20px;
   cursor: pointer;
+  @media (max-width: 1000px) {
+    transform: translateY(100%);
+  }
 `;
 const FlexChild = styled.div`
   width: 50%;
@@ -68,9 +97,13 @@ const FlexChild = styled.div`
   justify-content: flex-start;
   align-items: center;
   // background-color: red;
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 const Span = styled.span`
   width: 80px;
+  flex-direction: column;
 `;
 
 const LoginData = ({ ...props }) => {
@@ -84,7 +117,6 @@ const LoginData = ({ ...props }) => {
     repeatPassword: '',
   });
   const formHandler = (e) => {
-    console.log('idzie zmiana');
     setFormValue({
       ...formValue,
       [e.target.name]: e.target.value,
@@ -95,7 +127,7 @@ const LoginData = ({ ...props }) => {
       <Title>Dane logowania</Title>
       <FlexChild>
         <StyledInput>
-          Email:{' '}
+          <span>Email: </span>
           {activeForm ? (
             <input
               name="email"
@@ -116,7 +148,7 @@ const LoginData = ({ ...props }) => {
       </FlexChild>
       <FlexChild>
         {activeForm ? (
-          <>
+          <StyledInput>
             <StyledInput>
               <Span>Nowe hasło: </Span>
               <input
@@ -145,7 +177,7 @@ const LoginData = ({ ...props }) => {
                 onChange={formHandler}
               />
             </StyledInput>
-          </>
+          </StyledInput>
         ) : (
           <StyledInput>
             Password:{' '}
@@ -171,22 +203,34 @@ const LoginData = ({ ...props }) => {
           Zmień dane
         </StyledButton>
       ) : (
-        <StyledButtonSave
-          onClick={() => {
-            if (formValue.newPassword === formValue.repeatPassword) {
+        <>
+          <StyledButton
+            className={styles.saveBtn}
+            onClick={() => {
+              if (formValue.imie != '' && formValue.surname != '') {
+                setActiveButton(true);
+                setActiveForm(false);
+              }
+            }}
+          >
+            Zapisz
+          </StyledButton>
+          <StyledButton
+            className={styles.cancelBtn}
+            onClick={() => {
               setFormValue({
-                ...formValue,
-                password: formValue.newPassword,
+                email: auth.user.email,
+                password: auth.user.haslo,
+                newPassword: '',
+                repeatPassword: '',
               });
               setActiveButton(true);
               setActiveForm(false);
-            } else {
-              props.setErrorPassword(true);
-            }
-          }}
-        >
-          Zapisz
-        </StyledButtonSave>
+            }}
+          >
+            Anuluj
+          </StyledButton>
+        </>
       )}
     </Wrapper>
   );
