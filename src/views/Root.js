@@ -10,6 +10,7 @@ import { useAuth } from 'hooks/useAuth';
 import AuthorizedView from './AuthorizedView';
 import ProfilePage from 'components/organisms/ProfilePage/profilePage';
 import Surveys from 'components/organisms/Surveys/surveys';
+import CreateSurvey from 'components/organisms/CreateSurvey/createSurvey';
 
 const AuthenticatedApp = () => {
   return <>zalogowano</>;
@@ -68,6 +69,7 @@ const Root = () => {
         )}
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/surveys" element={<Surveys />} />
+        <Route path="/createSurvey" element={<CreateSurvey />} />
       </Routes>
     </ThemeProvider>
   );

@@ -7,6 +7,10 @@ const StyledInput = styled.input`
   margin-top: 10px;
   margin-bottom: ${(props) => props.marginBottom}px;
   color: ${(props) => props.fontColor} !important;
+  padding: 1px;
+  ${(props) => (props.width ? 'width: ' + props.width + ';' : '')}
+  ${(props) => (props.height ? 'height: ' + props.height + ';' : '')}
+  ${(props) => (props.fontSize ? 'font-size: ' + props.fontSize + ';' : '')}
 `;
 
 const FormField = react.forwardRef(
@@ -18,7 +22,6 @@ const FormField = react.forwardRef(
       name,
       type = 'text',
       fontColor = '#c1e6ff',
-      value,
       floatLeft,
       ...props
     },
@@ -26,7 +29,8 @@ const FormField = react.forwardRef(
   ) => {
     return (
       <>
-        <label> {label} </label>
+        {label === 'none' ? '' : <label> {label} </label>}
+
         {!floatLeft ? '' : <br />}
         <br />
         <StyledInput
@@ -35,7 +39,7 @@ const FormField = react.forwardRef(
           className={styles.inputClass}
           // onChange={onChange}
           marginBottom={marginBottom}
-          // value={value}
+          defaultValue={props.defaultValue}
           {...props}
           ref={ref}
           required
