@@ -41,39 +41,46 @@ const IMG = styled.img`
   height: 20px;
 `;
 
-const Question = () => {
+const Question = ({
+  questions,
+  changeQuestion,
+  deleteQuestion,
+  changeType,
+  idx,
+  changeAnswers,
+}) => {
   const [typeActive, setTypeActive] = useState('1');
-  const handleClick = (e) => {
-    console.log(e.target);
-    setTypeActive(e.target.name);
+  const handleClick = (type) => {
+    setTypeActive(`${type}`);
+    changeType(type, idx);
   };
   return (
     <Wrapper>
       <TypeBox>
         <Type
           className={typeActive == '1' ? styles.active : ''}
-          onClick={() => setTypeActive('1')}
+          onClick={() => handleClick('1')}
         >
           <IMG src={RoundList} />
           <span>Jednokrotnego wyboru</span>
         </Type>
         <Type
           className={typeActive == '2' ? styles.active : ''}
-          onClick={() => setTypeActive('2')}
+          onClick={() => handleClick('2')}
         >
           <IMG src={SquareList} />
           <span>Wielokropnego wyboru</span>
         </Type>
         <Type
           className={typeActive == '3' ? styles.active : ''}
-          onClick={() => setTypeActive('3')}
+          onClick={() => handleClick('3')}
         >
           <IMG src={TextIcon} />
           <span>Pytanie otwarte</span>
         </Type>
         <Type
           className={typeActive == '4' ? styles.active : ''}
-          onClick={() => setTypeActive('4')}
+          onClick={() => handleClick('4')}
         >
           <IMG src={DropDownIcon} />
           <span>Lista rozwijana</span>
@@ -84,8 +91,10 @@ const Question = () => {
         width="400px"
         height="30px"
         className={styles.margin}
+        value={questions[idx].question}
+        onChange={(e) => changeQuestion(e, idx)}
       />
-      <Answers type={typeActive} />
+      <Answers type={typeActive} changeAnswers={changeAnswers} idx={idx} />
     </Wrapper>
   );
 };

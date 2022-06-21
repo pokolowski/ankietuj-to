@@ -82,14 +82,32 @@ const CreateSurvey = () => {
     watch,
     formState: { errors },
   } = useForm();
-  const [questions, AddQuestion] = useState([]);
-  const addQuestion = () => {
+  const [questions, setQuestions] = useState([]);
+  const [answers, addAnswer] = useState([]);
+  const handleAddQuestion = () => {
     console.log('test');
-    AddQuestion([
+    setQuestions([
       ...questions,
-      { question: '', questionType: '', answers: [] },
+      { question: '', questionType: '1', answers: [] },
     ]);
     console.log(questions);
+  };
+  const handleDeleteQuestion = (index) => {};
+  const handleChangeQuestion = (e, index) => {
+    const tempArr = [...questions];
+    tempArr[index].question = e.target.value;
+    setQuestions(tempArr);
+  };
+  const handleChangeType = (type, index) => {
+    const tempArr = [...questions];
+    tempArr[index].questionType = type;
+    setQuestions(tempArr);
+  };
+  const handleChangeAnswers = (answers, index) => {
+    // console.log(answers);
+    const tempArr = [...questions];
+    tempArr[index].answers = answers;
+    setQuestions(tempArr);
   };
   return (
     <>
@@ -112,11 +130,20 @@ const CreateSurvey = () => {
             />
           </TitleContainer>
           <Options>
-            <IMG src={PlusIcon} onClick={addQuestion} />
+            <IMG src={PlusIcon} onClick={handleAddQuestion} />
           </Options>
           {questions.map((question, index) => {
-            console.log(index);
-            return <Question />;
+            // console.log(index);
+            return (
+              <Question
+                questions={questions}
+                changeType={handleChangeType}
+                changeQuestion={handleChangeQuestion}
+                deleteQuestion={handleDeleteQuestion}
+                changeAnswers={handleChangeAnswers}
+                idx={index}
+              />
+            );
           })}
         </FlexContainer>
       </Wrapper>
