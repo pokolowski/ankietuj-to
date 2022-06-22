@@ -47,9 +47,9 @@ const TitleContainer = styled.div`
 `;
 const Options = styled.div`
   width: 50px;
-  height: 120px;
+  height: 50px;
   position: absolute;
-  bottom: 20px;
+  bottom: ${(props) => (props.questions.length > 0 ? '70px' : '20px')};
   right: 0;
   transform: translateX(110%);
   background-color: white;
@@ -74,25 +74,46 @@ const IMG = styled.img`
     border: 1px solid #0085ff;
   }
 `;
+const SaveBtn = styled.div`
+  width: 100%;
+  height: 50px;
+  border-radius: 20px;
+  background-color: #067eed;
+  color: white;
+  font-family: 'Alata';
+  display: flex;
+  font-size: 25px;
+  letter-spacing: 3px;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 0;
+`;
 
-const CreateSurvey = () => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm();
+const CreateSurvey = ({ addSurvey }) => {
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   watch,
+  //   formState: { errors },
+  // } = useForm();
   const [questions, setQuestions] = useState([]);
   const [answers, addAnswer] = useState([]);
+  const [surveyData, setSurveyData] = useState({ title: '', desc: '' });
   const handleAddQuestion = () => {
-    console.log('test');
+    // console.log('test');
     setQuestions([
       ...questions,
       { question: '', questionType: '1', answers: [] },
     ]);
-    console.log(questions);
+    // console.log(questions);
   };
-  const handleDeleteQuestion = (index) => {};
+  const handleDeleteQuestion = (index) => {
+    const tempArr = [...questions];
+    tempArr.splice(index, 1);
+    setQuestions(tempArr);
+  };
   const handleChangeQuestion = (e, index) => {
     const tempArr = [...questions];
     tempArr[index].question = e.target.value;
@@ -109,27 +130,41 @@ const CreateSurvey = () => {
     tempArr[index].answers = answers;
     setQuestions(tempArr);
   };
+  const handleChangeData = (e) => {
+    setSurveyData({ ...surveyData, [e.target.name]: e.target.value });
+    // console.log(surveyData);
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    addSurvey(surveyData.title, surveyData.desc, questions);
+  };
   return (
     <>
       <AuthorizedHeader />
       <Wrapper>
-        <FlexContainer as="form">
+        <FlexContainer as="form" onSubmit={handleSubmit}>
           <TitleContainer>
             <Textarea
               placeholder="Nazwa ankiety"
+              name="title"
               width="90%"
               height="50px"
               fontSize="32px"
+              value={surveyData.title}
+              onChange={handleChangeData}
             />
             <Textarea
               width="90%"
+              name="desc"
               height="50px"
               fontSize="14px"
               borderColor="grey"
               placeholder="Opis"
+              value={surveyData.desc}
+              onChange={handleChangeData}
             />
           </TitleContainer>
-          <Options>
+          <Options questions={questions}>
             <IMG src={PlusIcon} onClick={handleAddQuestion} />
           </Options>
           {questions.map((question, index) => {
@@ -145,6 +180,13 @@ const CreateSurvey = () => {
               />
             );
           })}
+          {questions.length > 0 ? (
+            <SaveBtn as="button" type="submit">
+              Zapisz
+            </SaveBtn>
+          ) : (
+            ''
+          )}
         </FlexContainer>
       </Wrapper>
     </>

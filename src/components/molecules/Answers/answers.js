@@ -78,7 +78,7 @@ const Answers = ({ type, changeAnswers, idx }) => {
       />
       <Button onClick={handleAddOption}>
         <Circle type={type} />
-        <Input value="Dodaj następną odpowiedź" />
+        <Input value="Dodaj następną odpowiedź" readOnly />
       </Button>
     </Wrapper>
   );

@@ -140,15 +140,16 @@ const Info = styled.div`
   // background-color: red;
 `;
 
-const Surveys = () => {
-  const [empty, setEmpty] = useState(true);
+const Surveys = ({ surveys }) => {
   const navigate = useNavigate();
   const handleOnClick = () => {
     navigate('/createSurvey');
   };
+
   return (
     <>
       <AuthorizedHeader />
+      {console.log(surveys)}
       <Wrapper>
         <Container>
           <CreateSurvey onClick={handleOnClick}>
@@ -160,12 +161,19 @@ const Surveys = () => {
           </CreateSurvey>
           <YourSurveys>
             <Title>Twoje ankiety</Title>
-            {empty ? (
+            {surveys.length <= 0 ? (
               <Info>
                 <span>posiadasz narazie 0 ankiet</span>
               </Info>
             ) : (
-              ''
+              surveys
+                .slice(0)
+                .reverse()
+                .map((survey, index) => (
+                  // console.log(survey.name);
+                  // console.log(survey.desc);
+                  <Survey title={survey.name} desc={survey.desc} />
+                ))
             )}
           </YourSurveys>
         </Container>

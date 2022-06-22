@@ -18,11 +18,11 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
-const Survey = () => {
+const Survey = ({ title, desc }) => {
   return (
     <Wrapper>
-      <h2>*nazwa ankiety*</h2>
-      <h4>*opis</h4>
+      <h2>{title}</h2>
+      <h4>{desc}</h4>
     </Wrapper>
   );
 };

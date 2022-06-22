@@ -7,6 +7,8 @@ import TextIcon from 'assets/icons/font-solid.svg';
 import DropDownIcon from 'assets/icons/drop-down.svg';
 import Textarea from 'components/atoms/SurveyTextarea/textarea';
 import Answers from '../Answers/answers';
+import TrashIcon from 'assets/icons/trash-solid.svg';
+
 const Wrapper = styled.div`
   width: 100%;
   min-height: 300px;
@@ -15,6 +17,7 @@ const Wrapper = styled.div`
     rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
   margin-bottom: 20px;
   border-radius: 5px;
+  position: relative;
 `;
 const TypeBox = styled.div`
   width: 100%;
@@ -40,6 +43,14 @@ const IMG = styled.img`
   width: 20px;
   height: 20px;
 `;
+const Trash = styled.img`
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  right: 30px;
+  bottom: 15px;
+  cursor: pointer;
+`;
 
 const Question = ({
   questions,
@@ -53,6 +64,9 @@ const Question = ({
   const handleClick = (type) => {
     setTypeActive(`${type}`);
     changeType(type, idx);
+  };
+  const handleDeleteQuestion = () => {
+    deleteQuestion(idx);
   };
   return (
     <Wrapper>
@@ -95,6 +109,7 @@ const Question = ({
         onChange={(e) => changeQuestion(e, idx)}
       />
       <Answers type={typeActive} changeAnswers={changeAnswers} idx={idx} />
+      <Trash src={TrashIcon} onClick={handleDeleteQuestion} />
     </Wrapper>
   );
 };

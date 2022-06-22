@@ -52,6 +52,7 @@ export const AuthProvider = ({ children }) => {
         haslo: 'silneHaslo',
       });
       console.log(user);
+      localStorage.setItem('token', user);
       navigate(`/`);
       // koniec testu
       console.log(e);

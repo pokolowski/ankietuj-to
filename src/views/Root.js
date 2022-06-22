@@ -3,7 +3,13 @@ import axios from 'axios';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'assets/styles/theme.js';
 import Login from 'components/organisms/LoginPage/login.js';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useNavigate,
+} from 'react-router-dom';
 import HomePage from './HomePage';
 import { useForm } from 'react-hook-form';
 import { useAuth } from 'hooks/useAuth';
@@ -38,6 +44,17 @@ const UnauthenticatedApp = ({ handleSignIn }) => {
 
 const Root = () => {
   const [displayOff, setDisplayOff] = useState(false);
+  //dane chwilowo tutaj - do przeniesienia jak najszybciej
+  const [surveys, setSurveys] = useState([]);
+  const navigate = useNavigate();
+
+  const handleAddSurvey = (name, desc, q) => {
+    setSurveys([...surveys, { name, desc, questions: [...q] }]);
+    navigate('/surveys');
+    // console.log(surveys);
+  };
+
+  //koniec danych do przeniesienia
   const auth = useAuth();
   let goToChoice = 'login';
 
@@ -55,21 +72,21 @@ const Root = () => {
         />
         <Route path="/Register" element={<Login />} />
         {auth.user ? (
-          // <Route
-          //   path="/"
-          //   element={<AuthenticatedApp setLoginOrRegister={setDisplayOff} />}
-          // />
-          <Route path="/" element={<AuthorizedView />} />
+          <>
+            <Route path="/" element={<AuthorizedView />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/surveys" element={<Surveys surveys={surveys} />} />
+            <Route
+              path="/createSurvey"
+              element={<CreateSurvey addSurvey={handleAddSurvey} />}
+            />
+          </>
         ) : (
-          // <Route path="/" element={<AuthorizedView />} />
           <Route
             path="/"
             element={<HomePage setLoginOrRegister={setDisplayOff} />}
           />
         )}
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/surveys" element={<Surveys />} />
-        <Route path="/createSurvey" element={<CreateSurvey />} />
       </Routes>
     </ThemeProvider>
   );
