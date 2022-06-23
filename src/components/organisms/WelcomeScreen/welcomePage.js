@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './welcomePage.module.css';
 import styled from 'styled-components';
 import CategoryDiv from 'components/atoms/CategoryDiv/categoryDiv';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -61,7 +62,7 @@ const FlexContainer = styled.div`
 const WelcomePage = () => {
   const auth = useAuth();
   return (
-    <Wrapper>
+    <Wrapper className={styles.test}>
       <Question>
         Cześć, {auth.user.imie}, <br />
         Powiedz nam, co chcesz zrobić?
@@ -79,7 +80,11 @@ const WelcomePage = () => {
           path="/surveys"
         ></CategoryDiv>
 
-        <CategoryDiv text="Wypełnij ankiety" icon={fillIcon}></CategoryDiv>
+        <CategoryDiv
+          text="Wypełnij ankiety"
+          icon={fillIcon}
+          path="/dashboard"
+        ></CategoryDiv>
 
         <CategoryDiv text="Udostępnij ankiety" icon={shareIcon}></CategoryDiv>
 

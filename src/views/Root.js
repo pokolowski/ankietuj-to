@@ -17,6 +17,7 @@ import AuthorizedView from './AuthorizedView';
 import ProfilePage from 'components/organisms/ProfilePage/profilePage';
 import Surveys from 'components/organisms/Surveys/surveys';
 import CreateSurvey from 'components/organisms/CreateSurvey/createSurvey';
+import MainDashboard from 'components/organisms/MainDashboard/mainDashboard';
 
 const AuthenticatedApp = () => {
   return <>zalogowano</>;
@@ -80,6 +81,7 @@ const Root = () => {
               path="/createSurvey"
               element={<CreateSurvey addSurvey={handleAddSurvey} />}
             />
+            <Route path="/dashboard" element={<MainDashboard />} />
           </>
         ) : (
           <Route

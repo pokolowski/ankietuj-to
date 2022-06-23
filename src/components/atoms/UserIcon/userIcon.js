@@ -4,13 +4,13 @@ import styled from 'styled-components';
 
 const Wrapper = styled.img`
   // display: block;
-  width: 100px;
-  height: 100px;
+  width: ${(props) => (props.size ? props.size : '100px')};
+  height: ${(props) => (props.size ? props.size : '100px')};
   border-radius: 50%;
 `;
 
-const UserIcon = () => {
-  return <Wrapper src={userIcon}></Wrapper>;
+const UserIcon = ({ size }) => {
+  return <Wrapper src={userIcon} size={size}></Wrapper>;
 };
 
 export default UserIcon;

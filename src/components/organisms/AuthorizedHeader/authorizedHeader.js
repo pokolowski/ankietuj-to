@@ -100,6 +100,7 @@ const AuthorizedHeader = () => {
         navigate('/surveys');
         break;
       case '2':
+        navigate('/dashboard');
         break;
       case '3':
         break;
@@ -151,6 +152,7 @@ const AuthorizedHeader = () => {
           src={fillIcon}
           onMouseOver={handleHover}
           onMouseLeave={handleMouseLeave}
+          onClick={handleClick}
         />
         <Icon
           name="3"
