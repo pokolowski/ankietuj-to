@@ -59,7 +59,7 @@ const Span = styled.div`
   }
 `;
 
-const Survey = ({ title, desc }) => {
+const Survey = ({ title, desc, deleteSurvey, idx }) => {
   return (
     <Wrapper>
       <h2>{title}</h2>
@@ -67,7 +67,7 @@ const Survey = ({ title, desc }) => {
       <BtnsContainer>
         <Span>Zobacz</Span>
         <Span>Edytuj</Span>
-        <Span>usuń</Span>
+        <Span onClick={() => deleteSurvey(idx)}>usuń</Span>
         <IMG src={Icon} />
         {/* <ShareIconOrange size="20px" /> */}
       </BtnsContainer>

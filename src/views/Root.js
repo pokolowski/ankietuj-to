@@ -49,10 +49,16 @@ const Root = () => {
   const [surveys, setSurveys] = useState([]);
   const navigate = useNavigate();
 
-  const handleAddSurvey = (name, desc, q) => {
-    setSurveys([...surveys, { name, desc, questions: [...q] }]);
+  const handleAddSurvey = (name, desc, q, countAnswers) => {
+    setSurveys([{ name, desc, questions: [...q], countAnswers }, ...surveys]);
     navigate('/surveys');
     // console.log(surveys);
+  };
+  const handleDeleteSurvey = (index) => {
+    const tempArr = [...surveys];
+    tempArr.splice(index, 1);
+    setSurveys(tempArr);
+    console.log(index);
   };
 
   //koniec danych do przeniesienia
@@ -76,12 +82,23 @@ const Root = () => {
           <>
             <Route path="/" element={<AuthorizedView />} />
             <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/surveys" element={<Surveys surveys={surveys} />} />
+            {/* W to miejce muszą zostać przekazane ankiety użytkownika */}
+            <Route
+              path="/surveys"
+              element={
+                <Surveys surveys={surveys} deleteSurvey={handleDeleteSurvey} />
+              }
+            />
+            {/* W tym miejscu musi zostać wykonanyu post aby dodać ankiety do bazy danych */}
             <Route
               path="/createSurvey"
               element={<CreateSurvey addSurvey={handleAddSurvey} />}
             />
-            <Route path="/dashboard" element={<MainDashboard />} />
+            {/* W to miejsce trzeba wrzucić wszystkie ankiety, które nie są tego użytkownika tylko innych. */}
+            <Route
+              path="/dashboard"
+              element={<MainDashboard surveys={surveys} />}
+            />
           </>
         ) : (
           <Route

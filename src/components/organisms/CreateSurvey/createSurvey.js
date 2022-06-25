@@ -7,6 +7,8 @@ import { useForm } from 'react-hook-form';
 import Textarea from 'components/atoms/SurveyTextarea/textarea';
 import PlusIcon from 'assets/icons/plus.svg';
 import Question from 'components/molecules/Question/question';
+import HowMuchAns from 'components/molecules/HowMuchAns/howMuchAns';
+import ErrorContainer from 'components/atoms/CreateSurveyError/errorContainer';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -32,7 +34,8 @@ const FlexContainer = styled.div`
 `;
 const TitleContainer = styled.div`
   width: 100%;
-  height: 250px;
+  min-height: 250px;
+  height: auto;
   border-radius: 5px;
   background-color: white;
   box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
@@ -49,7 +52,7 @@ const Options = styled.div`
   width: 50px;
   height: 50px;
   position: absolute;
-  bottom: ${(props) => (props.questions.length > 0 ? '70px' : '20px')};
+  bottom: ${(props) => (props.questions.length > 0 ? '160px' : '20px')};
   right: 0;
   transform: translateX(110%);
   background-color: white;
@@ -89,12 +92,7 @@ const SaveBtn = styled.div`
   text-transform: uppercase;
   cursor: pointer;
   border: 0;
-  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
-    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
-    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
-    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
-    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
-  // box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset;
   // rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 `;
 
@@ -106,8 +104,14 @@ const CreateSurvey = ({ addSurvey }) => {
   //   formState: { errors },
   // } = useForm();
   const [questions, setQuestions] = useState([]);
+  const [error, setError] = useState('');
   const [answers, addAnswer] = useState([]);
-  const [surveyData, setSurveyData] = useState({ title: '', desc: '' });
+  const [surveyData, setSurveyData] = useState({
+    title: '',
+    desc: '',
+    countAnswers: '',
+  });
+  const [titleHeight, setTitleHeight] = useState(50);
   const handleAddQuestion = () => {
     // console.log('test');
     setQuestions([
@@ -139,23 +143,36 @@ const CreateSurvey = ({ addSurvey }) => {
   };
   const handleChangeData = (e) => {
     setSurveyData({ ...surveyData, [e.target.name]: e.target.value });
+    setTitleHeight(50 + 50 * Math.floor(surveyData.title.length / 44));
     // console.log(surveyData);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    addSurvey(surveyData.title, surveyData.desc, questions);
+
+    if (surveyData.title == '') {
+      setError('Nazwa ankiety nie może być pusta!');
+    } else if (
+      surveyData.countAnswers == '' ||
+      surveyData.countAnswers == 0 ||
+      surveyData.countAnswers > 200
+    ) {
+      setError('Ilość odpowiedzi została źle podana!');
+    } else {
+      addSurvey(surveyData.title, surveyData.desc, questions);
+    }
   };
   return (
     <>
       <AuthorizedHeader />
       <Wrapper>
+        {error != '' ? <ErrorContainer err={error} deleteErr={setError} /> : ''}
         <FlexContainer as="form" onSubmit={handleSubmit}>
           <TitleContainer>
             <Textarea
               placeholder="Nazwa ankiety"
               name="title"
               width="90%"
-              height="50px"
+              height={`${titleHeight}px`}
               fontSize="32px"
               value={surveyData.title}
               onChange={handleChangeData}
@@ -188,9 +205,16 @@ const CreateSurvey = ({ addSurvey }) => {
             );
           })}
           {questions.length > 0 ? (
-            <SaveBtn as="button" type="submit">
-              Zapisz
-            </SaveBtn>
+            <>
+              <HowMuchAns
+                name="countAnswers"
+                value={surveyData.countAnswers}
+                onChange={handleChangeData}
+              />
+              <SaveBtn as="button" type="submit">
+                Zapisz
+              </SaveBtn>
+            </>
           ) : (
             ''
           )}

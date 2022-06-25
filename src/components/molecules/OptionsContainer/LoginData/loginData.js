@@ -207,9 +207,16 @@ const LoginData = ({ ...props }) => {
           <StyledButton
             className={styles.saveBtn}
             onClick={() => {
-              if (formValue.imie != '' && formValue.surname != '') {
+              if (
+                formValue.imie != '' &&
+                formValue.surname != '' &&
+                formValue.newPassword === formValue.repeatPassword &&
+                formValue.newPassword != ''
+              ) {
                 setActiveButton(true);
                 setActiveForm(false);
+              } else {
+                props.setErrorPassword(true);
               }
             }}
           >

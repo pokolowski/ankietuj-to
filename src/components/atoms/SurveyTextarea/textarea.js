@@ -12,6 +12,7 @@ const Wrapper = styled.textarea`
   font-size: 16px;
   transition: 0.2s;
   margin-top: 20px;
+  margin-bottom: 20px;
   color: black;
   font-family: arial;
   font-size: ${(props) => props.fontSize};

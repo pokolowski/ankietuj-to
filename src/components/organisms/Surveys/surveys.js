@@ -140,7 +140,7 @@ const Info = styled.div`
   // background-color: red;
 `;
 
-const Surveys = ({ surveys }) => {
+const Surveys = ({ surveys, deleteSurvey }) => {
   const navigate = useNavigate();
   const handleOnClick = () => {
     navigate('/createSurvey');
@@ -166,14 +166,16 @@ const Surveys = ({ surveys }) => {
                 <span>posiadasz narazie 0 ankiet</span>
               </Info>
             ) : (
-              surveys
-                .slice(0)
-                .reverse()
-                .map((survey, index) => (
-                  // console.log(survey.name);
-                  // console.log(survey.desc);
-                  <Survey title={survey.name} desc={survey.desc} />
-                ))
+              surveys.map((survey, index) => (
+                // console.log(survey.name);
+                // console.log(survey.desc);
+                <Survey
+                  title={survey.name}
+                  desc={survey.desc}
+                  deleteSurvey={deleteSurvey}
+                  idx={index}
+                />
+              ))
             )}
           </YourSurveys>
         </Container>
