@@ -27,7 +27,6 @@ const Description = styled.span`
 `;
 
 const SurveyHeader = ({ title, desc }) => {
-  console.log(`${title} oraz ${desc}`);
   return (
     <Wrapper>
       <Title> {title} </Title>

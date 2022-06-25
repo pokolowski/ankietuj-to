@@ -5,6 +5,7 @@ import IMG from 'components/atoms/IMG/img';
 import ArrowIcon from 'assets/icons/arrow-right-solid.svg';
 import SurveyHeader from 'components/atoms/SurveyHeader/surveyHeader';
 import { useNavigate } from 'react-router-dom';
+import SurveyQuestion from 'components/atoms/SurveyQuestion/surveyQuestion';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -13,6 +14,7 @@ const Wrapper = styled.div`
   background-color: #dae5f4;
   position: relative;
   overflow: hidden;
+  // margin-bottom: 30px;
 `;
 const BackIcon = styled.img`
   width: 30px;
@@ -28,11 +30,11 @@ const SurveyContainer = styled.div`
   min-height: 150px;
   height: auto;
   position: relative;
-  top: 20px;
+  top: 40px;
   left: 50%;
   transform: translateX(-50%);
   // border: 1px solid black;
-  margin-bottom: 40px;
+  margin-bottom: 100px;
 `;
 
 const ShowSurveyView = ({ idSurvey, surveys }) => {
@@ -46,6 +48,15 @@ const ShowSurveyView = ({ idSurvey, surveys }) => {
         <BackIcon src={ArrowIcon} onClick={() => navigate('/surveys')} />
         <SurveyContainer>
           <SurveyHeader title={surv.name} desc={surv.desc}></SurveyHeader>
+
+          {surv.questions.map((q, index) => (
+            <SurveyQuestion
+              question={q.question}
+              type={q.questionType}
+              answers={q.answers}
+              questionIndex={index}
+            />
+          ))}
         </SurveyContainer>
       </Wrapper>
     </>

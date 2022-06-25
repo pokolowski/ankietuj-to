@@ -109,7 +109,7 @@ const CreateSurvey = ({ addSurvey }) => {
   const [surveyData, setSurveyData] = useState({
     title: '',
     desc: '',
-    countAnswers: '',
+    countAnswers: 100,
   });
   const [titleHeight, setTitleHeight] = useState(50);
   const handleAddQuestion = () => {
