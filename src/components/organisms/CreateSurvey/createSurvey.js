@@ -30,7 +30,7 @@ const FlexContainer = styled.div`
   transform: translateX(-50%);
   border: 1px solid #dae5f4;
   margin-bottom: 40px;
-  //   background-color: red;
+  // background-color: red;
 `;
 const TitleContainer = styled.div`
   width: 100%;

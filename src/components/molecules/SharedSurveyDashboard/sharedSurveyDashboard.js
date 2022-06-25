@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { startTransition } from 'react';
 import styled from 'styled-components';
 import styles from './sharedSurveyDashboard';
 // import UserIcon from 'components/atoms/UserIcon/userIcon';
 import UserIcon from 'components/atoms/UserIcon/userIcon';
 import RightIcon from 'assets/icons/right-arrow.svg';
 import IMG from 'components/atoms/IMG/img.js';
+import StarIcon from 'assets/icons/star-solid.svg';
 
 const Wrapper = styled.div`
   width: 50%;
@@ -71,12 +72,35 @@ const OptionContainer = styled.div`
     // box-shadow: #0e3854 3px 3px 6px 0px inset, #0e3854 -3px -3px 6px 1px inset;
   }
 `;
+const RateContainer = styled.div`
+  width: 100%;
+  height: 30px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform: translateY(100%);
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+  border-radius: 0 0 10px 10px;
+  box-sizing: border-box;
+  padding: 10px;
+  // background-color: red;
+  display: flex;
+  align-items: center;
+  font-family: 'Montserrrat';
+  // text-transform: uppercase;
+`;
+const StarIco = styled.img`
+  width: 20px;
+  height: 20px;
+`;
 
 const SharedSurveyDashboard = ({ surveys }) => {
+  let stars = [];
+  for (let i = 0; i < 5; i++) {
+    stars.push('wartosc');
+  }
   return (
     <Wrapper>
-      {console.log(surveys)}
-      {/* <Icon src={UserIcon} /> */}
       <Icon>
         <UserIcon size="50px" />
       </Icon>
@@ -87,6 +111,14 @@ const SharedSurveyDashboard = ({ surveys }) => {
         <IMG size="35px" src={RightIcon} />
         <span>wypełnij ankietę</span>
       </OptionContainer>
+      <RateContainer>
+        <span>
+          {stars.map((star) => {
+            <StarIco src={StarIcon} />;
+          })}
+          {/* <StarIco src={StarIcon} /> */}
+        </span>
+      </RateContainer>
     </Wrapper>
   );
 };

@@ -30,16 +30,30 @@ const Textarea = ({
   height,
   placeholder,
   borderColor = '#0085ff',
+  readonlyTrue,
   ...props
 }) => {
   return (
-    <Wrapper
-      width={width}
-      height={height}
-      borderColor={borderColor}
-      {...props}
-      placeholder={placeholder}
-    ></Wrapper>
+    <>
+      {readonlyTrue ? (
+        <Wrapper
+          width={width}
+          height={height}
+          borderColor={borderColor}
+          {...props}
+          placeholder={placeholder}
+          readOnly
+        ></Wrapper>
+      ) : (
+        <Wrapper
+          width={width}
+          height={height}
+          borderColor={borderColor}
+          {...props}
+          placeholder={placeholder}
+        ></Wrapper>
+      )}
+    </>
   );
 };
 

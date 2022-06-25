@@ -59,13 +59,13 @@ const Span = styled.div`
   }
 `;
 
-const Survey = ({ title, desc, deleteSurvey, idx }) => {
+const Survey = ({ title, desc, deleteSurvey, idx, showSurvey }) => {
   return (
     <Wrapper>
       <h2>{title}</h2>
       <Line></Line>
       <BtnsContainer>
-        <Span>Zobacz</Span>
+        <Span onClick={() => showSurvey(idx)}>Zobacz</Span>
         <Span>Edytuj</Span>
         <Span onClick={() => deleteSurvey(idx)}>usuń</Span>
         <IMG src={Icon} />

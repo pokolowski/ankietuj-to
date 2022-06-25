@@ -18,6 +18,7 @@ import ProfilePage from 'components/organisms/ProfilePage/profilePage';
 import Surveys from 'components/organisms/Surveys/surveys';
 import CreateSurvey from 'components/organisms/CreateSurvey/createSurvey';
 import MainDashboard from 'components/organisms/MainDashboard/mainDashboard';
+import ShowSurveyView from 'components/organisms/ShowSurvey/showSurveyView';
 
 const AuthenticatedApp = () => {
   return <>zalogowano</>;
@@ -47,6 +48,7 @@ const Root = () => {
   const [displayOff, setDisplayOff] = useState(false);
   //dane chwilowo tutaj - do przeniesienia jak najszybciej
   const [surveys, setSurveys] = useState([]);
+  const [showSurvey, setShowSurvey] = useState(null);
   const navigate = useNavigate();
 
   const handleAddSurvey = (name, desc, q, countAnswers) => {
@@ -59,6 +61,10 @@ const Root = () => {
     tempArr.splice(index, 1);
     setSurveys(tempArr);
     console.log(index);
+  };
+  const handleShowSurvey = (index) => {
+    setShowSurvey(index);
+    navigate('/preview');
   };
 
   //koniec danych do przeniesienia
@@ -86,7 +92,11 @@ const Root = () => {
             <Route
               path="/surveys"
               element={
-                <Surveys surveys={surveys} deleteSurvey={handleDeleteSurvey} />
+                <Surveys
+                  surveys={surveys}
+                  showSurvey={handleShowSurvey}
+                  deleteSurvey={handleDeleteSurvey}
+                />
               }
             />
             {/* W tym miejscu musi zostać wykonanyu post aby dodać ankiety do bazy danych */}
@@ -98,6 +108,12 @@ const Root = () => {
             <Route
               path="/dashboard"
               element={<MainDashboard surveys={surveys} />}
+            />
+            <Route
+              path="/preview"
+              element={
+                <ShowSurveyView idSurvey={showSurvey} surveys={surveys} />
+              }
             />
           </>
         ) : (

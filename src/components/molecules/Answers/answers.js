@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Option from './Option/option';
 import { Circle } from './Option/option';
+import OpenQuestionPrev from 'components/atoms/OpenQuestionPrev/openQuestionPrev';
 
 const Wrapper = styled.div`
   width: calc(100% - 20px);
@@ -37,20 +38,6 @@ const Input = styled.input`
 const Answers = ({ type, changeAnswers, idx }) => {
   const [counting, addCount] = useState([1]);
   const [options, setOptions] = useState([{ option: 'Odpowiedź 1' }]);
-  // const addAnswer = () => {
-  //   addCount([...counting, counting.length + 1]);
-  // };
-  // const deleteAnswer = (index) => {
-  //   console.log(index);
-  //   let tablica = [...counting];
-  //   console.log(`${index} z tablicy ${tablica}`);
-  //   tablica.splice(index, 1);
-  //   console.log(`po usunieciu zostaje ${tablica}`);
-  //   addCount(tablica);
-  //   this.forceUpdate();
-  //   console.log(index);
-  //   console.log(counting);
-  // };
   const handleAddOption = () => {
     setOptions([...options, { option: `Odpowiedź ${options.length + 1}` }]);
   };
@@ -68,18 +55,26 @@ const Answers = ({ type, changeAnswers, idx }) => {
   };
   return (
     <Wrapper>
-      <Option
-        // number={counting[counting.length - 1]}
-        // answers={counting}
-        answers={options}
-        deleteAnswer={handleDeleteOption}
-        changeAnswer={handleChangeOption}
-        type={type}
-      />
-      <Button onClick={handleAddOption}>
-        <Circle type={type} />
-        <Input value="Dodaj następną odpowiedź" readOnly />
-      </Button>
+      {type === '1' || type === '2' ? (
+        <>
+          <Option
+            // number={counting[counting.length - 1]}
+            // answers={counting}
+            answers={options}
+            deleteAnswer={handleDeleteOption}
+            changeAnswer={handleChangeOption}
+            type={type}
+          />
+          <Button onClick={handleAddOption}>
+            <Circle type={type} />
+            <Input value="Dodaj następną odpowiedź" readOnly />
+          </Button>
+        </>
+      ) : type === '3' ? (
+        <OpenQuestionPrev />
+      ) : (
+        ''
+      )}
     </Wrapper>
   );
 };

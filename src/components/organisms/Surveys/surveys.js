@@ -140,7 +140,7 @@ const Info = styled.div`
   // background-color: red;
 `;
 
-const Surveys = ({ surveys, deleteSurvey }) => {
+const Surveys = ({ surveys, deleteSurvey, showSurvey }) => {
   const navigate = useNavigate();
   const handleOnClick = () => {
     navigate('/createSurvey');
@@ -174,6 +174,7 @@ const Surveys = ({ surveys, deleteSurvey }) => {
                   desc={survey.desc}
                   deleteSurvey={deleteSurvey}
                   idx={index}
+                  showSurvey={showSurvey}
                 />
               ))
             )}
