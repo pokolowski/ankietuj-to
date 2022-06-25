@@ -81,19 +81,8 @@ const SharedSurveyDashboard = ({ surveys }) => {
         <UserIcon size="50px" />
       </Icon>
       <Span>*Imię* zaprasza do wypełnienia jego/jej ankiety:</Span>
-      <Title>
-        {/* Praca inżynierksa - portal do prowadzenia badań dla studentów */}
-        {surveys.name}
-      </Title>
-      <Desc>
-        {/* To jest opis jakieś pracy magisterskiej a ja patrze sobie na moją piękną
-        dziewczynę, która jest taka urocza i kochana :DTo jest opis jakieś pracy
-        magisterskiej a ja patrze sobie na moją piękną dziewczynę, która jest
-        taka urocza i kochana :DTo jest opis jakieś pracy magisterskiej a ja
-        patrze sobie na moją piękną dziewczynę, która jest taka urocza i kochana
-        :D */}
-        {surveys.desc}
-      </Desc>
+      <Title>{surveys.name}</Title>
+      <Desc>{surveys.desc}</Desc>
       <OptionContainer>
         <IMG size="35px" src={RightIcon} />
         <span>wypełnij ankietę</span>
