@@ -87,6 +87,14 @@ const RegistryForm = ({ display }) => {
           {...register('sex')}
         />
         <label htmlFor="female"> Kobieta </label>
+        <input
+          type="radio"
+          name="sex"
+          value="other"
+          id="other"
+          {...register('sex')}
+        />
+        <label htmlFor="other"> Inna </label>
       </Radio>
       <br />
       <FormField

@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 const Wrapper = styled.div`
   min-width: 300px;
   width: auto;
-  max-width: 360px;
+  max-width: 340px;
   min-height: 150px;
   height: auto;
   padding: 10px;

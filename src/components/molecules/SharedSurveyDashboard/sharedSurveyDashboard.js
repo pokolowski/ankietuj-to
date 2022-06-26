@@ -117,14 +117,13 @@ const SharedSurveyDashboard = ({ surveys, showSurvey, idx }) => {
         <IMG size="35px" src={RightIcon} />
         <span>wypełnij ankietę</span>
       </OptionContainer>
-      <RateContainer>
+      {/* <RateContainer>
         <span>
           {stars.map((star) => {
             <StarIco src={StarIcon} />;
           })}
-          {/* <StarIco src={StarIcon} /> */}
         </span>
-      </RateContainer>
+      </RateContainer> */}
     </Wrapper>
   );
 };
