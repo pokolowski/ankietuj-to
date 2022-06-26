@@ -6,6 +6,7 @@ import UserIcon from 'components/atoms/UserIcon/userIcon';
 import RightIcon from 'assets/icons/right-arrow.svg';
 import IMG from 'components/atoms/IMG/img.js';
 import StarIcon from 'assets/icons/star-solid.svg';
+import { useNavigate } from 'react-router-dom';
 
 const Wrapper = styled.div`
   width: 50%;
@@ -94,11 +95,16 @@ const StarIco = styled.img`
   height: 20px;
 `;
 
-const SharedSurveyDashboard = ({ surveys }) => {
+const SharedSurveyDashboard = ({ surveys, showSurvey, idx }) => {
   let stars = [];
+  const navigate = useNavigate();
   for (let i = 0; i < 5; i++) {
     stars.push('wartosc');
   }
+  const handleClick = () => {
+    showSurvey(idx);
+    navigate('/completeSurvey');
+  };
   return (
     <Wrapper>
       <Icon>
@@ -107,7 +113,7 @@ const SharedSurveyDashboard = ({ surveys }) => {
       <Span>*Imię* zaprasza do wypełnienia jego/jej ankiety:</Span>
       <Title>{surveys.name}</Title>
       <Desc>{surveys.desc}</Desc>
-      <OptionContainer>
+      <OptionContainer onClick={handleClick}>
         <IMG size="35px" src={RightIcon} />
         <span>wypełnij ankietę</span>
       </OptionContainer>

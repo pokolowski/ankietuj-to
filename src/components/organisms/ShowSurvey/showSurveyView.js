@@ -1,11 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import AuthorizedHeader from '../AuthorizedHeader/authorizedHeader';
-import IMG from 'components/atoms/IMG/img';
-import ArrowIcon from 'assets/icons/arrow-right-solid.svg';
 import SurveyHeader from 'components/atoms/SurveyHeader/surveyHeader';
-import { useNavigate } from 'react-router-dom';
 import SurveyQuestion from 'components/atoms/SurveyQuestion/surveyQuestion';
+import GoBack from 'components/atoms/GoBackArrow/goBack';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -38,14 +36,13 @@ const SurveyContainer = styled.div`
 `;
 
 const ShowSurveyView = ({ idSurvey, surveys }) => {
-  const navigate = useNavigate();
   const surv = surveys[idSurvey];
   console.log(surv);
   return (
     <>
       <AuthorizedHeader />
       <Wrapper>
-        <BackIcon src={ArrowIcon} onClick={() => navigate('/surveys')} />
+        <GoBack path="/surveys" />
         <SurveyContainer>
           <SurveyHeader title={surv.name} desc={surv.desc}></SurveyHeader>
 

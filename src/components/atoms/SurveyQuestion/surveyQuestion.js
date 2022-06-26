@@ -8,6 +8,8 @@ const Wrapper = styled.div`
   background-color: white;
   //   border: 1px solid red;
   border-bottom: 1px solid darkgrey;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 `;
 const QuestionContainer = styled.div`
   width: 100%;
@@ -40,11 +42,57 @@ const AnswerContainer = styled.div`
   font-family: 'Alata';
 `;
 
-const SurveyQuestion = ({ question, type, answers, questionIndex }) => {
+const SurveyQuestion = ({
+  question,
+  type,
+  answers,
+  questionIndex,
+  getAnswers,
+  setGetAnswers,
+}) => {
+  const handleChangeRadio = (ans) => {
+    // console.log(`Pytanie ${question} i jego odpowiedz: ${ans}`);
+    const tempArr = [...getAnswers];
+    tempArr[questionIndex] = { question, answers: [ans] };
+    setGetAnswers(tempArr);
+    console.log(getAnswers);
+  };
+  const deleteAnswer = (index) => {
+    const tempArr = [...getAnswers];
+    tempArr[questionIndex].answers.splice(index, 1);
+    setGetAnswers(tempArr);
+  };
+  const handleChangeCheckbox = (ans) => {
+    const tempArr = [...getAnswers];
+    // console.log(tempArr);
+    let noQuestion = true,
+      addAns = true;
+    tempArr.map((temp, index) => {
+      if (temp.question === question) noQuestion = false;
+    });
+    if (noQuestion) {
+      tempArr[questionIndex] = { question, answers: [ans] };
+    } else {
+      tempArr[questionIndex].answers.map((answer, index) => {
+        if (answer === ans) {
+          deleteAnswer();
+          addAns = false;
+        }
+      });
+      if (addAns)
+        tempArr[questionIndex].answers = [
+          ...tempArr[questionIndex].answers,
+          ans,
+        ];
+    }
+    // tempArr[questionIndex] = { question, answers: [ans] };
+    setGetAnswers(tempArr);
+    console.log(tempArr);
+  };
   return (
     <Wrapper>
       <QuestionContainer>
-        <Q>{question}?</Q>
+        <Q>{question}</Q>
       </QuestionContainer>
       <AnswersContainer>
         {type === '1' ? (
@@ -55,6 +103,7 @@ const SurveyQuestion = ({ question, type, answers, questionIndex }) => {
                 name={`question${questionIndex}`}
                 id={`answer${questionIndex}.${index}`}
                 value={answer.option}
+                onChange={() => handleChangeRadio(answer.option)}
               />
               <label for={`answer${questionIndex}.${index}`}>
                 {answer.option}
@@ -70,6 +119,7 @@ const SurveyQuestion = ({ question, type, answers, questionIndex }) => {
                 name={`question${questionIndex}`}
                 id={`answer${questionIndex}.${index}`}
                 value={answer.option}
+                onChange={() => handleChangeCheckbox(answer.option)}
               />
               <label for={`answer${questionIndex}.${index}`}>
                 {answer.option}

@@ -19,6 +19,7 @@ import Surveys from 'components/organisms/Surveys/surveys';
 import CreateSurvey from 'components/organisms/CreateSurvey/createSurvey';
 import MainDashboard from 'components/organisms/MainDashboard/mainDashboard';
 import ShowSurveyView from 'components/organisms/ShowSurvey/showSurveyView';
+import CompleteSurveys from 'components/organisms/CompleteSurveys/completeSurveys';
 
 const AuthenticatedApp = () => {
   return <>zalogowano</>;
@@ -49,6 +50,9 @@ const Root = () => {
   //dane chwilowo tutaj - do przeniesienia jak najszybciej
   const [surveys, setSurveys] = useState([]);
   const [showSurvey, setShowSurvey] = useState(null);
+  const [userAnswers, setUserAnswers] = useState([
+    { idSurvey: '', questions: [{ question: '', answers: [] }] },
+  ]);
   const navigate = useNavigate();
 
   const handleAddSurvey = (name, desc, q, countAnswers) => {
@@ -107,12 +111,28 @@ const Root = () => {
             {/* W to miejsce trzeba wrzucić wszystkie ankiety, które nie są tego użytkownika tylko innych. */}
             <Route
               path="/dashboard"
-              element={<MainDashboard surveys={surveys} />}
+              element={
+                <MainDashboard
+                  surveys={surveys}
+                  showSurvey={handleShowSurvey}
+                />
+              }
             />
             <Route
               path="/preview"
               element={
                 <ShowSurveyView idSurvey={showSurvey} surveys={surveys} />
+              }
+            />
+            <Route
+              path="/completeSurvey"
+              element={
+                <CompleteSurveys
+                  survey={surveys[showSurvey]}
+                  userAnswers={userAnswers}
+                  setUserAnswers={setUserAnswers}
+                  idSurvey={showSurvey}
+                />
               }
             />
           </>

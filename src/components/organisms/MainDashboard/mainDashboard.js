@@ -34,7 +34,7 @@ const Span = styled.span`
   text-align: center;
 `;
 
-const MainDashboard = ({ surveys }) => {
+const MainDashboard = ({ surveys, showSurvey }) => {
   return (
     <>
       <AuthorizedHeader />
@@ -43,7 +43,13 @@ const MainDashboard = ({ surveys }) => {
           {surveys.length > 0 ? (
             surveys.map((survey, index) => {
               console.log(survey);
-              return <SharedSurveyDashboard surveys={survey} idx={index} />;
+              return (
+                <SharedSurveyDashboard
+                  surveys={survey}
+                  idx={index}
+                  showSurvey={showSurvey}
+                />
+              );
             })
           ) : (
             <>
@@ -54,26 +60,6 @@ const MainDashboard = ({ surveys }) => {
               </Span>
             </>
           )}
-          {/* <SharedSurveyDashboard surveys={surveys} />
-          <SharedSurveyDashboard surveys={surveys} />
-          <SharedSurveyDashboard surveys={surveys} />
-          <SharedSurveyDashboard surveys={surveys} />
-          <SharedSurveyDashboard surveys={surveys} />
-          <SharedSurveyDashboard surveys={surveys} />
-          <SharedSurveyDashboard surveys={surveys} />
-          <SharedSurveyDashboard surveys={surveys} />
-          <SharedSurveyDashboard surveys={surveys} />
-          <SharedSurveyDashboard surveys={surveys} />
-          <SharedSurveyDashboard surveys={surveys} />
-          <SharedSurveyDashboard surveys={surveys} />
-          <SharedSurveyDashboard surveys={surveys} />
-          <SharedSurveyDashboard surveys={surveys} />
-          <SharedSurveyDashboard surveys={surveys} />
-          <SharedSurveyDashboard surveys={surveys} />
-          <SharedSurveyDashboard surveys={surveys} />
-          <SharedSurveyDashboard surveys={surveys} />
-          <SharedSurveyDashboard surveys={surveys} />
-          <SharedSurveyDashboard surveys={surveys} /> */}
         </Container>
       </Wrapper>
     </>
