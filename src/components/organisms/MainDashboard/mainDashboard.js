@@ -43,7 +43,6 @@ const MainDashboard = ({ surveys, showSurvey, userAnswers }) => {
         <Container>
           {surveys.length > 0 ? (
             surveys.map((survey, index) => {
-              console.log(survey);
               return (
                 <SharedSurveyDashboard
                   surveys={survey}

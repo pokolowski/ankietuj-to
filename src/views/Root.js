@@ -20,6 +20,7 @@ import CreateSurvey from 'components/organisms/CreateSurvey/createSurvey';
 import MainDashboard from 'components/organisms/MainDashboard/mainDashboard';
 import ShowSurveyView from 'components/organisms/ShowSurvey/showSurveyView';
 import CompleteSurveys from 'components/organisms/CompleteSurveys/completeSurveys';
+import ShareUrSurvey from 'components/organisms/ShareYourSurvey/shareUrSurvey';
 
 const AuthenticatedApp = () => {
   return <>zalogowano</>;
@@ -137,6 +138,7 @@ const Root = () => {
                 />
               }
             />
+            <Route path="/shareSurveys" element={<ShareUrSurvey />} />
           </>
         ) : (
           <Route

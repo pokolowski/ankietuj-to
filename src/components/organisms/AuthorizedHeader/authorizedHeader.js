@@ -103,6 +103,7 @@ const AuthorizedHeader = () => {
         navigate('/dashboard');
         break;
       case '3':
+        navigate('/shareSurveys');
         break;
       case '4':
         break;
@@ -111,6 +112,8 @@ const AuthorizedHeader = () => {
         navigate('/profile');
         break;
       case '6':
+        auth.singOut();
+        navigate('/');
         break;
     }
   };
@@ -159,6 +162,7 @@ const AuthorizedHeader = () => {
           src={shareIcon}
           onMouseOver={handleHover}
           onMouseLeave={handleMouseLeave}
+          onClick={handleClick}
         />
         <Icon
           name="4"
@@ -180,7 +184,7 @@ const AuthorizedHeader = () => {
           src={logOutIcon}
           onMouseOver={handleHover}
           onMouseLeave={handleMouseLeave}
-          onClick={auth.singOut}
+          onClick={handleClick}
         />
       </ProfileContainer>
     </Wrapper>

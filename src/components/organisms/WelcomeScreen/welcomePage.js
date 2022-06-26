@@ -93,36 +93,6 @@ const WelcomePage = () => {
           icon={resultIcon}
         ></CategoryDiv>
       </FlexContainer>
-      {/* <RoundedDiv
-        text="Przeanalizuj wyniki swojej ankiety"
-        top="100"
-        left="200"
-        // bottom="200"
-      />
-      <RoundedDiv
-        text="Udostepnij swoją ankietę"
-        top="100"
-        right="150"
-        // bottom="100"
-      />
-      <RoundedDiv
-        text="Zobacz profil"
-        // top="100"
-        right="250"
-        bottom="50"
-      />
-      <RoundedDiv
-        text="Stwórz ankietę"
-        // top="100"
-        // right="150"
-        bottom="100"
-      />
-      <RoundedDiv
-        text="Wypełniaj ankiety"
-        // top="100"
-        left="250"
-        bottom="50"
-      /> */}
     </Wrapper>
   );
 };
