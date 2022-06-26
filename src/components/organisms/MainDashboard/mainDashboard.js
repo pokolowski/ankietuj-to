@@ -34,7 +34,8 @@ const Span = styled.span`
   text-align: center;
 `;
 
-const MainDashboard = ({ surveys, showSurvey }) => {
+const MainDashboard = ({ surveys, showSurvey, userAnswers }) => {
+  console.log(userAnswers);
   return (
     <>
       <AuthorizedHeader />

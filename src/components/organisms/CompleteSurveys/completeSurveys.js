@@ -4,6 +4,7 @@ import AuthorizedHeader from '../AuthorizedHeader/authorizedHeader';
 import GoBack from 'components/atoms/GoBackArrow/goBack';
 import SurveyHeader from 'components/atoms/SurveyHeader/surveyHeader';
 import SurveyQuestion from 'components/atoms/SurveyQuestion/surveyQuestion';
+import { useNavigate } from 'react-router-dom';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -45,16 +46,20 @@ const SaveBtn = styled.div`
   margin-top: 20px;
 `;
 
-const CompleteSurveys = ({
-  survey,
-  userAnswers,
-  setUsersAnswers,
-  idSurvey,
-}) => {
-  console.log(survey);
+const CompleteSurveys = ({ survey, userAnswers, setUserAnswers, idSurvey }) => {
+  //   console.log(survey);
   const [getAnswers, setGetAnswers] = useState([{ question: '', answers: [] }]);
+  const navigate = useNavigate();
   const handleClick = () => {
-    console.log(getAnswers);
+    // console.log(getAnswers);
+    setUserAnswers([
+      ...userAnswers,
+      {
+        idSurvey,
+        questions: getAnswers,
+      },
+    ]);
+    navigate('/dashboard');
   };
   return (
     <>

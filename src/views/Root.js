@@ -54,6 +54,7 @@ const Root = () => {
     { idSurvey: '', questions: [{ question: '', answers: [] }] },
   ]);
   const navigate = useNavigate();
+  console.log(userAnswers);
 
   const handleAddSurvey = (name, desc, q, countAnswers) => {
     setSurveys([{ name, desc, questions: [...q], countAnswers }, ...surveys]);
@@ -115,6 +116,7 @@ const Root = () => {
                 <MainDashboard
                   surveys={surveys}
                   showSurvey={handleShowSurvey}
+                  userAnswers={userAnswers}
                 />
               }
             />

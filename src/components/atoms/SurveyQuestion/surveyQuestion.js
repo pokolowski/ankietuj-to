@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Textarea from '../SurveyTextarea/textarea';
 
@@ -50,6 +50,8 @@ const SurveyQuestion = ({
   getAnswers,
   setGetAnswers,
 }) => {
+  const [openAnswer, setOpenAnswer] = useState('');
+
   const handleChangeRadio = (ans) => {
     // console.log(`Pytanie ${question} i jego odpowiedz: ${ans}`);
     const tempArr = [...getAnswers];
@@ -89,6 +91,14 @@ const SurveyQuestion = ({
     setGetAnswers(tempArr);
     console.log(tempArr);
   };
+  const handleOpenQuestion = (e) => {};
+  const handleChangeTextarea = (e) => {
+    setOpenAnswer(e.target.value);
+    const tempArr = [...getAnswers];
+    tempArr[questionIndex] = { question, answers: [e.target.value] };
+    setGetAnswers(tempArr);
+  };
+
   return (
     <Wrapper>
       <QuestionContainer>
@@ -133,6 +143,8 @@ const SurveyQuestion = ({
               width="80%"
               height="40px"
               placeholder="Tutaj wpisz swoją odpowiedź"
+              value={openAnswer}
+              onChange={handleChangeTextarea}
             />
           </AnswerContainer>
         ) : (
