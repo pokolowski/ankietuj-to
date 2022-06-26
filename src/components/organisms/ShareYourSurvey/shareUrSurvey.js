@@ -2,7 +2,7 @@ import React from 'react';
 import AuthorizedHeader from '../AuthorizedHeader/authorizedHeader';
 import styled from 'styled-components';
 import Survey from 'components/atoms/SurverForShare/survey';
-
+import { NavLink } from 'react-router-dom';
 const Wrapper = styled.div`
   width: 100%;
   min-height: calc(100vh - 100px);
@@ -48,26 +48,38 @@ const Disclaimer = styled.div`
   font-family: 'Alata';
   text-align: center;
 `;
+const Counter = styled.span`
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #244a6e;
+`;
 
-const ShareUrSurvey = ({ user }) => {
+const ShareUrSurvey = ({ user, surveys }) => {
+  console.log(surveys);
   return (
     <>
       <AuthorizedHeader />
       <Wrapper>
         <Disclaimer>
           Chcesz udostępnić swoją ankietę?
-          <br /> Może to zrobić jednym kliknięciem! Jednak, aby to zrobić musisz
-          najpierw wypełnić 5 cudzych ankiet <a href="#">w tym miejscu</a>.
+          <br /> Możesz to zrobić jednym kliknięciem! Jednak, aby to zrobić
+          musisz najpierw wypełnić 5 cudzych ankiet{' '}
+          <NavLink to="/dashboard">w tym miejscu</NavLink>.
           <br />
           Dzięki temu systemowi Ty, oraz inni użytkownicy zbierzecie wymaganą
           ilość odpowiedzi do swoich ankiet w możliwie najkrótszym czasie!
         </Disclaimer>
         <SurveysContainer>
           <Title>Wybierz, którą ankietę chcesz udostępnić</Title>
-          <Survey />
-          <Survey />
-          <Survey />
-          <Survey />
+          <Counter>
+            Wypełniłeś 0 ankiet. Dzięki temu możesz udostępnić 0 swoich ankiet.
+          </Counter>
+          {surveys.map((surv, index) => (
+            <Survey title={surv.name} description={surv.desc} />
+          ))}
         </SurveysContainer>
       </Wrapper>
     </>

@@ -26,6 +26,9 @@ const BtnContainer = styled.div`
   flex-direction: row;
   justify-content: center;
 `;
+const Radio = styled.div`
+  margin-bottom: 10px;
+`;
 
 const RegistryForm = ({ display }) => {
   const [formsValues, setFormsValues] = useState({
@@ -66,6 +69,25 @@ const RegistryForm = ({ display }) => {
         marginBottom="30"
         {...register('surname')}
       ></FormField>
+      <br />
+      <Radio>
+        <input
+          type="radio"
+          name="sex"
+          value="male"
+          id="male"
+          {...register('sex')}
+        />
+        <label htmlFor="male"> Mężczyzna </label>
+        <input
+          type="radio"
+          name="sex"
+          value="female"
+          id="female"
+          {...register('sex')}
+        />
+        <label htmlFor="female"> Kobieta </label>
+      </Radio>
       <br />
       <FormField
         label="Adres Email"

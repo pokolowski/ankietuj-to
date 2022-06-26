@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import styles from './survey.module.css';
 import ShareIconOrange from 'components/atoms/ShareIconOrange/shareIconOrange';
 import Icon from 'assets/headerIcons/share.svg';
+import { useNavigate } from 'react-router-dom';
 const Wrapper = styled.div`
   min-width: 300px;
   width: auto;
@@ -60,6 +61,7 @@ const Span = styled.div`
 `;
 
 const Survey = ({ title, desc, deleteSurvey, idx, showSurvey }) => {
+  const navigate = useNavigate();
   return (
     <Wrapper>
       <h2>{title}</h2>
@@ -68,7 +70,7 @@ const Survey = ({ title, desc, deleteSurvey, idx, showSurvey }) => {
         <Span onClick={() => showSurvey(idx)}>Zobacz</Span>
         <Span>Edytuj</Span>
         <Span onClick={() => deleteSurvey(idx)}>usuń</Span>
-        <IMG src={Icon} />
+        <IMG src={Icon} onClick={() => navigate('/shareSurveys')} />
         {/* <ShareIconOrange size="20px" /> */}
       </BtnsContainer>
     </Wrapper>

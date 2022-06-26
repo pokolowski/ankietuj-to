@@ -106,6 +106,7 @@ const AuthorizedHeader = () => {
         navigate('/shareSurveys');
         break;
       case '4':
+        navigate('/analize');
         break;
       case '5':
         // console.log('jestem');
@@ -169,6 +170,7 @@ const AuthorizedHeader = () => {
           src={resultIcon}
           onMouseOver={handleHover}
           onMouseLeave={handleMouseLeave}
+          onClick={handleClick}
         />
       </Bookmarks>
       <ProfileContainer>

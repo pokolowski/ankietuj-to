@@ -58,7 +58,7 @@ export const AuthProvider = ({ children }) => {
       console.log(e);
     }
   };
-  const register = async ({ name, surname, email, password }) => {
+  const register = async ({ name, surname, email, password, sex }) => {
     console.log('rejestracja :)');
 
     console.log({
@@ -66,6 +66,7 @@ export const AuthProvider = ({ children }) => {
       surname,
       email,
       password,
+      sex,
     });
     try {
       const response = await axios.post('/login', {
