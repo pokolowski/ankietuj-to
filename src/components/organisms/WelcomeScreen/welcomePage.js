@@ -86,11 +86,16 @@ const WelcomePage = () => {
           path="/dashboard"
         ></CategoryDiv>
 
-        <CategoryDiv text="Udostępnij ankiety" icon={shareIcon}></CategoryDiv>
+        <CategoryDiv
+          text="Udostępnij ankiety"
+          icon={shareIcon}
+          path="/shareSurveys"
+        ></CategoryDiv>
 
         <CategoryDiv
           text="Przeanalizuj zebrane wyniki ankiet"
           icon={resultIcon}
+          path="/analize"
         ></CategoryDiv>
       </FlexContainer>
     </Wrapper>

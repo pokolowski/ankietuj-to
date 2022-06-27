@@ -33,6 +33,7 @@ const Survey = ({ title, description, setAnalizeId, idx, isAnalize }) => {
   const handleClick = () => {
     if (isAnalize === 'true') {
       setAnalizeId(idx);
+      console.log(idx);
     }
   };
   return (

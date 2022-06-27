@@ -143,9 +143,12 @@ const Root = () => {
               path="/shareSurveys"
               element={<ShareUrSurvey surveys={surveys} />}
             />
+            {/* Tutaj powinny trafić ankiety, które zostały udostępnione */}
             <Route
               path="/analize"
-              element={<AnalizeResults surveys={surveys} />}
+              element={
+                <AnalizeResults surveys={surveys} answers={userAnswers} />
+              }
             />
           </>
         ) : (
