@@ -59,6 +59,8 @@ const Root = () => {
   console.log(userAnswers);
 
   const handleAddSurvey = (name, desc, q, countAnswers) => {
+    // post do bazy tutaj :  tytul, opis, pytania = [...q]
+    // console.log({ name, desc, questions: [...q], countAnswers });
     setSurveys([{ name, desc, questions: [...q], countAnswers }, ...surveys]);
     navigate('/surveys');
     // console.log(surveys);

@@ -93,6 +93,8 @@ export const AuthProvider = ({ children }) => {
   const deleteAccount = () => {
     setUser(null);
     localStorage.removeItem('token');
+    // tutaj post do usuniecia konta
+
     navigate(`/`);
 
     // localStorage.removeItem('token');
