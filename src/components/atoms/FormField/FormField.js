@@ -37,7 +37,7 @@ const FormField = react.forwardRef(
           type={type}
           name={name}
           className={styles.inputClass}
-          // onChange={onChange}
+          onChange={onChange}
           marginBottom={marginBottom}
           defaultValue={props.defaultValue}
           {...props}

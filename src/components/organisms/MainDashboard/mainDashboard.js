@@ -36,6 +36,7 @@ const Span = styled.span`
 
 const MainDashboard = ({ surveys, showSurvey, userAnswers }) => {
   console.log(userAnswers);
+
   return (
     <>
       <AuthorizedHeader />

@@ -2,7 +2,6 @@ import react, { useState } from 'react';
 import FormField from 'components/atoms/FormField/FormField.js';
 import styles from './ContactForm.module.css';
 import Button from 'components/atoms/Button/button';
-// import { useState } from 'react/cjs/react.production.min';
 
 const ContactForm = () => {
   const initialFormState = {

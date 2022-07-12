@@ -1,4 +1,4 @@
-import react, { useState } from 'react';
+import react, { useState, useRef } from 'react';
 import styled from 'styled-components';
 // import styles from './loginForm.module.css';
 import FormField from 'components/atoms/FormField/FormField';
@@ -29,6 +29,12 @@ const BtnContainer = styled.div`
 const Radio = styled.div`
   margin-bottom: 10px;
 `;
+const Error = styled.p`
+  margin-bottom: 30px;
+  margin-top: 0;
+  color: red;
+  font-family: 'Alata';
+`;
 
 const RegistryForm = ({ display }) => {
   const [formsValues, setFormsValues] = useState({
@@ -53,6 +59,8 @@ const RegistryForm = ({ display }) => {
       [e.target.name]: e.target.value,
     });
   };
+  const password = useRef({});
+  password.current = watch('password', '');
 
   return (
     <Wrapper display={display} as="form" onSubmit={handleSubmit(auth.register)}>
@@ -101,7 +109,10 @@ const RegistryForm = ({ display }) => {
         label="Adres Email"
         name="email"
         marginBottom="30"
-        {...register('email')}
+        {...register('email', {
+          pattern:
+            /^([a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+.?[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-])+@{1}[a-zA-Z]+.{1}[a-zA-Z]+(.{1}[a-zA-Z]+)?$/i,
+        })}
       ></FormField>
       <br />
       <FormField
@@ -109,7 +120,12 @@ const RegistryForm = ({ display }) => {
         name="password"
         type="password"
         marginBottom="30"
-        {...register('password')}
+        {...register('password', {
+          minLength: {
+            value: 8,
+            message: 'Hasło musi posiadać minimum 8 znaków',
+          },
+        })}
       ></FormField>
       <br />
       <FormField
@@ -117,7 +133,13 @@ const RegistryForm = ({ display }) => {
         name="repeatpassword"
         type="password"
         marginBottom="30"
+        {...register('repeatpassword', {
+          validate: (value) =>
+            value === password.current || 'Hasła do siebie nie pasują',
+        })}
       ></FormField>
+      {errors.password && <Error>{errors.password.message}</Error>}
+      {errors.repeatpassword && <Error>{errors.repeatpassword.message}</Error>}
       <BtnContainer>
         <Button text="Zarejestruj się" alignSelf="center" fontSize="15" />
       </BtnContainer>

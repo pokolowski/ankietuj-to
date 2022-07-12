@@ -17,6 +17,11 @@ const Wrapper = styled.div`
 const P = styled.p`
   margin-bottom: 50px;
 `;
+const Error = styled.p`
+  margin-bottom: 10px;
+  color: red;
+  font-family: 'Alata';
+`;
 const BtnContainer = styled.div`
   width: 100%;
   display: flex;
@@ -51,7 +56,10 @@ const LoginForm = ({ display, handleSignIn, ...props }) => {
         name="login"
         fontColor="red"
         marginBottom="30"
-        {...register('email')}
+        {...register('email', {
+          pattern:
+            /^([a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+.?[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-])+@{1}[a-zA-Z]+.{1}[a-zA-Z]+(.{1}[a-zA-Z]+)?$/i,
+        })}
       ></FormField>
       <br />
       <FormField
@@ -60,9 +68,23 @@ const LoginForm = ({ display, handleSignIn, ...props }) => {
         type="password"
         fontColor="red"
         marginBottom="5px"
-        {...register('password')}
+        {...register('password', {
+          reguired: 'Hasło jest wymagane',
+          minLength: {
+            value: 8,
+            message: 'Hasło musi posiadać minimum 8 znaków',
+          },
+          validate: (value) =>
+            value.match(/[a-z]/g) &&
+            value.match(/[A-Z]/g) &&
+            value.match(/[0-9]/g) &&
+            value.match(/[!@#$%^&*()]/g),
+        })}
       ></FormField>
       <P>Zapomniałeś hasła?</P>
+      {errors.email && <Error>Zły format adresu email</Error>}
+      {errors.password && <Error>{errors.password.message} </Error>}
+
       <BtnContainer>
         <Button text="Zaloguj się" alignSelf="center" fontSize="15" />
       </BtnContainer>

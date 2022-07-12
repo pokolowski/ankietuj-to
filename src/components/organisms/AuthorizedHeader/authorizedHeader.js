@@ -112,10 +112,6 @@ const AuthorizedHeader = () => {
         // console.log('jestem');
         navigate('/profile');
         break;
-      case '6':
-        auth.singOut();
-        navigate('/');
-        break;
     }
   };
   const handleMouseLeave = (e) => {
@@ -186,7 +182,7 @@ const AuthorizedHeader = () => {
           src={logOutIcon}
           onMouseOver={handleHover}
           onMouseLeave={handleMouseLeave}
-          onClick={handleClick}
+          onClick={auth.singOut}
         />
       </ProfileContainer>
     </Wrapper>

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Navigate } from 'react-router-dom';
+//import jwt_decode from "jwt-decode";
 // import { useNavigate } from 'react-router-dom';
 // import { useError } from 'hooks/useError';
 
@@ -14,28 +15,27 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      (async () => {
-        try {
-          const response = await axios.get('/me', {
-            headers: {
-              authorization: `Bearer ${token}`,
-            },
-          });
-          setUser(response.data);
-        } catch (e) {
-          console.log(e);
-        }
-      })();
+      // (async () => {
+      //   try {
+      //     const response = await axios.get('/me', {
+      //       headers: {
+      //         authorization: `Bearer ${token}`,
+      //       },
+      //     });
+      //     setUser(response.data);
+      //   } catch (e) {
+      //     console.log(e);
+      //   }
+      // })();
     }
   }, []);
 
   // const navigate = useNavigate();
   const signIn = async ({ email, password }) => {
     console.log('halo :)');
-
     console.log(`email: ${email}, passsword: ${password}`);
     try {
-      const response = await axios.post('/login', {
+      const response = await axios.post('/api/Account/login', {
         email,
         password,
       });
@@ -54,8 +54,8 @@ export const AuthProvider = ({ children }) => {
       console.log(user);
       localStorage.setItem('token', user);
       navigate(`/`);
-      // koniec testu
-      console.log(e);
+      // // koniec testu
+      // console.log(e);
     }
   };
   const register = async ({ name, surname, email, password, sex }) => {
@@ -69,12 +69,13 @@ export const AuthProvider = ({ children }) => {
       sex,
     });
     try {
-      const response = await axios.post('/login', {
+      const response = await axios.post('/api/Account/register', {
         name,
         surname,
         email,
         password,
       });
+      console.log(response.data);
       setUser(response.data);
       navigate(`/`);
       localStorage.setItem('token', response.data.token);
