@@ -1,10 +1,12 @@
 .flexContainer{
-    position: absolute;
+    position: relative;
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
     width: 70%;
-    height: 100%;
+    min-height: 50%;
+    height: auto;
+    /* margin-bottom: 100px; */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -35,6 +37,7 @@
     /* right: 100px; */
     /* top: 40px; */
     color: white;
+    margin-bottom: 300px;
     /* background-color: yellow; */
 }
 .formContainer h1{

@@ -9,9 +9,11 @@ const Wrapper = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  min-height: 700px;
+  min-width: 350px;
+  min-height: 800px;
+  height: auto;
   background-color: #0e3854;
-  overflow: hidden;
+  // overflow: hidden;
   // max-width: 100%;
 `;
 

@@ -1,6 +1,11 @@
 .fildsDistance{
     margin-top: 50px;
 }
+.formStyles{
+    /* background-color: red; */
+    height: auto;
+    position: relative;
+}
 .textAreaStyle{
     width: 400px;
     height: 200px;

@@ -30,7 +30,7 @@ const ContactForm = () => {
   };
   // console.log(formsValues);
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={styles.formStyles} onSubmit={handleSubmit}>
       <FormField
         label="Twój adres email"
         name="email"
