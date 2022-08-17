@@ -14,14 +14,14 @@ import HomePage from './HomePage';
 import { useForm } from 'react-hook-form';
 import { useAuth } from 'hooks/useAuth';
 import AuthorizedView from './AuthorizedView';
-import ProfilePage from 'components/organisms/ProfilePage/profilePage';
-import Surveys from 'components/organisms/Surveys/surveys';
-import CreateSurvey from 'components/organisms/CreateSurvey/createSurvey';
-import MainDashboard from 'components/organisms/MainDashboard/mainDashboard';
-import ShowSurveyView from 'components/organisms/ShowSurvey/showSurveyView';
-import CompleteSurveys from 'components/organisms/CompleteSurveys/completeSurveys';
-import ShareUrSurvey from 'components/organisms/ShareYourSurvey/shareUrSurvey';
-import AnalizeResults from 'components/organisms/AnalizeResults/analizeResults';
+import ProfilePage from 'components/organisms/AuthorizedView/ProfilePage/profilePage';
+import Surveys from 'components/organisms/AuthorizedView/Surveys/surveys';
+import CreateSurvey from 'components/organisms/AuthorizedView/CreateSurvey/createSurvey';
+import MainDashboard from 'components/organisms/AuthorizedView/MainDashboard/mainDashboard';
+import ShowSurveyView from 'components/organisms/AuthorizedView/ShowSurvey/showSurveyView';
+import CompleteSurveys from 'components/organisms/AuthorizedView/CompleteSurveys/completeSurveys';
+import ShareUrSurvey from 'components/organisms/AuthorizedView/ShareYourSurvey/shareUrSurvey';
+import AnalizeResults from 'components/organisms/AuthorizedView/AnalizeResults/analizeResults';
 
 const AuthenticatedApp = () => {
   return <>zalogowano</>;
@@ -56,7 +56,44 @@ const Root = () => {
     { idSurvey: '', questions: [{ question: '', answers: [] }] },
   ]);
   const navigate = useNavigate();
-  console.log(userAnswers);
+  // console.log(userAnswers);
+
+  //POBIERANIE ANKIET Z BAZY
+  const getSurveys = async () => {
+    try {
+      const response = await axios
+        .get('api/Survey/getSurveys')
+        .then(function (response) {
+          console.log(response);
+        });
+      // let decoded = jwt_decode(response.data);
+      // console.log(decoded);
+      // setUser({
+      //   id: decoded.Id,
+      //   imie: decoded.Name,
+      //   nazwisko: decoded.Surname,
+      //   email: decoded.Email
+      // })
+      // console.log(response.data);
+      // navigate(`/`);
+      // localStorage.setItem('token', response.data);
+    } catch (e) {
+      console.log(e);
+      // dispatchError('Invalid email or password');
+      // test przekierowania
+      // setUser({
+      //   imie: 'Patryk',
+      //   nazwisko: 'Okolowski',
+      //   email: 'pokolowski@edu.cdv.pl',
+      //   haslo: 'silneHaslo',
+      // });
+      // console.log(user);
+      // localStorage.setItem('token', user);
+      // navigate(`/`);
+      // // koniec testu
+      // console.log(e);
+    }
+  };
 
   const handleAddSurvey = (name, desc, q, countAnswers) => {
     // post do bazy tutaj :  tytul, opis, pytania = [...q]
@@ -119,6 +156,7 @@ const Root = () => {
               element={
                 <MainDashboard
                   surveys={surveys}
+                  getSurveys={getSurveys}
                   showSurvey={handleShowSurvey}
                   userAnswers={userAnswers}
                 />

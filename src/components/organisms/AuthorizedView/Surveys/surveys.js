@@ -15,6 +15,9 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   // overflow: scroll;
+  @media (max-width: 500px) {
+    min-height: 100vh;
+  }
 `;
 const Container = styled.div`
   width: 70%;

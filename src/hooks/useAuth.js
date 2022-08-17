@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Navigate } from 'react-router-dom';
-//import jwt_decode from "jwt-decode";
+import jwt_decode from 'jwt-decode';
 // import { useNavigate } from 'react-router-dom';
 // import { useError } from 'hooks/useError';
 
@@ -11,10 +11,28 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
   // const { dispatchError } = useError();
+  const handleSetUser = (token) => {
+    let decoded = jwt_decode(token);
+    setUser({
+      id: decoded.Id,
+      imie: decoded.Name,
+      nazwisko: decoded.Surname,
+      email: decoded.Email,
+    });
+  };
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (token) {
+    if (token != 'null') {
+      console.log(token);
+      handleSetUser(token);
+      // let decoded = jwt_decode(token);
+      // setUser({
+      //   id: decoded.Id,
+      //   imie: decoded.Name,
+      //   nazwisko: decoded.Surname,
+      //   email: decoded.Email,
+      // });
       // (async () => {
       //   try {
       //     const response = await axios.get('/me', {
@@ -39,7 +57,16 @@ export const AuthProvider = ({ children }) => {
         email,
         password,
       });
-      setUser(response.data);
+      handleSetUser(response.data);
+      // let decoded = jwt_decode(response.data);
+      // console.log(decoded);
+      // setUser({
+      //   id: decoded.Id,
+      //   imie: decoded.Name,
+      //   nazwisko: decoded.Surname,
+      //   email: decoded.Email,
+      // });
+      // setUser(response.data);
       navigate(`/`);
       localStorage.setItem('token', response.data.token);
     } catch (e) {
@@ -58,6 +85,7 @@ export const AuthProvider = ({ children }) => {
       // console.log(e);
     }
   };
+
   const register = async ({ name, surname, email, password, sex }) => {
     console.log('rejestracja :)');
 
@@ -73,10 +101,13 @@ export const AuthProvider = ({ children }) => {
         name,
         surname,
         email,
+        gender: sex,
         password,
+        confirmPassword: password,
       });
-      console.log(response.data);
-      setUser(response.data);
+      // console.log(response.data);
+      handleSetUser(response.data);
+      // setUser(response.data);
       navigate(`/`);
       localStorage.setItem('token', response.data.token);
       // history.push('/');

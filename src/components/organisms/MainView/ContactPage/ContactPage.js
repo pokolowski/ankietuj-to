@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   min-height: 800px;
   height: auto;
   background-color: #0e3854;
-  // overflow: hidden;
+  overflow: hidden;
   // max-width: 100%;
 `;
 

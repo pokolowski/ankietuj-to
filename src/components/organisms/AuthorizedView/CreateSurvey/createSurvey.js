@@ -17,6 +17,10 @@ const Wrapper = styled.div`
   background-color: #dae5f4;
   position: relative;
   overflow: hidden;
+  // display: none;
+  @media (max-width: 900px) {
+    min-height: 100vh;
+  }
 `;
 const FlexContainer = styled.div`
   //   width: 50%;
@@ -31,6 +35,9 @@ const FlexContainer = styled.div`
   border: 1px solid #dae5f4;
   margin-bottom: 40px;
   // background-color: red;
+  @media (max-width: 800px) {
+    width: 100%;
+  }
 `;
 const TitleContainer = styled.div`
   width: 100%;
@@ -47,6 +54,33 @@ const TitleContainer = styled.div`
   align-items: center;
   justify-content: space-around;
   margin-bottom: 20px;
+  @media (max-width: 899px) {
+    width: 80%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  @media (max-width: 770px) {
+    width: 70%;
+  }
+  @media (max-width: 680px) {
+    width: 60%;
+  }
+  @media (max-width: 600px) {
+    width: 50%;
+  }
+  @media (max-width: 600px) {
+    width: 50%;
+  }
+  @media (max-width: 520px) {
+    width: 100%;
+    left: 0;
+    transform: none;
+    margin: 0;
+  }
+  @media (max-width: 300px) {
+    width: 30%;
+  }
 `;
 const Options = styled.div`
   width: 50px;
@@ -65,6 +99,25 @@ const Options = styled.div`
   //   padding: 5px;
   align-items: center;
   transition: 0.2 s;
+  @media (max-width: 899px) {
+    right: 10%;
+  }
+  @media (max-width: 770px) {
+    right: 15%;
+  }
+  @media (max-width: 680px) {
+    right: 20%;
+  }
+  @media (max-width: 520px) {
+    width: 100%;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 110%);
+    margin: 0;
+  }
+  @media (max-width: 300px) {
+    right: 25%;
+  }
 `;
 const IMG = styled.img`
   width: 25px;

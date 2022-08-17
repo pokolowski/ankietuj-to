@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faXRay } from '@fortawesome/free-solid-svg-icons';
-import 'components/organisms/menuLeftPanel/menuLeftPanel.css';
+import 'components/organisms/MainView/menuLeftPanel/menuLeftPanel.css';
 import HeaderUl from 'components/molecules/HeaderUl/HeaderUl';
 import { IoClose } from 'react-icons/io5';
 import HeaderSignIn from 'components/molecules/HeaderSignIn/HeaderSignIn';

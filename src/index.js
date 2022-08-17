@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'index.css';
 import App from 'views/App';
-import Header from 'components/organisms/header/header.js';
+import Header from 'components/organisms/MainView/header/header.js';
 import Root from 'views/Root';
 import './fonts/Alata/Alata-Regular.ttf';
 import { AuthProvider } from 'hooks/useAuth';
