@@ -182,7 +182,7 @@ const AuthorizedHeader = () => {
           src={logOutIcon}
           onMouseOver={handleHover}
           onMouseLeave={handleMouseLeave}
-          onClick={auth.singOut}
+          onClick={() => auth.signOut()}
         />
       </ProfileContainer>
     </Wrapper>

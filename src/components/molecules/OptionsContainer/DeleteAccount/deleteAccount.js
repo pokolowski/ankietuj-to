@@ -67,7 +67,7 @@ const DeleteAccount = ({ setDeleteAcc, close }) => {
   };
   const handleDelete = () => {
     if (inputValue === 'usuwam konto') {
-      // auth.deleteAccount;
+      auth.deleteAccount();
       console.log('usuwanko');
       // setDeleteAcc(false);
       // close();

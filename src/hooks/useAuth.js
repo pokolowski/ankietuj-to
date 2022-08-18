@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (token != 'null') {
+    if (token != 'null' && token != null) {
       console.log(token);
       handleSetUser(token);
       // let decoded = jwt_decode(token);
@@ -68,7 +68,7 @@ export const AuthProvider = ({ children }) => {
       // });
       // setUser(response.data);
       navigate(`/`);
-      localStorage.setItem('token', response.data.token);
+      localStorage.setItem('token', response.data);
     } catch (e) {
       // dispatchError('Invalid email or password');
       // test przekierowania
@@ -118,11 +118,13 @@ export const AuthProvider = ({ children }) => {
   };
 
   const signOut = () => {
+    console.log('wylogowanie');
     setUser(null);
     localStorage.removeItem('token');
     navigate(`/`);
   };
   const deleteAccount = () => {
+    console.log('usuwaniee');
     setUser(null);
     localStorage.removeItem('token');
     // tutaj post do usuniecia konta
