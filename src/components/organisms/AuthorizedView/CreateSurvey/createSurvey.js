@@ -162,7 +162,7 @@ const CreateSurvey = ({ addSurvey }) => {
   const [surveyData, setSurveyData] = useState({
     title: '',
     desc: '',
-    countAnswers: 100,
+    countAnswers: '100',
   });
   const [titleHeight, setTitleHeight] = useState(50);
   const handleAddQuestion = () => {
@@ -195,6 +195,7 @@ const CreateSurvey = ({ addSurvey }) => {
     setQuestions(tempArr);
   };
   const handleChangeData = (e) => {
+    console.log(e);
     setSurveyData({ ...surveyData, [e.target.name]: e.target.value });
     setTitleHeight(50 + 50 * Math.floor(surveyData.title.length / 44));
     // console.log(surveyData);

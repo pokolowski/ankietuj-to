@@ -111,8 +111,8 @@ const SharedSurveyDashboard = ({ surveys, showSurvey, idx }) => {
         <UserIcon size="50px" />
       </Icon>
       <Span>*Imię* zaprasza do wypełnienia jego/jej ankiety:</Span>
-      <Title>{surveys.name}</Title>
-      <Desc>{surveys.desc}</Desc>
+      <Title>{surveys.title}</Title>
+      <Desc>{surveys.description}</Desc>
       <OptionContainer onClick={handleClick}>
         <IMG size="35px" src={RightIcon} />
         <span>wypełnij ankietę</span>

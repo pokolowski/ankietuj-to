@@ -44,6 +44,7 @@ const AnswerContainer = styled.div`
 
 const SurveyQuestion = ({
   question,
+  questionID,
   type,
   answers,
   questionIndex,
@@ -53,9 +54,10 @@ const SurveyQuestion = ({
   const [openAnswer, setOpenAnswer] = useState('');
 
   const handleChangeRadio = (ans) => {
-    // console.log(`Pytanie ${question} i jego odpowiedz: ${ans}`);
+    console.log(`Pytanie ${question} i jego odpowiedz: ${ans}`);
     const tempArr = [...getAnswers];
-    tempArr[questionIndex] = { question, answers: [ans] };
+    console.log(tempArr);
+    tempArr[questionIndex] = { question, questionID, answers: [ans] };
     setGetAnswers(tempArr);
     console.log(getAnswers);
   };
@@ -66,14 +68,13 @@ const SurveyQuestion = ({
   };
   const handleChangeCheckbox = (ans) => {
     const tempArr = [...getAnswers];
-    // console.log(tempArr);
     let noQuestion = true,
       addAns = true;
     tempArr.map((temp, index) => {
       if (temp.question === question) noQuestion = false;
     });
     if (noQuestion) {
-      tempArr[questionIndex] = { question, answers: [ans] };
+      tempArr[questionIndex] = { question, questionID, answers: [ans] };
     } else {
       tempArr[questionIndex].answers.map((answer, index) => {
         if (answer === ans) {
@@ -105,12 +106,9 @@ const SurveyQuestion = ({
         <Q>{question}</Q>
       </QuestionContainer>
       <AnswersContainer>
-        {console.log(answers)}
-        {console.log(type)}
         {type === 1 ? (
           answers.map((answer, index) => (
             <AnswerContainer>
-              {console.log('DUPA')}
               <Radio
                 type="radio"
                 name={`question${questionIndex}`}

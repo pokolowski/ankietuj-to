@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import styles from './mainDashboard.module.css';
 import AuthorizedHeader from '../AuthorizedHeader/authorizedHeader';
 import SharedSurveyDashboard from 'components/molecules/SharedSurveyDashboard/sharedSurveyDashboard';
 import EmptyPage from 'assets/gifs/not-found.gif';
+import axios from 'axios';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -34,16 +35,47 @@ const Span = styled.span`
   text-align: center;
 `;
 
-const MainDashboard = ({ surveys, showSurvey, userAnswers }) => {
+const MainDashboard = ({
+  otherSurveys,
+  setOtherSurveys,
+  showSurvey,
+  userAnswers,
+}) => {
   console.log(userAnswers);
+
+  useEffect(() => {
+    const getSurveys = async () => {
+      let authToken = localStorage.getItem('token');
+      axios.interceptors.request.use(
+        (config) => {
+          config.headers.authorization = `Bearer ${authToken}`;
+          return config;
+        },
+        (error) => {
+          return Promise.reject(error);
+        }
+      );
+      try {
+        const response = await axios
+          .get('api/Survey/getOtherUsersSurveys')
+          .then(function (response) {
+            setOtherSurveys(response.data);
+            // addSurveys(response.data);
+          });
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    getSurveys();
+  }, []);
 
   return (
     <>
       <AuthorizedHeader />
       <Wrapper>
         <Container>
-          {surveys.length > 0 ? (
-            surveys.map((survey, index) => {
+          {otherSurveys.length > 0 ? (
+            otherSurveys.map((survey, index) => {
               return (
                 <SharedSurveyDashboard
                   surveys={survey}

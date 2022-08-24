@@ -151,6 +151,7 @@ const Surveys = ({ surveys, addSurveys, deleteSurvey, showSurvey }) => {
   };
   const [sur, setSur] = useState([]);
   useEffect(() => {
+    // addSurveys(null);
     const getSurveys = async () => {
       let authToken = localStorage.getItem('token');
       axios.interceptors.request.use(
@@ -170,86 +171,8 @@ const Surveys = ({ surveys, addSurveys, deleteSurvey, showSurvey }) => {
             setSur(response.data);
             addSurveys(response.data);
           });
-        // let decoded = jwt_decode(response.data);
-        // console.log(decoded);
-        // setUser({
-        //   id: decoded.Id,
-        //   imie: decoded.Name,
-        //   nazwisko: decoded.Surname,
-        //   email: decoded.Email
-        // })
-        // console.log(response.data);
-        // navigate(`/`);
-        // localStorage.setItem('token', response.data);
       } catch (e) {
         console.log(e);
-        // dispatchError('Invalid email or password');
-        // test przekierowania
-        // setUser({
-        //   imie: 'Patryk',
-        //   nazwisko: 'Okolowski',
-        //   email: 'pokolowski@edu.cdv.pl',
-        //   haslo: 'silneHaslo',
-        // });
-        // console.log(user);
-        // localStorage.setItem('token', user);
-        // navigate(`/`);
-        // // koniec testu
-        // console.log(e);
-
-        //
-        // [
-        //   {
-        //     title: 'asdasd',
-        //     description: 'asdasd',
-        //     createdAt: '2022-08-22T18:19:30',
-        //     isActive: 0,
-        //     answersGoal: 100,
-        //     userId: 10,
-        //     completedSurveys: null,
-        //     questions: [
-        //       {
-        //         value: 'q1',
-        //         questionTypeId: 1,
-        //         suggestedanswers: [
-        //           {
-        //             value: 'a1',
-        //           },
-        //           {
-        //             value: 'a2',
-        //           },
-        //           {
-        //             value: 'a3',
-        //           },
-        //         ],
-        //       },
-        //       {
-        //         value: 'q2',
-        //         questionTypeId: 2,
-        //         answers: [],
-        //         suggestedanswers: [
-        //           {
-        //             value: 'a1',
-        //           },
-        //           {
-        //             value: 'a2',
-        //           },
-        //           {
-        //             value: 'a3',
-        //           },
-        //         ],
-        //       },
-        //       {
-        //         value: 'q3',
-        //         questionTypeId: 3,
-        //         answers: [],
-        //         suggestedanswers: [],
-        //       },
-        //     ]
-        //   },
-        // ];
-
-        //
       }
     };
     getSurveys();

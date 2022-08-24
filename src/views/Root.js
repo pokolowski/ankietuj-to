@@ -50,7 +50,8 @@ const UnauthenticatedApp = ({ handleSignIn }) => {
 const Root = () => {
   const [displayOff, setDisplayOff] = useState(false);
   //dane chwilowo tutaj - do przeniesienia jak najszybciej
-  const [surveys, setSurveys] = useState([]);
+  const [mySurveys, setMySurveys] = useState([]);
+  const [otherSurveys, setOtherSurveys] = useState([]);
   const [showSurvey, setShowSurvey] = useState(null);
   const [userAnswers, setUserAnswers] = useState([
     { idSurvey: '', questions: [{ question: '', answers: [] }] },
@@ -85,7 +86,7 @@ const Root = () => {
         Title: name,
         Description: desc,
         questions: [...q],
-        AnswersGoal: count,
+        AnswersGoal: countAnswers,
       });
       const response = await axios.post('/api/Survey/Create', {
         Title: name,
@@ -103,9 +104,9 @@ const Root = () => {
     // console.log(surveys);
   };
   const handleDeleteSurvey = (index) => {
-    const tempArr = [...surveys];
+    const tempArr = [...mySurveys];
     tempArr.splice(index, 1);
-    setSurveys(tempArr);
+    setMySurveys(tempArr);
     console.log(index);
   };
   const handleShowSurvey = (index) => {
@@ -139,8 +140,8 @@ const Root = () => {
               path="/surveys"
               element={
                 <Surveys
-                  surveys={surveys}
-                  addSurveys={setSurveys}
+                  surveys={mySurveys}
+                  addSurveys={setMySurveys}
                   showSurvey={handleShowSurvey}
                   deleteSurvey={handleDeleteSurvey}
                 />
@@ -156,7 +157,8 @@ const Root = () => {
               path="/dashboard"
               element={
                 <MainDashboard
-                  surveys={surveys}
+                  otherSurveys={otherSurveys}
+                  setOtherSurveys={setOtherSurveys}
                   // getSurveys={getSurveys}
                   showSurvey={handleShowSurvey}
                   userAnswers={userAnswers}
@@ -166,29 +168,28 @@ const Root = () => {
             <Route
               path="/preview"
               element={
-                <ShowSurveyView idSurvey={showSurvey} surveys={surveys} />
+                <ShowSurveyView idSurvey={showSurvey} surveys={mySurveys} />
               }
             />
             <Route
               path="/completeSurvey"
               element={
                 <CompleteSurveys
-                  survey={surveys[showSurvey]}
+                  survey={otherSurveys[showSurvey]}
                   userAnswers={userAnswers}
                   setUserAnswers={setUserAnswers}
-                  idSurvey={showSurvey}
                 />
               }
             />
             <Route
               path="/shareSurveys"
-              element={<ShareUrSurvey surveys={surveys} />}
+              element={<ShareUrSurvey surveys={mySurveys} />}
             />
             {/* Tutaj powinny trafić ankiety, które zostały udostępnione */}
             <Route
               path="/analize"
               element={
-                <AnalizeResults surveys={surveys} answers={userAnswers} />
+                <AnalizeResults surveys={mySurveys} answers={userAnswers} />
               }
             />
           </>
