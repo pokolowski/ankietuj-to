@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'assets/styles/theme.js';
@@ -59,46 +59,46 @@ const Root = () => {
   // console.log(userAnswers);
 
   //POBIERANIE ANKIET Z BAZY
-  const getSurveys = async () => {
-    try {
-      const response = await axios
-        .get('api/Survey/getSurveys')
-        .then(function (response) {
-          console.log(response);
-        });
-      // let decoded = jwt_decode(response.data);
-      // console.log(decoded);
-      // setUser({
-      //   id: decoded.Id,
-      //   imie: decoded.Name,
-      //   nazwisko: decoded.Surname,
-      //   email: decoded.Email
-      // })
-      // console.log(response.data);
-      // navigate(`/`);
-      // localStorage.setItem('token', response.data);
-    } catch (e) {
-      console.log(e);
-      // dispatchError('Invalid email or password');
-      // test przekierowania
-      // setUser({
-      //   imie: 'Patryk',
-      //   nazwisko: 'Okolowski',
-      //   email: 'pokolowski@edu.cdv.pl',
-      //   haslo: 'silneHaslo',
-      // });
-      // console.log(user);
-      // localStorage.setItem('token', user);
-      // navigate(`/`);
-      // // koniec testu
-      // console.log(e);
-    }
-  };
+  // const getSurveys = async () => {
 
-  const handleAddSurvey = (name, desc, q, countAnswers) => {
+  // };
+
+  const handleAddSurvey = async (name, desc, q, countAnswers) => {
     // post do bazy tutaj :  tytul, opis, pytania = [...q]
     // console.log({ name, desc, questions: [...q], countAnswers });
-    setSurveys([{ name, desc, questions: [...q], countAnswers }, ...surveys]);
+
+    //Zmiany Alberta
+    let authToken = localStorage.getItem('token');
+    axios.interceptors.request.use(
+      (config) => {
+        config.headers.authorization = `Bearer ${authToken}`;
+        return config;
+      },
+      (error) => {
+        return Promise.reject(error);
+      }
+    );
+    //Koniec zmian Alberta
+    const count = 100;
+    try {
+      console.log({
+        Title: name,
+        Description: desc,
+        questions: [...q],
+        AnswersGoal: count,
+      });
+      const response = await axios.post('/api/Survey/Create', {
+        Title: name,
+        Description: desc,
+        questions: [...q],
+        AnswersGoal: count,
+      });
+    } catch (e) {
+      // dispatchError('Invalid email or password');
+      // test przekierowania
+      console.log(e);
+    }
+    //setSurveys([{ name, desc, questions: [...q], countAnswers }, ...surveys]);
     navigate('/surveys');
     // console.log(surveys);
   };
@@ -140,6 +140,7 @@ const Root = () => {
               element={
                 <Surveys
                   surveys={surveys}
+                  addSurveys={setSurveys}
                   showSurvey={handleShowSurvey}
                   deleteSurvey={handleDeleteSurvey}
                 />
@@ -156,7 +157,7 @@ const Root = () => {
               element={
                 <MainDashboard
                   surveys={surveys}
-                  getSurveys={getSurveys}
+                  // getSurveys={getSurveys}
                   showSurvey={handleShowSurvey}
                   userAnswers={userAnswers}
                 />

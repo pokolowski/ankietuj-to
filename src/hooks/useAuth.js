@@ -105,11 +105,12 @@ export const AuthProvider = ({ children }) => {
         password,
         confirmPassword: password,
       });
-      // console.log(response.data);
-      handleSetUser(response.data);
+      console.log('napierdalaj');
+      console.log(response.data);
+      // handleSetUser(response.data);
       // setUser(response.data);
       navigate(`/`);
-      localStorage.setItem('token', response.data.token);
+      // localStorage.setItem('token', response.data.token);
       // history.push('/');
     } catch (e) {
       // dispatchError('Invalid email or password');

@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import AuthorizedHeader from '../AuthorizedHeader/authorizedHeader';
 import PlusIcon from 'assets/icons/plus.svg';
 import Survey from 'components/molecules/Survey/survey';
 import { Navigate, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Wrapper = styled.div`
   position: relative;
@@ -143,16 +144,121 @@ const Info = styled.div`
   // background-color: red;
 `;
 
-const Surveys = ({ surveys, deleteSurvey, showSurvey }) => {
+const Surveys = ({ surveys, addSurveys, deleteSurvey, showSurvey }) => {
   const navigate = useNavigate();
   const handleOnClick = () => {
     navigate('/createSurvey');
   };
+  const [sur, setSur] = useState([]);
+  useEffect(() => {
+    const getSurveys = async () => {
+      let authToken = localStorage.getItem('token');
+      axios.interceptors.request.use(
+        (config) => {
+          config.headers.authorization = `Bearer ${authToken}`;
+          return config;
+        },
+        (error) => {
+          return Promise.reject(error);
+        }
+      );
+      try {
+        const response = await axios
+          .get('api/Survey/getUserSurveys')
+          .then(function (response) {
+            console.log(response.data);
+            setSur(response.data);
+            addSurveys(response.data);
+          });
+        // let decoded = jwt_decode(response.data);
+        // console.log(decoded);
+        // setUser({
+        //   id: decoded.Id,
+        //   imie: decoded.Name,
+        //   nazwisko: decoded.Surname,
+        //   email: decoded.Email
+        // })
+        // console.log(response.data);
+        // navigate(`/`);
+        // localStorage.setItem('token', response.data);
+      } catch (e) {
+        console.log(e);
+        // dispatchError('Invalid email or password');
+        // test przekierowania
+        // setUser({
+        //   imie: 'Patryk',
+        //   nazwisko: 'Okolowski',
+        //   email: 'pokolowski@edu.cdv.pl',
+        //   haslo: 'silneHaslo',
+        // });
+        // console.log(user);
+        // localStorage.setItem('token', user);
+        // navigate(`/`);
+        // // koniec testu
+        // console.log(e);
 
+        //
+        // [
+        //   {
+        //     title: 'asdasd',
+        //     description: 'asdasd',
+        //     createdAt: '2022-08-22T18:19:30',
+        //     isActive: 0,
+        //     answersGoal: 100,
+        //     userId: 10,
+        //     completedSurveys: null,
+        //     questions: [
+        //       {
+        //         value: 'q1',
+        //         questionTypeId: 1,
+        //         suggestedanswers: [
+        //           {
+        //             value: 'a1',
+        //           },
+        //           {
+        //             value: 'a2',
+        //           },
+        //           {
+        //             value: 'a3',
+        //           },
+        //         ],
+        //       },
+        //       {
+        //         value: 'q2',
+        //         questionTypeId: 2,
+        //         answers: [],
+        //         suggestedanswers: [
+        //           {
+        //             value: 'a1',
+        //           },
+        //           {
+        //             value: 'a2',
+        //           },
+        //           {
+        //             value: 'a3',
+        //           },
+        //         ],
+        //       },
+        //       {
+        //         value: 'q3',
+        //         questionTypeId: 3,
+        //         answers: [],
+        //         suggestedanswers: [],
+        //       },
+        //     ]
+        //   },
+        // ];
+
+        //
+      }
+    };
+    getSurveys();
+  }, []);
   return (
     <>
       <AuthorizedHeader />
-      {console.log(surveys)}
+      {console.log(`stan`)}
+      {/* {console.log(sur[1].title)} */}
       <Wrapper>
         <Container>
           <CreateSurvey onClick={handleOnClick}>
@@ -164,17 +270,17 @@ const Surveys = ({ surveys, deleteSurvey, showSurvey }) => {
           </CreateSurvey>
           <YourSurveys>
             <Title>Twoje ankiety</Title>
-            {surveys.length <= 0 ? (
+            {sur.length <= 0 ? (
               <Info>
                 <span>posiadasz narazie 0 ankiet</span>
               </Info>
             ) : (
-              surveys.map((survey, index) => (
+              sur.map((survey, index) => (
                 // console.log(survey.name);
                 // console.log(survey.desc);
                 <Survey
-                  title={survey.name}
-                  desc={survey.desc}
+                  title={survey.title}
+                  desc={survey.description}
                   deleteSurvey={deleteSurvey}
                   idx={index}
                   showSurvey={showSurvey}

@@ -105,39 +105,42 @@ const SurveyQuestion = ({
         <Q>{question}</Q>
       </QuestionContainer>
       <AnswersContainer>
-        {type === '1' ? (
+        {console.log(answers)}
+        {console.log(type)}
+        {type === 1 ? (
           answers.map((answer, index) => (
             <AnswerContainer>
+              {console.log('DUPA')}
               <Radio
                 type="radio"
                 name={`question${questionIndex}`}
                 id={`answer${questionIndex}.${index}`}
-                value={answer.option}
-                onChange={() => handleChangeRadio(answer.option)}
+                value={answer.value}
+                onChange={() => handleChangeRadio(answer.value)}
               />
               <label for={`answer${questionIndex}.${index}`}>
-                {answer.option}
+                {answer.value}
               </label>
               <br />
             </AnswerContainer>
           ))
-        ) : type === '2' ? (
+        ) : type === 2 ? (
           answers.map((answer, index) => (
             <AnswerContainer>
               <Radio
                 type="checkbox"
                 name={`question${questionIndex}`}
                 id={`answer${questionIndex}.${index}`}
-                value={answer.option}
-                onChange={() => handleChangeCheckbox(answer.option)}
+                value={answer.value}
+                onChange={() => handleChangeCheckbox(answer.value)}
               />
               <label for={`answer${questionIndex}.${index}`}>
-                {answer.option}
+                {answer.value}
               </label>
               <br />
             </AnswerContainer>
           ))
-        ) : type === '3' ? (
+        ) : type === 3 ? (
           <AnswerContainer>
             <Textarea
               width="80%"

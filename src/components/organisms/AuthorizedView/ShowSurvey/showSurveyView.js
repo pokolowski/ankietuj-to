@@ -44,13 +44,16 @@ const ShowSurveyView = ({ idSurvey, surveys }) => {
       <Wrapper>
         <GoBack path="/surveys" />
         <SurveyContainer>
-          <SurveyHeader title={surv.name} desc={surv.desc}></SurveyHeader>
+          <SurveyHeader
+            title={surv.title}
+            desc={surv.description}
+          ></SurveyHeader>
 
           {surv.questions.map((q, index) => (
             <SurveyQuestion
-              question={q.question}
-              type={q.questionType}
-              answers={q.answers}
+              question={q.value}
+              type={q.questionTypeId}
+              answers={q.suggestedanswers}
               questionIndex={index}
             />
           ))}
