@@ -117,7 +117,12 @@ const Root = () => {
   //koniec danych do przeniesienia
   const auth = useAuth();
   let goToChoice = 'login';
-
+  const handleSetMySur = () => {
+    setMySurveys([]);
+  };
+  const handleSetOtherSur = () => {
+    setOtherSurveys([]);
+  };
   return (
     <ThemeProvider theme={theme}>
       <Routes>
@@ -133,7 +138,15 @@ const Root = () => {
         <Route path="/Register" element={<Login />} />
         {auth.user ? (
           <>
-            <Route path="/" element={<AuthorizedView />} />
+            <Route
+              path="/"
+              element={
+                <AuthorizedView
+                  setMySurveys={setMySurveys}
+                  setOtherSurveys={setOtherSurveys}
+                />
+              }
+            />
             <Route path="/profile" element={<ProfilePage />} />
             {/* W to miejce muszą zostać przekazane ankiety użytkownika */}
             <Route

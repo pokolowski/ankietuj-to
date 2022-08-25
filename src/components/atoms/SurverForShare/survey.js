@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  min-width: 210px;
+  min-width: 220px;
   max-width: 270px;
-  min-height: 310px;
+  min-height: 320px;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-  margin-top: 30px;
+  margin-top: 50px;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -15,7 +16,7 @@ const Wrapper = styled.div`
   text-align: center;
   cursor: pointer;
   box-sizing: border-box;
-  padding: 10px;
+  padding: 20px;
   &:hover {
     border: 2px solid #067eed;
   }
@@ -29,12 +30,9 @@ const Description = styled.span`
   font-size: 14px;
 `;
 
-const Survey = ({ title, description, setAnalizeId, idx, isAnalize }) => {
+const Survey = ({ title, description, survey, setSurvey }) => {
   const handleClick = () => {
-    if (isAnalize === 'true') {
-      setAnalizeId(idx);
-      console.log(idx);
-    }
+    setSurvey(survey);
   };
   return (
     <Wrapper onClick={handleClick}>

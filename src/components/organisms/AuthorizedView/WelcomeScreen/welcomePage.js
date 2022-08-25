@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './welcomePage.module.css';
 import styled from 'styled-components';
 import CategoryDiv from 'components/atoms/CategoryDiv/categoryDiv';
@@ -59,7 +59,12 @@ const FlexContainer = styled.div`
   }
 `;
 
-const WelcomePage = () => {
+const WelcomePage = ({ setMySurveys, setOtherSurveys }) => {
+  useEffect(() => {
+    setMySurveys([]);
+    setOtherSurveys([]);
+  }, []);
+
   const auth = useAuth();
   return (
     <Wrapper className={styles.test}>

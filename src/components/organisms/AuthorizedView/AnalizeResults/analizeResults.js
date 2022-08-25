@@ -77,10 +77,10 @@ const AnalizeResults = ({ surveys, answers }) => {
           <>
             {console.log(
               `wybrana ankieta to: ${
-                surveys[analizeId].name
+                surveys[analizeId].title
               }, a jej odpowiedzi to: ${answers[getAnswers(analizeId)]}`
             )}
-            <ChoosenTitle>{surveys[analizeId].name} </ChoosenTitle>
+            <ChoosenTitle>{surveys[analizeId].title} </ChoosenTitle>
             <AnswersContainer>
               <AnalizeHeader countAnswers="95" />
             </AnswersContainer>
@@ -92,8 +92,8 @@ const AnalizeResults = ({ surveys, answers }) => {
             </Title>
             {surveys.map((surv, index) => (
               <Survey
-                title={surv.name}
-                description={surv.desc}
+                title={surv.title}
+                description={surv.description}
                 idx={index}
                 setAnalizeId={handleChoose}
                 isAnalize="true"
