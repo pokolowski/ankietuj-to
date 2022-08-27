@@ -196,7 +196,9 @@ const Root = () => {
             />
             <Route
               path="/shareSurveys"
-              element={<ShareUrSurvey surveys={mySurveys} />}
+              element={
+                <ShareUrSurvey surveys={mySurveys} addSurveys={setMySurveys} />
+              }
             />
             {/* Tutaj powinny trafić ankiety, które zostały udostępnione */}
             <Route

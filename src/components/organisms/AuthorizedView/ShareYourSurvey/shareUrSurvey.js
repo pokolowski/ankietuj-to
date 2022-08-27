@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AuthorizedHeader from '../AuthorizedHeader/authorizedHeader';
 import styled from 'styled-components';
 import Survey from 'components/atoms/SurverForShare/survey';
@@ -138,11 +138,43 @@ const CancelBtn = styled.div`
   }
 `;
 
-const ShareUrSurvey = ({ user, surveys }) => {
+const ShareUrSurvey = ({ user, surveys, addSurveys }) => {
   //gdy użytkownik wybierze jedną z ankiet do udostępnienia doda się ona do stanu
   //gdy ankieta jest wybrana pojawia się okno z potwierdzeniem oraz background robi się blur
   //po anulowaniu stan ankiety się czyści, a po wybraniu OK idzie post do bazy
   const [choosenSurvey, setChoosenSurvey] = useState(null);
+  const [isLoading, setLoading] = useState(true);
+  useEffect(() => {
+    // addSurveys(null);
+
+    const getSurveys = async () => {
+      if (surveys != []) {
+        setLoading(true);
+        let authToken = localStorage.getItem('token');
+        axios.interceptors.request.use(
+          (config) => {
+            config.headers.authorization = `Bearer ${authToken}`;
+            return config;
+          },
+          (error) => {
+            return Promise.reject(error);
+          }
+        );
+        try {
+          const response = await axios
+            .get('api/Survey/getUserSurveys')
+            .then(function (response) {
+              console.log(response.data);
+              addSurveys(response.data);
+              setLoading(false);
+            });
+        } catch (e) {
+          console.log(e);
+        }
+      }
+    };
+    getSurveys();
+  }, []);
   const handleShareSurvey = async (id) => {
     console.log(`udostepniona ankieta o id: ${id}`);
     let authToken = localStorage.getItem('token');
@@ -202,7 +234,8 @@ const ShareUrSurvey = ({ user, surveys }) => {
         <SurveysContainer>
           <Title>Wybierz, którą ankietę chcesz udostępnić</Title>
           <Counter>
-            Wypełniłeś 0 ankiet. Dzięki temu możesz udostępnić 0 swoich ankiet.
+            Masz obecnie 0 punktów. Dzięki temu możesz udostępnić 0 swoich
+            ankiet.
           </Counter>
           {surveys.map((surv, index) => (
             <Survey

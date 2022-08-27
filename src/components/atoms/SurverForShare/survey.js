@@ -24,18 +24,25 @@ const Wrapper = styled.div`
 const Title = styled.span`
   color: #244a6e;
   font-size: 20px;
+  flex-grow: 3;
+  text-align: center;
   font-family: 'Alata';
 `;
 const Description = styled.span`
   font-size: 14px;
+  flex-grow: 2;
+`;
+const P = styled.p`
+  color: #a89797;
 `;
 
-const Survey = ({ title, description, survey, setSurvey }) => {
+const Survey = ({ title, description, survey, setSurvey, isAnalize }) => {
   const handleClick = () => {
     setSurvey(survey);
   };
   return (
     <Wrapper onClick={handleClick}>
+      {isAnalize == 'true' ? <P>0/100</P> : ''}
       <Title>{title} </Title>
       <Description>{description} </Description>
     </Wrapper>

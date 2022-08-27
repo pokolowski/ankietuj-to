@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import styles from './mainDashboard.module.css';
 import AuthorizedHeader from '../AuthorizedHeader/authorizedHeader';
 import SharedSurveyDashboard from 'components/molecules/SharedSurveyDashboard/sharedSurveyDashboard';
 import EmptyPage from 'assets/gifs/not-found.gif';
 import axios from 'axios';
+import LoadingIcon from 'assets/gifs/loading.gif';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -34,6 +35,10 @@ const Span = styled.span`
   font-size: 26px;
   text-align: center;
 `;
+const GIF = styled.img`
+  width: 80px;
+  height: 80px;
+`;
 
 const MainDashboard = ({
   otherSurveys,
@@ -42,9 +47,10 @@ const MainDashboard = ({
   userAnswers,
 }) => {
   console.log(userAnswers);
-
+  const [isLoading, setLoading] = useState(true);
   useEffect(() => {
     const getSurveys = async () => {
+      setLoading(true);
       let authToken = localStorage.getItem('token');
       axios.interceptors.request.use(
         (config) => {
@@ -60,6 +66,7 @@ const MainDashboard = ({
           .get('api/Survey/getOtherUsersSurveys')
           .then(function (response) {
             setOtherSurveys(response.data);
+            setLoading(false);
             // addSurveys(response.data);
           });
       } catch (e) {
@@ -74,7 +81,33 @@ const MainDashboard = ({
       <AuthorizedHeader />
       <Wrapper>
         <Container>
-          {otherSurveys.length > 0 ? (
+          {
+            isLoading ? (
+              <>
+                <GIF src={LoadingIcon} />
+                <Span>Ładowanie ankiet</Span>
+              </>
+            ) : otherSurveys.length > 0 ? (
+              otherSurveys.map((survey, index) => {
+                return (
+                  <SharedSurveyDashboard
+                    surveys={survey}
+                    idx={index}
+                    showSurvey={showSurvey}
+                  />
+                );
+              })
+            ) : (
+              <>
+                <img src={EmptyPage}></img>
+                <Span>
+                  Brak ankiet do wypełnienia
+                  <br /> spróbuj później
+                </Span>
+              </>
+            )
+
+            /* {otherSurveys.length > 0 ? (
             otherSurveys.map((survey, index) => {
               return (
                 <SharedSurveyDashboard
@@ -92,7 +125,8 @@ const MainDashboard = ({
                 <br /> spróbuj później
               </Span>
             </>
-          )}
+          )} */
+          }
         </Container>
       </Wrapper>
     </>

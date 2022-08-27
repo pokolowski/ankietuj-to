@@ -5,6 +5,7 @@ import PlusIcon from 'assets/icons/plus.svg';
 import Survey from 'components/molecules/Survey/survey';
 import { Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import LoadingIcon from 'assets/gifs/loading.gif';
 
 const Wrapper = styled.div`
   position: relative;
@@ -135,6 +136,7 @@ const Info = styled.div`
   top: 0;
   left: 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -143,8 +145,13 @@ const Info = styled.div`
   letter-spacing: 1px;
   // background-color: red;
 `;
+const GIF = styled.img`
+  width: 80px;
+  height: 80px;
+`;
 
 const Surveys = ({ surveys, addSurveys, deleteSurvey, showSurvey }) => {
+  const [isLoading, setLoading] = useState(true);
   const navigate = useNavigate();
   const handleOnClick = () => {
     navigate('/createSurvey');
@@ -152,7 +159,9 @@ const Surveys = ({ surveys, addSurveys, deleteSurvey, showSurvey }) => {
   const [sur, setSur] = useState([]);
   useEffect(() => {
     // addSurveys(null);
+
     const getSurveys = async () => {
+      setLoading(true);
       let authToken = localStorage.getItem('token');
       axios.interceptors.request.use(
         (config) => {
@@ -170,6 +179,7 @@ const Surveys = ({ surveys, addSurveys, deleteSurvey, showSurvey }) => {
             console.log(response.data);
             setSur(response.data);
             addSurveys(response.data);
+            setLoading(false);
           });
       } catch (e) {
         console.log(e);
@@ -193,14 +203,35 @@ const Surveys = ({ surveys, addSurveys, deleteSurvey, showSurvey }) => {
           </CreateSurvey>
           <YourSurveys>
             <Title>Twoje ankiety</Title>
-            {sur.length <= 0 ? (
+            {
+              isLoading ? (
+                <Info>
+                  <GIF src={LoadingIcon} />
+                  <br />
+                  <span>Trwa ładowanie Twoich ankiet</span>
+                </Info>
+              ) : sur.length <= 0 ? (
+                <Info>
+                  <span>posiadasz narazie 0 ankiet</span>
+                </Info>
+              ) : (
+                sur.map((survey, index) => (
+                  <Survey
+                    title={survey.title}
+                    desc={survey.description}
+                    deleteSurvey={deleteSurvey}
+                    idx={index}
+                    showSurvey={showSurvey}
+                  />
+                ))
+              )
+
+              /* {sur.length <= 0 ? (
               <Info>
                 <span>posiadasz narazie 0 ankiet</span>
               </Info>
             ) : (
               sur.map((survey, index) => (
-                // console.log(survey.name);
-                // console.log(survey.desc);
                 <Survey
                   title={survey.title}
                   desc={survey.description}
@@ -209,7 +240,8 @@ const Surveys = ({ surveys, addSurveys, deleteSurvey, showSurvey }) => {
                   showSurvey={showSurvey}
                 />
               ))
-            )}
+            )} */
+            }
           </YourSurveys>
         </Container>
       </Wrapper>

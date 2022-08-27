@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import AuthorizedHeader from '../AuthorizedHeader/authorizedHeader';
 import Survey from 'components/atoms/SurverForShare/survey';
 import AnalizeHeader from 'components/atoms/AnalizeHeader/analizeHeader';
+import axios from 'axios';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -69,6 +70,35 @@ const AnalizeResults = ({ surveys, answers }) => {
       }
     });
   };
+  useEffect(() => {
+    // addSurveys(null);
+
+    const getSurveys = async () => {
+      if (surveys != []) {
+        let authToken = localStorage.getItem('token');
+        axios.interceptors.request.use(
+          (config) => {
+            config.headers.authorization = `Bearer ${authToken}`;
+            return config;
+          },
+          (error) => {
+            return Promise.reject(error);
+          }
+        );
+        try {
+          const response = await axios
+            .get('api/Survey/getUserSurveys')
+            .then(function (response) {
+              console.log(response.data);
+            });
+        } catch (e) {
+          console.log(e);
+        }
+      }
+    };
+    getSurveys();
+  }, []);
+
   return (
     <>
       <AuthorizedHeader />
