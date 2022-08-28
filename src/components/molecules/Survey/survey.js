@@ -5,7 +5,7 @@ import ShareIconOrange from 'components/atoms/ShareIconOrange/shareIconOrange';
 import Icon from 'assets/headerIcons/share.svg';
 import { useNavigate } from 'react-router-dom';
 const Wrapper = styled.div`
-  min-width: 300px;
+  min-width: 20%;
   width: auto;
   max-width: 340px;
   min-height: 150px;
