@@ -4,6 +4,7 @@ import AuthorizedHeader from '../AuthorizedHeader/authorizedHeader';
 import Survey from 'components/atoms/SurverForShare/survey';
 import AnalizeHeader from 'components/atoms/AnalizeHeader/analizeHeader';
 import axios from 'axios';
+import AnalizeSurvey from 'components/molecules/AnalizeResultPage/analizeSurvey';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -57,7 +58,7 @@ const ChoosenTitle = styled.span`
   font-family: 'Alata';
 `;
 
-const AnalizeResults = ({ surveys, answers }) => {
+const AnalizeResults = ({ surveys, answers, setSurveys }) => {
   const [analizeId, setAnalizeId] = useState(null);
   const handleChoose = (index) => {
     console.log(`klik ${index}`);
@@ -74,7 +75,8 @@ const AnalizeResults = ({ surveys, answers }) => {
     // addSurveys(null);
 
     const getSurveys = async () => {
-      if (surveys != []) {
+      console.log(surveys);
+      if (surveys.length === 0) {
         let authToken = localStorage.getItem('token');
         axios.interceptors.request.use(
           (config) => {
@@ -90,6 +92,7 @@ const AnalizeResults = ({ surveys, answers }) => {
             .get('api/Survey/getUserSurveys')
             .then(function (response) {
               console.log(response.data);
+              setSurveys(response.data);
             });
         } catch (e) {
           console.log(e);
@@ -105,7 +108,8 @@ const AnalizeResults = ({ surveys, answers }) => {
       <Wrapper>
         {analizeId != null ? (
           <>
-            {console.log(
+            <AnalizeSurvey survey={surveys[analizeId]} />
+            {/* {console.log(
               `wybrana ankieta to: ${
                 surveys[analizeId].title
               }, a jej odpowiedzi to: ${answers[getAnswers(analizeId)]}`
@@ -113,7 +117,7 @@ const AnalizeResults = ({ surveys, answers }) => {
             <ChoosenTitle>{surveys[analizeId].title} </ChoosenTitle>
             <AnswersContainer>
               <AnalizeHeader countAnswers="95" />
-            </AnswersContainer>
+            </AnswersContainer> */}
           </>
         ) : (
           <SurveysContainer>

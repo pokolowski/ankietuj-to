@@ -36,9 +36,22 @@ const P = styled.p`
   color: #a89797;
 `;
 
-const Survey = ({ title, description, survey, setSurvey, isAnalize }) => {
+const Survey = ({
+  title,
+  description,
+  survey,
+  setSurvey,
+  isAnalize,
+  setAnalizeId,
+  idx,
+}) => {
   const handleClick = () => {
-    setSurvey(survey);
+    if (isAnalize === 'true') {
+      setAnalizeId(idx);
+      console.log('jazda');
+    } else {
+      setSurvey(survey);
+    }
   };
   return (
     <Wrapper onClick={handleClick}>

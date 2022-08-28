@@ -204,7 +204,11 @@ const Root = () => {
             <Route
               path="/analize"
               element={
-                <AnalizeResults surveys={mySurveys} answers={userAnswers} />
+                <AnalizeResults
+                  surveys={mySurveys}
+                  answers={userAnswers}
+                  setSurveys={setMySurveys}
+                />
               }
             />
           </>
