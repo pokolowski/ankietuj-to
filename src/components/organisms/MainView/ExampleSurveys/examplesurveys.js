@@ -45,7 +45,10 @@ const IMG = styled.img`
   height: ${(props) => (props.height ? props.height : 'auto')};
   // float: left;
   // border: 1px solid black;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  // box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  // box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 `;
 const P = styled.div`
   position: relative;

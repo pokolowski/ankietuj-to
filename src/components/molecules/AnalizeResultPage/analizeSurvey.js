@@ -13,7 +13,7 @@ const ChoosenTitle = styled.span`
   font-family: 'Alata';
 `;
 const AnswersContainer = styled.div`
-  width: 800px;
+  width: 1000px;
   min-height: 150px;
   height: auto;
   position: relative;

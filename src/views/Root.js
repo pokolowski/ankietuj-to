@@ -49,9 +49,14 @@ const UnauthenticatedApp = ({ handleSignIn }) => {
 
 const Root = () => {
   const [displayOff, setDisplayOff] = useState(false);
-  //dane chwilowo tutaj - do przeniesienia jak najszybciej
+  //ankiety użytkownika
   const [mySurveys, setMySurveys] = useState([]);
+  //Ankiety innych użytkowników, które można wypełniać
   const [otherSurveys, setOtherSurveys] = useState([]);
+  //Ankiety możliwe do udostepnienia
+  const [notSharedSurveys, setNotSharedSurveys] = useState([]);
+  //Ankiety udostępnione możliwe do analizowania wyników
+  const [sharedSurveys, setSharedSurveys] = useState([]);
   const [showSurvey, setShowSurvey] = useState(null);
   const [userAnswers, setUserAnswers] = useState([
     { idSurvey: '', questions: [{ question: '', answers: [] }] },
@@ -103,11 +108,33 @@ const Root = () => {
     navigate('/surveys');
     // console.log(surveys);
   };
-  const handleDeleteSurvey = (index) => {
-    const tempArr = [...mySurveys];
-    tempArr.splice(index, 1);
-    setMySurveys(tempArr);
-    console.log(index);
+  const handleDeleteSurvey = async (index) => {
+    // const tempArr = [...mySurveys];
+    // tempArr.splice(index, 1);
+    // setMySurveys(tempArr);
+    // console.log(index);
+    let authToken = localStorage.getItem('token');
+    axios.interceptors.request.use(
+      (config) => {
+        config.headers.authorization = `Bearer ${authToken}`;
+        return config;
+      },
+      (error) => {
+        return Promise.reject(error);
+      }
+    );
+    try {
+      const response = await axios
+        .get('api/Survey/getUserSurveys')
+        .then(function (response) {
+          console.log(response.data);
+          setMySurveys(response.data);
+        });
+    } catch (e) {
+      console.log(e);
+    }
+
+    //
   };
   const handleShowSurvey = (index) => {
     setShowSurvey(index);
@@ -197,7 +224,10 @@ const Root = () => {
             <Route
               path="/shareSurveys"
               element={
-                <ShareUrSurvey surveys={mySurveys} addSurveys={setMySurveys} />
+                <ShareUrSurvey
+                  notSharedSurveys={notSharedSurveys}
+                  shareSurvey={setNotSharedSurveys}
+                />
               }
             />
             {/* Tutaj powinny trafić ankiety, które zostały udostępnione */}
@@ -205,9 +235,9 @@ const Root = () => {
               path="/analize"
               element={
                 <AnalizeResults
-                  surveys={mySurveys}
+                  sharedSurveys={sharedSurveys}
                   answers={userAnswers}
-                  setSurveys={setMySurveys}
+                  setSharedSurveys={setSharedSurveys}
                 />
               }
             />

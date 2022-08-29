@@ -58,7 +58,7 @@ const ChoosenTitle = styled.span`
   font-family: 'Alata';
 `;
 
-const AnalizeResults = ({ surveys, answers, setSurveys }) => {
+const AnalizeResults = ({ sharedSurveys, answers, setSharedSurveys }) => {
   const [analizeId, setAnalizeId] = useState(null);
   const handleChoose = (index) => {
     console.log(`klik ${index}`);
@@ -75,29 +75,29 @@ const AnalizeResults = ({ surveys, answers, setSurveys }) => {
     // addSurveys(null);
 
     const getSurveys = async () => {
-      console.log(surveys);
-      if (surveys.length === 0) {
-        let authToken = localStorage.getItem('token');
-        axios.interceptors.request.use(
-          (config) => {
-            config.headers.authorization = `Bearer ${authToken}`;
-            return config;
-          },
-          (error) => {
-            return Promise.reject(error);
-          }
-        );
-        try {
-          const response = await axios
-            .get('api/Survey/getUserSurveys')
-            .then(function (response) {
-              console.log(response.data);
-              setSurveys(response.data);
-            });
-        } catch (e) {
-          console.log(e);
+      // console.log(surveys);
+      // if (sharedSurveys.length === 0) {
+      let authToken = localStorage.getItem('token');
+      axios.interceptors.request.use(
+        (config) => {
+          config.headers.authorization = `Bearer ${authToken}`;
+          return config;
+        },
+        (error) => {
+          return Promise.reject(error);
         }
+      );
+      try {
+        const response = await axios
+          .get('api/Survey/getUserActiveSurveys')
+          .then(function (response) {
+            console.log(response.data);
+            setSharedSurveys(response.data);
+          });
+      } catch (e) {
+        console.log(e);
       }
+      // }
     };
     getSurveys();
   }, []);
@@ -108,7 +108,7 @@ const AnalizeResults = ({ surveys, answers, setSurveys }) => {
       <Wrapper>
         {analizeId != null ? (
           <>
-            <AnalizeSurvey survey={surveys[analizeId]} />
+            <AnalizeSurvey survey={sharedSurveys[analizeId]} />
             {/* {console.log(
               `wybrana ankieta to: ${
                 surveys[analizeId].title
@@ -124,9 +124,10 @@ const AnalizeResults = ({ surveys, answers, setSurveys }) => {
             <Title>
               Wybierz, z której ankiety wyniki chcesz przeanalizować
             </Title>
-            {surveys.map((surv, index) => (
+            {sharedSurveys.map((surv, index) => (
               <Survey
                 title={surv.title}
+                completedCount={surv.completedSurveysCount}
                 description={surv.description}
                 idx={index}
                 setAnalizeId={handleChoose}

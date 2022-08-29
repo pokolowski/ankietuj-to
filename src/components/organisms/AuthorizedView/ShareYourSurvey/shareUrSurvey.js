@@ -138,7 +138,7 @@ const CancelBtn = styled.div`
   }
 `;
 
-const ShareUrSurvey = ({ user, surveys, addSurveys }) => {
+const ShareUrSurvey = ({ user, notSharedSurveys, shareSurvey }) => {
   //gdy użytkownik wybierze jedną z ankiet do udostępnienia doda się ona do stanu
   //gdy ankieta jest wybrana pojawia się okno z potwierdzeniem oraz background robi się blur
   //po anulowaniu stan ankiety się czyści, a po wybraniu OK idzie post do bazy
@@ -148,30 +148,30 @@ const ShareUrSurvey = ({ user, surveys, addSurveys }) => {
     // addSurveys(null);
 
     const getSurveys = async () => {
-      if (surveys != []) {
-        setLoading(true);
-        let authToken = localStorage.getItem('token');
-        axios.interceptors.request.use(
-          (config) => {
-            config.headers.authorization = `Bearer ${authToken}`;
-            return config;
-          },
-          (error) => {
-            return Promise.reject(error);
-          }
-        );
-        try {
-          const response = await axios
-            .get('api/Survey/getUserSurveys')
-            .then(function (response) {
-              console.log(response.data);
-              addSurveys(response.data);
-              setLoading(false);
-            });
-        } catch (e) {
-          console.log(e);
+      // if (notSharedSurveys != []) {
+      setLoading(true);
+      let authToken = localStorage.getItem('token');
+      axios.interceptors.request.use(
+        (config) => {
+          config.headers.authorization = `Bearer ${authToken}`;
+          return config;
+        },
+        (error) => {
+          return Promise.reject(error);
         }
+      );
+      try {
+        const response = await axios
+          .get('api/Survey/getUserInactiveSurveys')
+          .then(function (response) {
+            console.log(response.data);
+            shareSurvey(response.data);
+            setLoading(false);
+          });
+      } catch (e) {
+        console.log(e);
       }
+      // }
     };
     getSurveys();
   }, []);
@@ -237,7 +237,7 @@ const ShareUrSurvey = ({ user, surveys, addSurveys }) => {
             Masz obecnie 0 punktów. Dzięki temu możesz udostępnić 0 swoich
             ankiet.
           </Counter>
-          {surveys.map((surv, index) => (
+          {notSharedSurveys.map((surv, index) => (
             <Survey
               title={surv.title}
               description={surv.description}

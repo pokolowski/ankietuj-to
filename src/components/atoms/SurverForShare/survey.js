@@ -44,6 +44,7 @@ const Survey = ({
   isAnalize,
   setAnalizeId,
   idx,
+  completedCount,
 }) => {
   const handleClick = () => {
     if (isAnalize === 'true') {
@@ -55,7 +56,7 @@ const Survey = ({
   };
   return (
     <Wrapper onClick={handleClick}>
-      {isAnalize == 'true' ? <P>0/100</P> : ''}
+      {isAnalize == 'true' ? <P>{completedCount}/100</P> : ''}
       <Title>{title} </Title>
       <Description>{description} </Description>
     </Wrapper>
