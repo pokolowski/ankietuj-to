@@ -183,6 +183,7 @@ const Surveys = ({ surveys, addSurveys, deleteSurvey, showSurvey }) => {
           });
       } catch (e) {
         console.log(e);
+        setLoading(false);
       }
     };
     getSurveys();

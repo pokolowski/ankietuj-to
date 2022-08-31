@@ -74,7 +74,7 @@ const Span = styled.span`
   color: blue;
 `;
 const Confirm = styled.div`
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -164,7 +164,7 @@ const ShareUrSurvey = ({ user, notSharedSurveys, shareSurvey }) => {
         const response = await axios
           .get('api/Survey/getUserInactiveSurveys')
           .then(function (response) {
-            console.log(response.data);
+            // console.log(response.data);
             shareSurvey(response.data);
             setLoading(false);
           });
@@ -192,6 +192,7 @@ const ShareUrSurvey = ({ user, notSharedSurveys, shareSurvey }) => {
       const response = await axios.post(
         `/api/Survey/shareSurvey?surveyid=${id}`
       );
+      console.log(response.data);
     } catch (e) {
       console.log(e);
     }

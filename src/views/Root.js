@@ -150,6 +150,28 @@ const Root = () => {
   const handleSetOtherSur = () => {
     setOtherSurveys([]);
   };
+  const handlePostAnswers = async (userAnswers) => {
+    console.log(userAnswers);
+    setUserAnswers(userAnswers);
+    let authToken = localStorage.getItem('token');
+    axios.interceptors.request.use(
+      (config) => {
+        config.headers.authorization = `Bearer ${authToken}`;
+        return config;
+      },
+      (error) => {
+        return Promise.reject(error);
+      }
+    );
+    try {
+      const response = await axios.post(
+        'api/Survey/completeSurvey',
+        userAnswers
+      );
+    } catch (e) {
+      console.log(e);
+    }
+  };
   return (
     <ThemeProvider theme={theme}>
       <Routes>
@@ -217,7 +239,7 @@ const Root = () => {
                 <CompleteSurveys
                   survey={otherSurveys[showSurvey]}
                   userAnswers={userAnswers}
-                  setUserAnswers={setUserAnswers}
+                  setUserAnswers={handlePostAnswers}
                 />
               }
             />

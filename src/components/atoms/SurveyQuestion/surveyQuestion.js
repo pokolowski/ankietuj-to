@@ -96,7 +96,11 @@ const SurveyQuestion = ({
   const handleChangeTextarea = (e) => {
     setOpenAnswer(e.target.value);
     const tempArr = [...getAnswers];
-    tempArr[questionIndex] = { question, answers: [e.target.value] };
+    tempArr[questionIndex] = {
+      question,
+      questionID,
+      answers: [e.target.value],
+    };
     setGetAnswers(tempArr);
   };
 

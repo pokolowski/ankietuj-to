@@ -53,14 +53,13 @@ const CompleteSurveys = ({ survey, userAnswers, setUserAnswers, idSurvey }) => {
   ]);
   const navigate = useNavigate();
   const handleClick = () => {
-    console.log(survey);
     setUserAnswers([
-      ...userAnswers,
       {
         idSurvey: survey.id,
         questions: getAnswers,
       },
     ]);
+    // console.log(getAnswers);
     navigate('/dashboard');
   };
   return (
