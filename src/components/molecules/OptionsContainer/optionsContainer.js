@@ -17,8 +17,10 @@ const Wrapper = styled.div`
   box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
     rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
   ${(props) =>
-    props.move ? 'transition: .7s .7s linear;' : 'transition: .7s linear;'}
-  // transition: filter 0.2s;
+    props.move
+      ? 'transition: .7s .7s linear, filter 0.1s;'
+      : 'transition: .7s linear, filter 0.1s;'}
+  // transition: filter 0.1s;
   opacity: 0;
   position: relative;
   filter: blur(

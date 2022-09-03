@@ -94,6 +94,10 @@ const StarIco = styled.img`
   width: 20px;
   height: 20px;
 `;
+const Name = styled.span`
+  color: #067eed;
+  font-weight: bold;
+`;
 
 const SharedSurveyDashboard = ({ surveys, showSurvey, idx }) => {
   let stars = [];
@@ -110,7 +114,10 @@ const SharedSurveyDashboard = ({ surveys, showSurvey, idx }) => {
       <Icon>
         <UserIcon size="50px" />
       </Icon>
-      <Span>*Imię* zaprasza do wypełnienia jego/jej ankiety:</Span>
+      <Span>
+        <Name>{surveys.userName}</Name> zaprasza do wypełnienia jego/jej
+        ankiety:
+      </Span>
       <Title>{surveys.title}</Title>
       <Desc>{surveys.description}</Desc>
       <OptionContainer onClick={handleClick}>

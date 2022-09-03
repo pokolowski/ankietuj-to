@@ -162,7 +162,7 @@ const CreateSurvey = ({ addSurvey }) => {
   const [surveyData, setSurveyData] = useState({
     title: '',
     desc: '',
-    countAnswers: '100',
+    countAnswers: 100,
   });
   const [titleHeight, setTitleHeight] = useState(50);
   const handleAddQuestion = () => {
@@ -212,7 +212,12 @@ const CreateSurvey = ({ addSurvey }) => {
     ) {
       setError('Ilość odpowiedzi została źle podana!');
     } else {
-      addSurvey(surveyData.title, surveyData.desc, questions);
+      addSurvey(
+        surveyData.title,
+        surveyData.desc,
+        surveyData.countAnswers,
+        questions
+      );
     }
   };
   return (

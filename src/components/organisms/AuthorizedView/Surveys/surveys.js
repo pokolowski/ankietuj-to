@@ -158,8 +158,10 @@ const Surveys = ({ surveys, addSurveys, deleteSurvey, showSurvey }) => {
   };
   const [sur, setSur] = useState([]);
   useEffect(() => {
-    // addSurveys(null);
+    setSur(surveys);
+  }, [surveys]);
 
+  useEffect(() => {
     const getSurveys = async () => {
       setLoading(true);
       let authToken = localStorage.getItem('token');
@@ -176,13 +178,13 @@ const Surveys = ({ surveys, addSurveys, deleteSurvey, showSurvey }) => {
         const response = await axios
           .get('api/Survey/getUserSurveys')
           .then(function (response) {
-            console.log(response.data);
+            // console.log(response.data);
             setSur(response.data);
             addSurveys(response.data);
             setLoading(false);
           });
       } catch (e) {
-        console.log(e);
+        // console.log(e);
         setLoading(false);
       }
     };
@@ -191,7 +193,7 @@ const Surveys = ({ surveys, addSurveys, deleteSurvey, showSurvey }) => {
   return (
     <>
       <AuthorizedHeader />
-      {console.log(`stan`)}
+      {/* {console.log(`stan`)} */}
       {/* {console.log(sur[1].title)} */}
       <Wrapper>
         <Container>
@@ -222,6 +224,8 @@ const Surveys = ({ surveys, addSurveys, deleteSurvey, showSurvey }) => {
                     desc={survey.description}
                     deleteSurvey={deleteSurvey}
                     idx={index}
+                    key={index}
+                    surveyId={survey.id}
                     showSurvey={showSurvey}
                   />
                 ))

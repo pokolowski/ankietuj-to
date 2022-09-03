@@ -69,7 +69,7 @@ const Root = () => {
 
   // };
 
-  const handleAddSurvey = async (name, desc, q, countAnswers) => {
+  const handleAddSurvey = async (name, desc, countAnswers, q) => {
     // post do bazy tutaj :  tytul, opis, pytania = [...q]
     // console.log({ name, desc, questions: [...q], countAnswers });
 
@@ -85,19 +85,19 @@ const Root = () => {
       }
     );
     //Koniec zmian Alberta
-    const count = 100;
+    // const count = 100;
     try {
-      console.log({
-        Title: name,
-        Description: desc,
-        questions: [...q],
-        AnswersGoal: countAnswers,
-      });
+      // console.log({
+      //   Title: name,
+      //   Description: desc,
+      //   questions: [...q],
+      //   AnswersGoal: countAnswers,
+      // });
       const response = await axios.post('/api/Survey/Create', {
         Title: name,
         Description: desc,
         questions: [...q],
-        AnswersGoal: count,
+        AnswersGoal: countAnswers,
       });
     } catch (e) {
       // dispatchError('Invalid email or password');
@@ -109,10 +109,6 @@ const Root = () => {
     // console.log(surveys);
   };
   const handleDeleteSurvey = async (index) => {
-    // const tempArr = [...mySurveys];
-    // tempArr.splice(index, 1);
-    // setMySurveys(tempArr);
-    // console.log(index);
     let authToken = localStorage.getItem('token');
     axios.interceptors.request.use(
       (config) => {
@@ -124,10 +120,16 @@ const Root = () => {
       }
     );
     try {
+      const response = await axios.delete(
+        `/api/Survey/deleteSurvey?surveyId=${index}`
+      );
+    } catch (e) {
+      console.log(e);
+    }
+    try {
       const response = await axios
         .get('api/Survey/getUserSurveys')
         .then(function (response) {
-          console.log(response.data);
           setMySurveys(response.data);
         });
     } catch (e) {
@@ -164,10 +166,9 @@ const Root = () => {
       }
     );
     try {
-      const response = await axios.post(
-        'api/Survey/completeSurvey',
-        userAnswers
-      );
+      const response = await axios.post('api/Survey/completeSurvey', {
+        ...userAnswers,
+      });
     } catch (e) {
       console.log(e);
     }

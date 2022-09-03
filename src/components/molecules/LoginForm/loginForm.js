@@ -5,6 +5,7 @@ import FormField from 'components/atoms/FormField/FormField';
 import Button from 'components/atoms/Button/button';
 import { useForm } from 'react-hook-form';
 import { useAuth } from 'hooks/useAuth';
+import { useLocation } from 'react-router-dom';
 
 const Wrapper = styled.div`
   color: black;
@@ -47,6 +48,7 @@ const LoginForm = ({ display, handleSignIn, ...props }) => {
   const onSubmit = ({ email, password }) => {
     console.log(`login: ${email}, haslo: ${password}`);
     handleSignIn({ email, password });
+    handleSubmit();
   };
   // console.log(...register('login'));
   return (
@@ -84,6 +86,7 @@ const LoginForm = ({ display, handleSignIn, ...props }) => {
       <P>Zapomniałeś hasła?</P>
       {errors.email && <Error>Zły format adresu email</Error>}
       {errors.password && <Error>{errors.password.message} </Error>}
+      {/* {location && <Error>{location.state.name}</Error>} */}
 
       <BtnContainer>
         <Button text="Zaloguj się" alignSelf="center" fontSize="15" />

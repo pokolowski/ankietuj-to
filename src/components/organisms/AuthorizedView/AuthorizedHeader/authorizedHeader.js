@@ -69,7 +69,7 @@ const ProfileContainer = styled.div`
   right: 20px;
 `;
 
-const AuthorizedHeader = () => {
+const AuthorizedHeader = ({ setMySurveys, setOtherSurveys }) => {
   const auth = useAuth();
   const navigate = useNavigate();
   const handleHover = (e) => {
@@ -136,6 +136,12 @@ const AuthorizedHeader = () => {
         break;
     }
   };
+  const handleSingOut = () => {
+    // setMySurveys([]);
+    // setOtherSurveys([]);
+    console.log('jeszcze ja jeszcze ja!!!!');
+    auth.signOut();
+  };
   return (
     <Wrapper>
       <Logo to="/">Ankietuj to</Logo>
@@ -182,7 +188,7 @@ const AuthorizedHeader = () => {
           src={logOutIcon}
           onMouseOver={handleHover}
           onMouseLeave={handleMouseLeave}
-          onClick={() => auth.signOut()}
+          onClick={handleSingOut}
         />
       </ProfileContainer>
     </Wrapper>

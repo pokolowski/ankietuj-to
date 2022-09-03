@@ -68,12 +68,11 @@ const AnalizeSurvey = (survey, analizedId) => {
   //     ],
   //     "grades": null
   // }
-  console.log(surv.questions);
   return (
     <>
       <ChoosenTitle>{surv.title}</ChoosenTitle>
       <AnswersContainer>
-        <AnalizeHeader countAnswers="95" />
+        <AnalizeHeader countAnswers={surv.completedSurveysCount} />
         {surv.questions.map((question) => {
           console.log(question.value);
           return <AnalizeQuestion survey={surv} q={question} />;

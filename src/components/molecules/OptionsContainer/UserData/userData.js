@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import styles from './userData.module.css';
 import FormField from 'components/atoms/FormField/FormField';
 import { useAuth } from 'hooks/useAuth';
+import axios from 'axios';
 
 const Wrapper = styled.div`
   width: 90%;
@@ -85,13 +86,40 @@ const UserData = ({ ...props }) => {
   const [formValue, setFormValue] = useState({
     name: auth.user.imie,
     surname: auth.user.nazwisko,
-    college: '',
+    college: auth.user.college,
   });
   const formHandler = (e) => {
     setFormValue({
       ...formValue,
       [e.target.name]: e.target.value,
     });
+  };
+  const handleSaveNewUserInfo = async () => {
+    if (formValue.imie != '' && formValue.surname != '') {
+      setActiveButton(true);
+      setActiveForm(false);
+      let authToken = localStorage.getItem('token');
+      axios.interceptors.request.use(
+        (config) => {
+          config.headers.authorization = `Bearer ${authToken}`;
+          return config;
+        },
+        (error) => {
+          return Promise.reject(error);
+        }
+      );
+      try {
+        const response = await axios.patch('/api/Account/changeUserInfo', {
+          name: formValue.name,
+          surname: formValue.surname,
+          college: formValue.college,
+        });
+        auth.changeUserData(response.data);
+        console.log(response.data);
+      } catch (e) {
+        console.log(e);
+      }
+    }
   };
 
   const SaveData = () => {
@@ -170,12 +198,7 @@ const UserData = ({ ...props }) => {
         <>
           <StyledButton
             className={styles.saveBtn}
-            onClick={() => {
-              if (formValue.imie != '' && formValue.surname != '') {
-                setActiveButton(true);
-                setActiveForm(false);
-              }
-            }}
+            onClick={handleSaveNewUserInfo}
           >
             Zapisz
           </StyledButton>

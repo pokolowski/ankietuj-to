@@ -49,14 +49,20 @@ const Survey = ({
   const handleClick = () => {
     if (isAnalize === 'true') {
       setAnalizeId(idx);
-      console.log('jazda');
+      console.log(survey);
     } else {
       setSurvey(survey);
     }
   };
   return (
     <Wrapper onClick={handleClick}>
-      {isAnalize == 'true' ? <P>{completedCount}/100</P> : ''}
+      {isAnalize == 'true' ? (
+        <P>
+          {completedCount}/{survey.answersGoal}
+        </P>
+      ) : (
+        ''
+      )}
       <Title>{title} </Title>
       <Description>{description} </Description>
     </Wrapper>

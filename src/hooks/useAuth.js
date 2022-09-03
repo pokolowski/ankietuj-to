@@ -12,12 +12,21 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   // const { dispatchError } = useError();
   const handleSetUser = (token) => {
+    localStorage.setItem('token', token);
     let decoded = jwt_decode(token);
+    console.log({
+      id: decoded.Id,
+      imie: decoded.Name,
+      nazwisko: decoded.Surname,
+      email: decoded.Email,
+      college: decoded.College,
+    });
     setUser({
       id: decoded.Id,
       imie: decoded.Name,
       nazwisko: decoded.Surname,
       email: decoded.Email,
+      college: decoded.College,
     });
   };
 
@@ -49,6 +58,10 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   // const navigate = useNavigate();
+  const changeUserData = (token) => {
+    handleSetUser(token);
+  };
+
   const signIn = async ({ email, password }) => {
     console.log('halo :)');
     console.log(`email: ${email}, passsword: ${password}`);
@@ -57,30 +70,27 @@ export const AuthProvider = ({ children }) => {
         email,
         password,
       });
-      handleSetUser(response.data);
-      // let decoded = jwt_decode(response.data);
-      // console.log(decoded);
-      // setUser({
-      //   id: decoded.Id,
-      //   imie: decoded.Name,
-      //   nazwisko: decoded.Surname,
-      //   email: decoded.Email,
-      // });
-      // setUser(response.data);
-      navigate(`/`);
-      localStorage.setItem('token', response.data);
+      if (response.data != 'Błędne hasło lub adres email.') {
+        handleSetUser(response.data);
+        navigate(`/`);
+        localStorage.setItem('token', response.data);
+      }
     } catch (e) {
       // dispatchError('Invalid email or password');
       // test przekierowania
-      setUser({
-        imie: 'Patryk',
-        nazwisko: 'Okolowski',
-        email: 'pokolowski@edu.cdv.pl',
-        haslo: 'silneHaslo',
-      });
-      console.log(user);
-      localStorage.setItem('token', user);
-      navigate(`/`);
+      // setUser({
+      //   imie: 'Patryk',
+      //   nazwisko: 'Okolowski',
+      //   email: 'pokolowski@edu.cdv.pl',
+      //   haslo: 'silneHaslo',
+      // });
+      // console.log(user);
+      // localStorage.setItem('token', user);
+      // navigate(`/`);
+      // navigate('/Login', {
+      // state: { id: 1, name: 'Błędny login lub hasło' },
+      // });
+      // navigate('/', { state: { err: 'Błędny login lub hasło' } });
       // // koniec testu
       // console.log(e);
     }
@@ -123,6 +133,8 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
     localStorage.removeItem('token');
     navigate(`/`);
+    console.log('tutaj jeszcze kod dochodziii');
+    window.location.reload(false);
   };
   const deleteAccount = () => {
     console.log('usuwaniee');
@@ -137,7 +149,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, signIn, signOut, register, deleteAccount }}
+      value={{ user, signIn, signOut, register, deleteAccount, changeUserData }}
     >
       {children}
       {/* {user && <Navigate to="/" replace={true} />} */}

@@ -130,6 +130,7 @@ const AnalizeResults = ({ sharedSurveys, answers, setSharedSurveys }) => {
                 completedCount={surv.completedSurveysCount}
                 description={surv.description}
                 idx={index}
+                survey={surv}
                 setAnalizeId={handleChoose}
                 isAnalize="true"
               />

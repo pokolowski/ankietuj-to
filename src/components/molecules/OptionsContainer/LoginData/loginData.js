@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import styles from './userLogin.module.css';
 import { useAuth } from 'hooks/useAuth';
+import axios from 'axios';
 
 const Wrapper = styled.div`
   width: 90%;
@@ -112,7 +113,7 @@ const LoginData = ({ ...props }) => {
   const auth = useAuth();
   const [formValue, setFormValue] = useState({
     email: auth.user.email,
-    password: auth.user.haslo,
+    password: '12345678',
     newPassword: '',
     repeatPassword: '',
   });
@@ -121,6 +122,40 @@ const LoginData = ({ ...props }) => {
       ...formValue,
       [e.target.name]: e.target.value,
     });
+  };
+  const saveNewLoginData = async () => {
+    if (
+      formValue.imie != '' &&
+      formValue.surname != '' &&
+      formValue.newPassword === formValue.repeatPassword &&
+      formValue.newPassword != '' &&
+      formValue.newPassword.length >= '8'
+    ) {
+      setActiveButton(true);
+      setActiveForm(false);
+      let authToken = localStorage.getItem('token');
+      axios.interceptors.request.use(
+        (config) => {
+          config.headers.authorization = `Bearer ${authToken}`;
+          return config;
+        },
+        (error) => {
+          return Promise.reject(error);
+        }
+      );
+      try {
+        console.log(formValue.newPassword);
+        const response = await axios.patch(
+          '/api/Account/changePassword',
+          `${formValue.newPassword}`,
+          { headers: { 'Content-Type': 'application/json' } }
+        );
+      } catch (e) {
+        console.log(e);
+      }
+    } else {
+      props.setErrorPassword(true);
+    }
   };
   return (
     <Wrapper {...props}>
@@ -180,7 +215,7 @@ const LoginData = ({ ...props }) => {
           </StyledInput>
         ) : (
           <StyledInput>
-            Password:{' '}
+            Hasło:{' '}
             <input
               name="password"
               type="password"
@@ -204,22 +239,7 @@ const LoginData = ({ ...props }) => {
         </StyledButton>
       ) : (
         <>
-          <StyledButton
-            className={styles.saveBtn}
-            onClick={() => {
-              if (
-                formValue.imie != '' &&
-                formValue.surname != '' &&
-                formValue.newPassword === formValue.repeatPassword &&
-                formValue.newPassword != ''
-              ) {
-                setActiveButton(true);
-                setActiveForm(false);
-              } else {
-                props.setErrorPassword(true);
-              }
-            }}
-          >
+          <StyledButton className={styles.saveBtn} onClick={saveNewLoginData}>
             Zapisz
           </StyledButton>
           <StyledButton

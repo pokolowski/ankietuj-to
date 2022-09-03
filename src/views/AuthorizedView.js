@@ -7,7 +7,10 @@ import ProfilePage from 'components/organisms/AuthorizedView/ProfilePage/profile
 const AuthorizedView = ({ setMySurveys, setOtherSurveys }) => {
   return (
     <>
-      <AuthorizedHeader />
+      <AuthorizedHeader
+        setMySurveys={setMySurveys}
+        setOtherSurveys={setOtherSurveys}
+      />
       <WelcomePage
         setMySurveys={setMySurveys}
         setOtherSurveys={setOtherSurveys}
