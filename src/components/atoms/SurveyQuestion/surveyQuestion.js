@@ -68,6 +68,7 @@ const SurveyQuestion = ({
   };
   const handleChangeCheckbox = (ans) => {
     const tempArr = [...getAnswers];
+    console.log(tempArr);
     let noQuestion = true,
       addAns = true;
     tempArr.map((temp, index) => {
@@ -75,10 +76,12 @@ const SurveyQuestion = ({
     });
     if (noQuestion) {
       tempArr[questionIndex] = { question, questionID, answers: [ans] };
+      console.log(tempArr);
     } else {
       tempArr[questionIndex].answers.map((answer, index) => {
         if (answer === ans) {
-          deleteAnswer();
+          // console.log(index);
+          deleteAnswer(index);
           addAns = false;
         }
       });
@@ -90,7 +93,6 @@ const SurveyQuestion = ({
     }
     // tempArr[questionIndex] = { question, answers: [ans] };
     setGetAnswers(tempArr);
-    console.log(tempArr);
   };
   const handleOpenQuestion = (e) => {};
   const handleChangeTextarea = (e) => {

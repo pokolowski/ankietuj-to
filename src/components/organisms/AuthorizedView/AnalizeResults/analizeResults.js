@@ -61,7 +61,7 @@ const ChoosenTitle = styled.span`
 const AnalizeResults = ({ sharedSurveys, answers, setSharedSurveys }) => {
   const [analizeId, setAnalizeId] = useState(null);
   const handleChoose = (index) => {
-    console.log(`klik ${index}`);
+    // console.log(`klik ${index}`);
     setAnalizeId(index);
   };
   const getAnswers = (id) => {
@@ -91,7 +91,7 @@ const AnalizeResults = ({ sharedSurveys, answers, setSharedSurveys }) => {
         const response = await axios
           .get('api/Survey/getUserActiveSurveys')
           .then(function (response) {
-            console.log(response.data);
+            // console.log(response.data);
             setSharedSurveys(response.data);
           });
       } catch (e) {

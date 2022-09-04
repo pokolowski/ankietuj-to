@@ -6,6 +6,7 @@ import Button from 'components/atoms/Button/button';
 import { useForm } from 'react-hook-form';
 import { useAuth } from 'hooks/useAuth';
 import { useLocation } from 'react-router-dom';
+import LoadingGif from 'assets/gifs/loading.gif';
 
 const Wrapper = styled.div`
   color: black;
@@ -30,12 +31,22 @@ const BtnContainer = styled.div`
   // background-color: red;
   justify-content: center;
 `;
+const LoadingContainer = styled.img`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: red;
+`;
 
 const LoginForm = ({ display, handleSignIn, ...props }) => {
   const [formsValues, setFormsValues] = useState({
     login: '',
     password: '',
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const auth = useAuth();
 
@@ -45,47 +56,56 @@ const LoginForm = ({ display, handleSignIn, ...props }) => {
     watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = ({ email, password }) => {
-    console.log(`login: ${email}, haslo: ${password}`);
-    handleSignIn({ email, password });
-    handleSubmit();
+  const onSubmit = () => {
+    // console.log(`login: ${email}, haslo: ${password}`);
+    // handleSignIn({ email, password });
+    // setIsLoading(true);
+    console.log('dupa');
+    handleSubmit(auth.signIn);
   };
   // console.log(...register('login'));
   return (
     <Wrapper display={display} as="form" onSubmit={handleSubmit(auth.signIn)}>
-      <FormField
-        label="Login"
-        name="login"
-        fontColor="red"
-        marginBottom="30"
-        {...register('email', {
-          pattern:
-            /^([a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+.?[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-])+@{1}[a-zA-Z]+.{1}[a-zA-Z]+(.{1}[a-zA-Z]+)?$/i,
-        })}
-      ></FormField>
-      <br />
-      <FormField
-        label="Hasło"
-        name="password"
-        type="password"
-        fontColor="red"
-        marginBottom="5px"
-        {...register('password', {
-          reguired: 'Hasło jest wymagane',
-          minLength: {
-            value: 8,
-            message: 'Hasło musi posiadać minimum 8 znaków',
-          },
-          validate: (value) =>
-            value.match(/[a-z]/g) &&
-            value.match(/[A-Z]/g) &&
-            value.match(/[0-9]/g) &&
-            value.match(/[!@#$%^&*()]/g),
-        })}
-      ></FormField>
-      <P>Zapomniałeś hasła?</P>
-      {errors.email && <Error>Zły format adresu email</Error>}
-      {errors.password && <Error>{errors.password.message} </Error>}
+      {isLoading ? (
+        <LoadingContainer src={LoadingGif}></LoadingContainer>
+      ) : (
+        <>
+          <FormField
+            label="Login"
+            name="login"
+            fontColor="red"
+            marginBottom="30"
+            {...register('email', {
+              pattern:
+                /^([a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+.?[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-])+@{1}[a-zA-Z]+.{1}[a-zA-Z]+(.{1}[a-zA-Z]+)?$/i,
+            })}
+          ></FormField>
+          <br />
+          <FormField
+            label="Hasło"
+            name="password"
+            type="password"
+            fontColor="red"
+            marginBottom="5px"
+            {...register('password', {
+              reguired: 'Hasło jest wymagane',
+              minLength: {
+                value: 8,
+                message: 'Hasło musi posiadać minimum 8 znaków',
+              },
+              validate: (value) =>
+                value.match(/[a-z]/g) &&
+                value.match(/[A-Z]/g) &&
+                value.match(/[0-9]/g) &&
+                value.match(/[!@#$%^&*()]/g),
+            })}
+          ></FormField>
+          <P>Zapomniałeś hasła?</P>
+          {errors.email && <Error>Zły format adresu email</Error>}
+          {errors.password && <Error>{errors.password.message} </Error>}
+        </>
+      )}
+
       {/* {location && <Error>{location.state.name}</Error>} */}
 
       <BtnContainer>

@@ -81,33 +81,12 @@ const MainDashboard = ({
       <AuthorizedHeader />
       <Wrapper>
         <Container>
-          {
-            isLoading ? (
-              <>
-                <GIF src={LoadingIcon} />
-                <Span>Ładowanie ankiet</Span>
-              </>
-            ) : otherSurveys.length > 0 ? (
-              otherSurveys.map((survey, index) => {
-                return (
-                  <SharedSurveyDashboard
-                    surveys={survey}
-                    idx={index}
-                    showSurvey={showSurvey}
-                  />
-                );
-              })
-            ) : (
-              <>
-                <img src={EmptyPage}></img>
-                <Span>
-                  Brak ankiet do wypełnienia
-                  <br /> spróbuj później
-                </Span>
-              </>
-            )
-
-            /* {otherSurveys.length > 0 ? (
+          {isLoading ? (
+            <>
+              <GIF src={LoadingIcon} />
+              <Span>Ładowanie ankiet</Span>
+            </>
+          ) : otherSurveys.length > 0 ? (
             otherSurveys.map((survey, index) => {
               return (
                 <SharedSurveyDashboard
@@ -125,8 +104,7 @@ const MainDashboard = ({
                 <br /> spróbuj później
               </Span>
             </>
-          )} */
-          }
+          )}
         </Container>
       </Wrapper>
     </>

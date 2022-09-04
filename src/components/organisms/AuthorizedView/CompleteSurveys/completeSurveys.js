@@ -67,7 +67,7 @@ const CompleteSurveys = ({ survey, userAnswers, setUserAnswers, idSurvey }) => {
         <GoBack path="/dashboard" />
         <SurveyContainer>
           <SurveyHeader title={survey.title} desc={survey.description} />
-          {console.log(survey)}
+          {/* {console.log(survey)} */}
           {survey.questions.map((q, index) => (
             <SurveyQuestion
               question={q.value}

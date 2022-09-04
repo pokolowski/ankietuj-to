@@ -25,11 +25,21 @@ const Wrapper = styled.div`
   box-shadow: grey 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   position: relative;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: 24px;
   font-family: 'Alata';
   overflow: hidden;
+`;
+const OpenQuestionContainer = styled.div`
+  width: 100%;
+  position: relative;
+  margin-bottom: 30px;
+  border-radius: 20px;
+  padding: 15px;
+  box-sizing: border-box;
+  box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
 `;
 
 const AnalizeQuestion = (q, survey) => {
@@ -38,6 +48,10 @@ const AnalizeQuestion = (q, survey) => {
   q.q.suggestedanswers.map((ans) => {
     labels.push(ans.value);
   });
+  // console.log(q.q);
+  const questionType = q.q.questionTypeId;
+  const answers = q.q.answers.map((ans) => ans.value);
+  console.log(answers);
   //test
   ChartJS.register(
     CategoryScale,
@@ -52,12 +66,13 @@ const AnalizeQuestion = (q, survey) => {
     responsive: true,
     plugins: {
       legend: {
-        position: 'right',
-        labels: {
-          font: {
-            size: 13,
-          },
-        },
+        display: false,
+        // position: 'right',
+        // labels: {
+        //   font: {
+        //     size: 13,
+        //   },
+        // },
       },
       title: {
         display: true,
@@ -84,13 +99,19 @@ const AnalizeQuestion = (q, survey) => {
   //     'halo odpowiedz poprawna',
   //     'a ta niepoprawna',
   //   ];
-
+  const compareLabels = [...labels];
+  labels = labels.map((label) => label.split(' '));
+  // answers = answers.map((answer => answer.split(' ')))
   const data = {
     labels,
     datasets: [
       {
-        label: 'Liczba odpowiedzi',
-        data: labels.map(() => Math.floor(Math.random() * 100) + 1),
+        label: '',
+        data: compareLabels.map((label) => {
+          let count = 0;
+          answers.map((ans) => (ans === label ? count++ : ''));
+          return count;
+        }),
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(255, 159, 64, 0.2)',
@@ -105,12 +126,18 @@ const AnalizeQuestion = (q, survey) => {
       },
     ],
   };
-  console.log(data);
+  // console.log(data);
   //   console.log(q.q.value);
   //koniec testu
   return (
     <Wrapper>
-      <Bar options={options} data={data} />
+      {questionType != 3 ? (
+        <Bar options={options} data={data} />
+      ) : (
+        answers.map((answer) => (
+          <OpenQuestionContainer>{answer}</OpenQuestionContainer>
+        ))
+      )}
     </Wrapper>
   );
 };

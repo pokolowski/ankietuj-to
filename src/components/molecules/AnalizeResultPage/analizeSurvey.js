@@ -21,7 +21,7 @@ const AnswersContainer = styled.div`
   left: 50%;
   transform: translateX(-50%);
   // border: 1px solid black;
-  margin-bottom: 100px;
+  margin-bottom: 300px;
 `;
 
 const AnalizeSurvey = (survey, analizedId) => {
@@ -74,7 +74,7 @@ const AnalizeSurvey = (survey, analizedId) => {
       <AnswersContainer>
         <AnalizeHeader countAnswers={surv.completedSurveysCount} />
         {surv.questions.map((question) => {
-          console.log(question.value);
+          // console.log(question);
           return <AnalizeQuestion survey={surv} q={question} />;
         })}
       </AnswersContainer>

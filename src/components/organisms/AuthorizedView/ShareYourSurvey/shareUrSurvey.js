@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Survey from 'components/atoms/SurverForShare/survey';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -144,6 +145,10 @@ const ShareUrSurvey = ({ user, notSharedSurveys, shareSurvey }) => {
   //po anulowaniu stan ankiety się czyści, a po wybraniu OK idzie post do bazy
   const [choosenSurvey, setChoosenSurvey] = useState(null);
   const [isLoading, setLoading] = useState(true);
+  const [points, setPoints] = useState(0);
+  const [refresh, setRefresh] = useState(0);
+  const navigate = useNavigate();
+  console.log(user);
   useEffect(() => {
     // addSurveys(null);
 
@@ -160,6 +165,7 @@ const ShareUrSurvey = ({ user, notSharedSurveys, shareSurvey }) => {
           return Promise.reject(error);
         }
       );
+      //Pobieranie ankiet mozliwych do udostępnienia
       try {
         const response = await axios
           .get('api/Survey/getUserInactiveSurveys')
@@ -171,10 +177,21 @@ const ShareUrSurvey = ({ user, notSharedSurveys, shareSurvey }) => {
       } catch (e) {
         console.log(e);
       }
+      //Pobieranie ilościu punktów
+      try {
+        const response = await axios
+          .get('api/Account/getUserPoints')
+          .then(function (response) {
+            // console.log(response.data);
+            setPoints(response.data);
+          });
+      } catch (e) {
+        console.log(e);
+      }
       // }
     };
     getSurveys();
-  }, []);
+  }, [refresh]);
   const handleShareSurvey = async (id) => {
     console.log(`udostepniona ankieta o id: ${id}`);
     let authToken = localStorage.getItem('token');
@@ -199,6 +216,10 @@ const ShareUrSurvey = ({ user, notSharedSurveys, shareSurvey }) => {
   };
   const confirmClick = () => {
     handleShareSurvey(choosenSurvey.id);
+    setChoosenSurvey(null);
+    navigate('/shareSurveys');
+    setRefresh(refresh + 1);
+    this.render();
   };
   const cancelClick = () => {
     setChoosenSurvey(null);
@@ -235,8 +256,8 @@ const ShareUrSurvey = ({ user, notSharedSurveys, shareSurvey }) => {
         <SurveysContainer>
           <Title>Wybierz, którą ankietę chcesz udostępnić</Title>
           <Counter>
-            Masz obecnie 0 punktów. Dzięki temu możesz udostępnić 0 swoich
-            ankiet.
+            Masz obecnie {points} punktów. Dzięki temu możesz udostępnić{' '}
+            {Math.floor(points / 5)} swoich ankiet.
           </Counter>
           {notSharedSurveys.map((surv, index) => (
             <Survey
