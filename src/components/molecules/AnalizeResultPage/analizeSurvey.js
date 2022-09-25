@@ -74,7 +74,6 @@ const AnalizeSurvey = (survey, analizedId) => {
       <AnswersContainer>
         <AnalizeHeader countAnswers={surv.completedSurveysCount} />
         {surv.questions.map((question) => {
-          // console.log(question);
           return <AnalizeQuestion survey={surv} q={question} />;
         })}
       </AnswersContainer>

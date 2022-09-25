@@ -47,7 +47,6 @@ const SaveBtn = styled.div`
 `;
 
 const CompleteSurveys = ({ survey, userAnswers, setUserAnswers, idSurvey }) => {
-  //   console.log(survey);
   const [getAnswers, setGetAnswers] = useState([
     { question: '', questionId: '', answers: [] },
   ]);
@@ -57,7 +56,6 @@ const CompleteSurveys = ({ survey, userAnswers, setUserAnswers, idSurvey }) => {
       idSurvey: survey.id,
       questionsWithAnswers: getAnswers,
     });
-    // console.log(getAnswers);
     navigate('/dashboard');
   };
   return (
@@ -67,7 +65,6 @@ const CompleteSurveys = ({ survey, userAnswers, setUserAnswers, idSurvey }) => {
         <GoBack path="/dashboard" />
         <SurveyContainer>
           <SurveyHeader title={survey.title} desc={survey.description} />
-          {/* {console.log(survey)} */}
           {survey.questions.map((q, index) => (
             <SurveyQuestion
               question={q.value}

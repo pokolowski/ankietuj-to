@@ -144,15 +144,12 @@ const LoginData = ({ ...props }) => {
         }
       );
       try {
-        console.log(formValue.newPassword);
         const response = await axios.patch(
           '/api/Account/changePassword',
           `${formValue.newPassword}`,
           { headers: { 'Content-Type': 'application/json' } }
         );
-      } catch (e) {
-        console.log(e);
-      }
+      } catch (e) {}
     } else {
       props.setErrorPassword(true);
     }

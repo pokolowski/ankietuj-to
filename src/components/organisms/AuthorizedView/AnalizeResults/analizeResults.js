@@ -61,7 +61,6 @@ const ChoosenTitle = styled.span`
 const AnalizeResults = ({ sharedSurveys, answers, setSharedSurveys }) => {
   const [analizeId, setAnalizeId] = useState(null);
   const handleChoose = (index) => {
-    // console.log(`klik ${index}`);
     setAnalizeId(index);
   };
   const getAnswers = (id) => {
@@ -72,11 +71,7 @@ const AnalizeResults = ({ sharedSurveys, answers, setSharedSurveys }) => {
     });
   };
   useEffect(() => {
-    // addSurveys(null);
-
     const getSurveys = async () => {
-      // console.log(surveys);
-      // if (sharedSurveys.length === 0) {
       let authToken = localStorage.getItem('token');
       axios.interceptors.request.use(
         (config) => {
@@ -91,13 +86,11 @@ const AnalizeResults = ({ sharedSurveys, answers, setSharedSurveys }) => {
         const response = await axios
           .get('api/Survey/getUserActiveSurveys')
           .then(function (response) {
-            // console.log(response.data);
             setSharedSurveys(response.data);
           });
       } catch (e) {
         console.log(e);
       }
-      // }
     };
     getSurveys();
   }, []);
@@ -109,15 +102,6 @@ const AnalizeResults = ({ sharedSurveys, answers, setSharedSurveys }) => {
         {analizeId != null ? (
           <>
             <AnalizeSurvey survey={sharedSurveys[analizeId]} />
-            {/* {console.log(
-              `wybrana ankieta to: ${
-                surveys[analizeId].title
-              }, a jej odpowiedzi to: ${answers[getAnswers(analizeId)]}`
-            )}
-            <ChoosenTitle>{surveys[analizeId].title} </ChoosenTitle>
-            <AnswersContainer>
-              <AnalizeHeader countAnswers="95" />
-            </AnswersContainer> */}
           </>
         ) : (
           <SurveysContainer>

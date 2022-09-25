@@ -49,7 +49,6 @@ const Survey = ({
   const handleClick = () => {
     if (isAnalize === 'true') {
       setAnalizeId(idx);
-      console.log(survey);
     } else {
       setSurvey(survey);
     }

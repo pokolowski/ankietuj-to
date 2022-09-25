@@ -13,8 +13,6 @@ const ContactForm = () => {
   const [formsValues, setFormsValues] = useState(initialFormState);
 
   const handleValueChange = (e) => {
-    // console.log(formsValues);
-    // console.log(e.target.label);
     setFormsValues({
       ...formsValues,
       [e.target.name]: e.target.value,
@@ -23,12 +21,8 @@ const ContactForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(`udalo sie submitowac ${e.target.value}`);
-    // console.log(event);
     setFormsValues(initialFormState);
-    console.log(formsValues);
   };
-  // console.log(formsValues);
   return (
     <form className={styles.formStyles} onSubmit={handleSubmit}>
       <FormField

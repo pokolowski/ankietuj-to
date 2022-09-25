@@ -148,7 +148,6 @@ const ShareUrSurvey = ({ user, notSharedSurveys, shareSurvey }) => {
   const [points, setPoints] = useState(0);
   const [refresh, setRefresh] = useState(0);
   const navigate = useNavigate();
-  console.log(user);
   useEffect(() => {
     // addSurveys(null);
 
@@ -170,7 +169,6 @@ const ShareUrSurvey = ({ user, notSharedSurveys, shareSurvey }) => {
         const response = await axios
           .get('api/Survey/getUserInactiveSurveys')
           .then(function (response) {
-            // console.log(response.data);
             shareSurvey(response.data);
             setLoading(false);
           });
@@ -182,7 +180,6 @@ const ShareUrSurvey = ({ user, notSharedSurveys, shareSurvey }) => {
         const response = await axios
           .get('api/Account/getUserPoints')
           .then(function (response) {
-            // console.log(response.data);
             setPoints(response.data);
           });
       } catch (e) {
@@ -193,7 +190,6 @@ const ShareUrSurvey = ({ user, notSharedSurveys, shareSurvey }) => {
     getSurveys();
   }, [refresh]);
   const handleShareSurvey = async (id) => {
-    console.log(`udostepniona ankieta o id: ${id}`);
     let authToken = localStorage.getItem('token');
     axios.interceptors.request.use(
       (config) => {
@@ -209,7 +205,6 @@ const ShareUrSurvey = ({ user, notSharedSurveys, shareSurvey }) => {
       const response = await axios.post(
         `/api/Survey/shareSurvey?surveyid=${id}`
       );
-      console.log(response.data);
     } catch (e) {
       console.log(e);
     }

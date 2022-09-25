@@ -37,9 +37,6 @@ const SurveyContainer = styled.div`
 
 const ShowSurveyView = ({ idSurvey, surveys }) => {
   const surv = surveys[idSurvey];
-  console.log(surv);
-  console.log(surveys);
-  console.log(idSurvey);
   return (
     <>
       <AuthorizedHeader />

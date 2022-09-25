@@ -49,7 +49,6 @@ const LoginForm = ({ display, handleSignIn, ...props }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const auth = useAuth();
-
   const {
     register,
     handleSubmit,
@@ -57,13 +56,8 @@ const LoginForm = ({ display, handleSignIn, ...props }) => {
     formState: { errors },
   } = useForm();
   const onSubmit = () => {
-    // console.log(`login: ${email}, haslo: ${password}`);
-    // handleSignIn({ email, password });
-    // setIsLoading(true);
-    console.log('dupa');
     handleSubmit(auth.signIn);
   };
-  // console.log(...register('login'));
   return (
     <Wrapper display={display} as="form" onSubmit={handleSubmit(auth.signIn)}>
       {isLoading ? (

@@ -115,7 +115,6 @@ const UserData = ({ ...props }) => {
           college: formValue.college,
         });
         auth.changeUserData(response.data);
-        console.log(response.data);
       } catch (e) {
         console.log(e);
       }

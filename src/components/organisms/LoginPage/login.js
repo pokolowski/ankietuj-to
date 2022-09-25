@@ -61,10 +61,6 @@ const Login = ({ handleSignIn, LoginOrRegister, setLoginOrRegister }) => {
 
   const ChangeForm = () => {};
 
-  const dupa = () => {
-    console.log(dupa);
-  };
-
   return (
     <Container>
       <Wrapper>
@@ -92,7 +88,6 @@ const Login = ({ handleSignIn, LoginOrRegister, setLoginOrRegister }) => {
               href="#"
               onClick={() => {
                 setLoginOrRegister(!LoginOrRegister);
-                console.log(LoginOrRegister);
               }}
             >
               {LoginOrRegister ? 'Zaloguj się.' : 'Załóż już teraz!'}

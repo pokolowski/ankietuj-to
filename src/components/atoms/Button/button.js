@@ -15,9 +15,6 @@ const Btn = styled.button`
   font-family: Alata;
   padding: 10px;
   align-self: ${(props) => (props.alignSelf ? props.alignSelf : 'normal')};
-
-  &:hover {
-  }
 `;
 
 const Button = ({ text, alignSelf, fontSize = 16 }) => {

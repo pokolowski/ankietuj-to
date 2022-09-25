@@ -54,7 +54,9 @@ const Span = styled.div`
   color: red;
 `;
 const Input = styled.input`
-  self-align: felx-start;
+  self-align: flex-start;
+  justify-self: start;
+  transform: translateX(-15px);
 `;
 
 const DeleteAccount = ({ setDeleteAcc, close }) => {
@@ -68,9 +70,6 @@ const DeleteAccount = ({ setDeleteAcc, close }) => {
   const handleDelete = () => {
     if (inputValue === 'usuwam konto') {
       auth.deleteAccount();
-      console.log('usuwanko');
-      // setDeleteAcc(false);
-      // close();
     } else {
       setError('Przepisana fraza nie zgadza się.');
     }

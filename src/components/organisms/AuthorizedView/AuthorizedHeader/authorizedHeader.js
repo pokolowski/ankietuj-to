@@ -109,7 +109,6 @@ const AuthorizedHeader = ({ setMySurveys, setOtherSurveys }) => {
         navigate('/analize');
         break;
       case '5':
-        // console.log('jestem');
         navigate('/profile');
         break;
     }
@@ -137,9 +136,6 @@ const AuthorizedHeader = ({ setMySurveys, setOtherSurveys }) => {
     }
   };
   const handleSingOut = () => {
-    // setMySurveys([]);
-    // setOtherSurveys([]);
-    console.log('jeszcze ja jeszcze ja!!!!');
     auth.signOut();
   };
   return (

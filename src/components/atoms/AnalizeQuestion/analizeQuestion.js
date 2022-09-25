@@ -48,11 +48,8 @@ const AnalizeQuestion = (q, survey) => {
   q.q.suggestedanswers.map((ans) => {
     labels.push(ans.value);
   });
-  // console.log(q.q);
   const questionType = q.q.questionTypeId;
   const answers = q.q.answers.map((ans) => ans.value);
-  console.log(answers);
-  //test
   ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -67,12 +64,6 @@ const AnalizeQuestion = (q, survey) => {
     plugins: {
       legend: {
         display: false,
-        // position: 'right',
-        // labels: {
-        //   font: {
-        //     size: 13,
-        //   },
-        // },
       },
       title: {
         display: true,
@@ -85,23 +76,8 @@ const AnalizeQuestion = (q, survey) => {
     },
   };
 
-  //   const labels = [
-  //     'January',
-  //     'February',
-  //     'March',
-  //     'April',
-  //     'May',
-  //     'June',
-  //     'July',
-  //   ];
-  //   const labels = [
-  //     'Halo pytanie pierwsze',
-  //     'halo odpowiedz poprawna',
-  //     'a ta niepoprawna',
-  //   ];
   const compareLabels = [...labels];
   labels = labels.map((label) => label.split(' '));
-  // answers = answers.map((answer => answer.split(' ')))
   const data = {
     labels,
     datasets: [
@@ -126,9 +102,6 @@ const AnalizeQuestion = (q, survey) => {
       },
     ],
   };
-  // console.log(data);
-  //   console.log(q.q.value);
-  //koniec testu
   return (
     <Wrapper>
       {questionType != 3 ? (

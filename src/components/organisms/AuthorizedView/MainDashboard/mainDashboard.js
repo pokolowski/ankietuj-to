@@ -46,7 +46,6 @@ const MainDashboard = ({
   showSurvey,
   userAnswers,
 }) => {
-  console.log(userAnswers);
   const [isLoading, setLoading] = useState(true);
   useEffect(() => {
     const getSurveys = async () => {

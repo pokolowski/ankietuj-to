@@ -54,12 +54,9 @@ const SurveyQuestion = ({
   const [openAnswer, setOpenAnswer] = useState('');
 
   const handleChangeRadio = (ans) => {
-    console.log(`Pytanie ${question} i jego odpowiedz: ${ans}`);
     const tempArr = [...getAnswers];
-    console.log(tempArr);
     tempArr[questionIndex] = { question, questionID, answers: [ans] };
     setGetAnswers(tempArr);
-    console.log(getAnswers);
   };
   const deleteAnswer = (index) => {
     const tempArr = [...getAnswers];
@@ -68,7 +65,6 @@ const SurveyQuestion = ({
   };
   const handleChangeCheckbox = (ans) => {
     const tempArr = [...getAnswers];
-    console.log(tempArr);
     let noQuestion = true,
       addAns = true;
     tempArr.map((temp, index) => {
@@ -76,11 +72,9 @@ const SurveyQuestion = ({
     });
     if (noQuestion) {
       tempArr[questionIndex] = { question, questionID, answers: [ans] };
-      console.log(tempArr);
     } else {
       tempArr[questionIndex].answers.map((answer, index) => {
         if (answer === ans) {
-          // console.log(index);
           deleteAnswer(index);
           addAns = false;
         }

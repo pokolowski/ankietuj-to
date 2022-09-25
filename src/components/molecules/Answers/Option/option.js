@@ -41,7 +41,6 @@ const IMG = styled.img`
 
 const Option = ({ number, deleteAnswer, type, answers, changeAnswer }) => {
   const handleDelete = (e) => {
-    console.log(e.target.getAttribute('id'));
     deleteAnswer(e.target.getAttribute('id'));
   };
   const handleFocus = (event) => event.target.select();

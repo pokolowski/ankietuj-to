@@ -178,13 +178,11 @@ const Surveys = ({ surveys, addSurveys, deleteSurvey, showSurvey }) => {
         const response = await axios
           .get('api/Survey/getUserSurveys')
           .then(function (response) {
-            // console.log(response.data);
             setSur(response.data);
             addSurveys(response.data);
             setLoading(false);
           });
       } catch (e) {
-        // console.log(e);
         setLoading(false);
       }
     };
@@ -193,8 +191,6 @@ const Surveys = ({ surveys, addSurveys, deleteSurvey, showSurvey }) => {
   return (
     <>
       <AuthorizedHeader />
-      {/* {console.log(`stan`)} */}
-      {/* {console.log(sur[1].title)} */}
       <Wrapper>
         <Container>
           <CreateSurvey onClick={handleOnClick}>

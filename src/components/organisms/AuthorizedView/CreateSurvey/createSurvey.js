@@ -166,12 +166,10 @@ const CreateSurvey = ({ addSurvey }) => {
   });
   const [titleHeight, setTitleHeight] = useState(50);
   const handleAddQuestion = () => {
-    // console.log('test');
     setQuestions([
       ...questions,
       { question: '', questionType: '1', answers: [] },
     ]);
-    // console.log(questions);
   };
   const handleDeleteQuestion = (index) => {
     const tempArr = [...questions];
@@ -189,16 +187,13 @@ const CreateSurvey = ({ addSurvey }) => {
     setQuestions(tempArr);
   };
   const handleChangeAnswers = (answers, index) => {
-    // console.log(answers);
     const tempArr = [...questions];
     tempArr[index].answers = answers;
     setQuestions(tempArr);
   };
   const handleChangeData = (e) => {
-    console.log(e);
     setSurveyData({ ...surveyData, [e.target.name]: e.target.value });
     setTitleHeight(50 + 50 * Math.floor(surveyData.title.length / 44));
-    // console.log(surveyData);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -251,7 +246,6 @@ const CreateSurvey = ({ addSurvey }) => {
             <IMG src={PlusIcon} onClick={handleAddQuestion} />
           </Options>
           {questions.map((question, index) => {
-            // console.log(index);
             return (
               <Question
                 questions={questions}
