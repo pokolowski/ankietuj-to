@@ -110,6 +110,7 @@ const AnalizeResults = ({ sharedSurveys, answers, setSharedSurveys }) => {
             </Title>
             {sharedSurveys.map((surv, index) => (
               <Survey
+                key={index}
                 title={surv.title}
                 completedCount={surv.completedSurveysCount}
                 description={surv.description}

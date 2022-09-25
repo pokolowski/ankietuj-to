@@ -248,6 +248,7 @@ const CreateSurvey = ({ addSurvey }) => {
           {questions.map((question, index) => {
             return (
               <Question
+                key={index}
                 questions={questions}
                 changeType={handleChangeType}
                 changeQuestion={handleChangeQuestion}

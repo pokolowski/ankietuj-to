@@ -202,32 +202,13 @@ const Surveys = ({ surveys, addSurveys, deleteSurvey, showSurvey }) => {
           </CreateSurvey>
           <YourSurveys>
             <Title>Twoje ankiety</Title>
-            {
-              isLoading ? (
-                <Info>
-                  <GIF src={LoadingIcon} />
-                  <br />
-                  <span>Trwa ładowanie Twoich ankiet</span>
-                </Info>
-              ) : sur.length <= 0 ? (
-                <Info>
-                  <span>posiadasz narazie 0 ankiet</span>
-                </Info>
-              ) : (
-                sur.map((survey, index) => (
-                  <Survey
-                    title={survey.title}
-                    desc={survey.description}
-                    deleteSurvey={deleteSurvey}
-                    idx={index}
-                    key={index}
-                    surveyId={survey.id}
-                    showSurvey={showSurvey}
-                  />
-                ))
-              )
-
-              /* {sur.length <= 0 ? (
+            {isLoading ? (
+              <Info>
+                <GIF src={LoadingIcon} />
+                <br />
+                <span>Trwa ładowanie Twoich ankiet</span>
+              </Info>
+            ) : sur.length <= 0 ? (
               <Info>
                 <span>posiadasz narazie 0 ankiet</span>
               </Info>
@@ -238,11 +219,12 @@ const Surveys = ({ surveys, addSurveys, deleteSurvey, showSurvey }) => {
                   desc={survey.description}
                   deleteSurvey={deleteSurvey}
                   idx={index}
+                  key={index}
+                  surveyId={survey.id}
                   showSurvey={showSurvey}
                 />
               ))
-            )} */
-            }
+            )}
           </YourSurveys>
         </Container>
       </Wrapper>

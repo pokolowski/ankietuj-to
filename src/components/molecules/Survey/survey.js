@@ -60,18 +60,10 @@ const Span = styled.div`
   }
 `;
 
-const Survey = ({
-  title,
-  desc,
-  deleteSurvey,
-  idx,
-  showSurvey,
-  surveyId,
-  key,
-}) => {
+const Survey = ({ title, desc, deleteSurvey, idx, showSurvey, surveyId }) => {
   const navigate = useNavigate();
   return (
-    <Wrapper key={key}>
+    <Wrapper>
       <h2>{title}</h2>
       <Line></Line>
       <BtnsContainer>

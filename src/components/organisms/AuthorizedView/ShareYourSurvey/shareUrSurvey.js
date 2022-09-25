@@ -256,6 +256,7 @@ const ShareUrSurvey = ({ user, notSharedSurveys, shareSurvey }) => {
           </Counter>
           {notSharedSurveys.map((surv, index) => (
             <Survey
+              key={index}
               title={surv.title}
               description={surv.description}
               survey={surv}

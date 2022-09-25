@@ -89,6 +89,7 @@ const MainDashboard = ({
             otherSurveys.map((survey, index) => {
               return (
                 <SharedSurveyDashboard
+                  key={index}
                   surveys={survey}
                   idx={index}
                   showSurvey={showSurvey}
