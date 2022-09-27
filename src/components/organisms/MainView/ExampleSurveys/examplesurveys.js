@@ -13,7 +13,6 @@ const Wrapper = styled.div`
   z-index: 3;
   width: 100%;
   min-width: 350px;
-  // max-width: 100%;
   min-height: 500px;
   height: auto;
   background-color: #73d9d9;
@@ -34,7 +33,6 @@ const Container = styled.div`
   margin-bottom: 100px;
   top: 40px;
   left: 5%;
-  // background-color: red;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,10 +41,6 @@ const Container = styled.div`
 const IMG = styled.img`
   width: ${(props) => (props.width ? props.width : 'auto')};
   height: ${(props) => (props.height ? props.height : 'auto')};
-  // float: left;
-  // border: 1px solid black;
-  // box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  // box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 `;
@@ -56,14 +50,12 @@ const P = styled.div`
   min-height: 350px;
   box-sizing: border-box;
   padding: 20px;
-  // background-color: blue;
   display: flex;
   align-items: center;
   color: white;
   font-family: 'Alata';
 `;
 const Description = styled.div`
-  // background-color: yellow;
   margin: 50px;
   min-width: 100px;
   height: 300px;
@@ -71,7 +63,6 @@ const Description = styled.div`
   flex-direction: column;
   align-items: center;
   letter-spacing: 1px;
-  // line-height: 25px;
 `;
 const PTitle = styled.h1`
   text-transform: uppercase;

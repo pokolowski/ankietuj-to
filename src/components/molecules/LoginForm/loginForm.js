@@ -28,7 +28,6 @@ const BtnContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  // background-color: red;
   justify-content: center;
 `;
 const LoadingContainer = styled.img`
@@ -99,8 +98,6 @@ const LoginForm = ({ display, handleSignIn, ...props }) => {
           {errors.password && <Error>{errors.password.message} </Error>}
         </>
       )}
-
-      {/* {location && <Error>{location.state.name}</Error>} */}
 
       <BtnContainer>
         <Button text="Zaloguj się" alignSelf="center" fontSize="15" />

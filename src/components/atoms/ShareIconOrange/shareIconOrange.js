@@ -5,7 +5,6 @@ import Icon from 'assets/icons/share.svg';
 const IMG = styled.div`
   width: 20px;
   height: 20px;
-  //   position: absolute;
 `;
 
 const ShareIconOrange = ({ size }) => {

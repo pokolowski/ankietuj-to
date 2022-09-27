@@ -9,15 +9,12 @@ const Wrapper = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  //background-color: red;
   @media screen and (max-width: 500px) {
-    // width: 200px;
   }
 `;
 const WrapperChild = styled.div`
   max-width: 480px;
   margin-left: 50px;
-  //background-color: blue;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,7 +25,6 @@ const WrapperChild = styled.div`
 const Title = styled.div`
   width: 100%;
   height: 40%;
-  //background-color: blue;
   font-size: 24px;
   font-weight: bold;
   @media screen and (max-width: 500px) {
@@ -37,8 +33,6 @@ const Title = styled.div`
 `;
 const Description = styled.div`
   width: 100%;
-  //height: 50%;
-  //background-color: green;
   font-size: 14px;
   color: #c1e6ff;
 `;

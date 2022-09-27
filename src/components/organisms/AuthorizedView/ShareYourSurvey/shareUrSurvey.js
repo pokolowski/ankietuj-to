@@ -141,7 +141,7 @@ const CancelBtn = styled.div`
 
 const ShareUrSurvey = ({ user, notSharedSurveys, shareSurvey }) => {
   //gdy użytkownik wybierze jedną z ankiet do udostępnienia doda się ona do stanu
-  //gdy ankieta jest wybrana pojawia się okno z potwierdzeniem oraz background robi się blur
+  //gdy ankieta jest wybrana pojawia się okno z potwierdzeniem
   //po anulowaniu stan ankiety się czyści, a po wybraniu OK idzie post do bazy
   const [choosenSurvey, setChoosenSurvey] = useState(null);
   const [isLoading, setLoading] = useState(true);
@@ -149,10 +149,7 @@ const ShareUrSurvey = ({ user, notSharedSurveys, shareSurvey }) => {
   const [refresh, setRefresh] = useState(0);
   const navigate = useNavigate();
   useEffect(() => {
-    // addSurveys(null);
-
     const getSurveys = async () => {
-      // if (notSharedSurveys != []) {
       setLoading(true);
       let authToken = localStorage.getItem('token');
       axios.interceptors.request.use(
@@ -185,7 +182,6 @@ const ShareUrSurvey = ({ user, notSharedSurveys, shareSurvey }) => {
       } catch (e) {
         console.log(e);
       }
-      // }
     };
     getSurveys();
   }, [refresh]);

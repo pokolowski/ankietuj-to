@@ -7,8 +7,6 @@ const Wrapper = styled.ul`
   height: 60%;
   padding: 0;
   background-color: #c1e6ff;
-  //   background-color: red;
-  //   border-radius: 50px;
   overflow: hidden;
   position: relative;
   display: flex;

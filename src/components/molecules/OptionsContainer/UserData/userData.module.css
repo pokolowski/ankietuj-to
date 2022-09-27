@@ -1,5 +1,4 @@
 .floatLeft{
-    /* float: left !important; */
     position: absolute;
     right: 0;
 }
@@ -13,7 +12,6 @@
     transition: .2s;
     padding: 5px;
     text-align: center;
-    /* color: #c1e6ff; */
     
 }
 .inputClass:focus{

@@ -22,7 +22,6 @@ const Wrapper = styled.div`
 const TypeBox = styled.div`
   width: 100%;
   height: 50px;
-  //   background-color: red;
   display: flex;
   font-size: 14px;
 `;
@@ -92,13 +91,6 @@ const Question = ({
           <IMG src={TextIcon} />
           <span>Pytanie otwarte</span>
         </Type>
-        {/* <Type
-          className={typeActive == '4' ? styles.active : ''}
-          onClick={() => handleClick('4')}
-        >
-          <IMG src={DropDownIcon} />
-          <span>Lista rozwijana</span>
-        </Type> */}
       </TypeBox>
       <Textarea
         placeholder="Pytanie"

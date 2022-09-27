@@ -15,7 +15,6 @@ const AuthorizedView = ({ setMySurveys, setOtherSurveys }) => {
         setMySurveys={setMySurveys}
         setOtherSurveys={setOtherSurveys}
       />
-      {/* <Route path="/profile" element={<ProfilePage />} /> */}
     </>
   );
 };

@@ -1,7 +1,6 @@
 import React, { startTransition } from 'react';
 import styled from 'styled-components';
 import styles from './sharedSurveyDashboard';
-// import UserIcon from 'components/atoms/UserIcon/userIcon';
 import UserIcon from 'components/atoms/UserIcon/userIcon';
 import RightIcon from 'assets/icons/right-arrow.svg';
 import IMG from 'components/atoms/IMG/img.js';
@@ -11,12 +10,10 @@ import { useNavigate } from 'react-router-dom';
 const Wrapper = styled.div`
   width: 50%;
   min-height: 150px;
-  //   background-color: red;
   margin-bottom: 100px;
   position: relative;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
   font-family: 'Alata';
-  //   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
   display: flex;
   flex-direction: column;
   padding: 10px;
@@ -30,7 +27,6 @@ const Icon = styled.div`
 `;
 const Span = styled.span`
   font-size: 14px;
-  //   background-color: red;
 `;
 const Title = styled.span`
   text-align: center;
@@ -66,11 +62,7 @@ const OptionContainer = styled.div`
   align-items: center;
   cursor: pointer;
   &:hover {
-    // box-shadow: #99c7f2 0px 54px 55px, #99c7f2 0px -12px 30px,
-    // #99c7f2 0px 4px 6px, #99c7f2 0px 12px 13px, #99c7f2 0px -3px 5px;
-
     box-shadow: #99c7f2 0px 20px 30px -10px;
-    // box-shadow: #0e3854 3px 3px 6px 0px inset, #0e3854 -3px -3px 6px 1px inset;
   }
 `;
 const RateContainer = styled.div`
@@ -84,11 +76,9 @@ const RateContainer = styled.div`
   border-radius: 0 0 10px 10px;
   box-sizing: border-box;
   padding: 10px;
-  // background-color: red;
   display: flex;
   align-items: center;
   font-family: 'Montserrrat';
-  // text-transform: uppercase;
 `;
 const StarIco = styled.img`
   width: 20px;
@@ -124,13 +114,6 @@ const SharedSurveyDashboard = ({ surveys, showSurvey, idx }) => {
         <IMG size="35px" src={RightIcon} />
         <span>wypełnij ankietę</span>
       </OptionContainer>
-      {/* <RateContainer>
-        <span>
-          {stars.map((star) => {
-            <StarIco src={StarIcon} />;
-          })}
-        </span>
-      </RateContainer> */}
     </Wrapper>
   );
 };

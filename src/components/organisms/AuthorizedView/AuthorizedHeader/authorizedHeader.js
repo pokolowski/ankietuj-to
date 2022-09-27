@@ -16,8 +16,6 @@ import { useAuth } from 'hooks/useAuth';
 import { NavLink, useNavigate } from 'react-router-dom';
 const Logo = styled(NavLink)`
   position: relative;
-  //   top: 50%;
-  //   line-height: 100%;
   margin-left: 50px;
   color: #0085ff;
   text-transform: uppercase;
@@ -39,7 +37,6 @@ const Wrapper = styled.div`
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
     rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-  // box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   background-color: white;
   z-index: 5;
   @media (max-width: 900px) {
@@ -54,7 +51,6 @@ const Bookmarks = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  // background-color: red;
 `;
 const Icon = styled.img`
   width: 35px;

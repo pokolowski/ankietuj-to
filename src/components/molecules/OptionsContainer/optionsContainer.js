@@ -20,7 +20,6 @@ const Wrapper = styled.div`
     props.move
       ? 'transition: .7s .7s linear, filter 0.1s;'
       : 'transition: .7s linear, filter 0.1s;'}
-  // transition: filter 0.1s;
   opacity: 0;
   position: relative;
   filter: blur(
@@ -33,7 +32,6 @@ const Wrapper = styled.div`
   }
   @media (min-width: 901px) and (max-width: 1150px) {
     margin-left: 400px;
-    // display: none;
   }
   @media (min-width: 1151px) and (max-width: 1550px) {
     margin-left: 200px;
@@ -56,14 +54,12 @@ const IconContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center; !important;
-  // background-color: blue;
   @media (max-width: 900px) {
     width: 80%;
   }
 `;
 const H2 = styled.h2`
   margin-left: 20px;
-  // background-color: red;
 `;
 
 const OptionsContainer = ({ ...props }) => {

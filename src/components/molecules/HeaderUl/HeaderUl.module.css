@@ -1,21 +1,6 @@
-/* .ulClass {
-    list-style: none;
-    font-size: 12px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: row;
-    color: #0e3854;
-}
-.ulClass li {
-    display: block;
-    padding: 10px;
-    cursor: pointer;
-} */
+
 .aLink{
     text-decoration: none;
     text-transform: none;
     color: #0e3854;
-    /* font-size: 12px; */
 }

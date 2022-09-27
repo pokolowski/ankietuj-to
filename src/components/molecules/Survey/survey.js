@@ -12,7 +12,6 @@ const Wrapper = styled.div`
   height: auto;
   padding: 10px;
   background-color: white;
-  // position: relative;
   margin-top: 30px;
   margin-left: 30px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
@@ -43,7 +42,6 @@ const BtnsContainer = styled.div`
   width: 100%;
   height: 50px;
   background-color: white;
-  // background-color: red;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -71,7 +69,6 @@ const Survey = ({ title, desc, deleteSurvey, idx, showSurvey, surveyId }) => {
         <Span>Edytuj</Span>
         <Span onClick={() => deleteSurvey(surveyId)}>usuń</Span>
         <IMG src={Icon} onClick={() => navigate('/shareSurveys')} />
-        {/* <ShareIconOrange size="20px" /> */}
       </BtnsContainer>
     </Wrapper>
   );

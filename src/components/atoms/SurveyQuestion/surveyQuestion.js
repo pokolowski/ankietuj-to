@@ -6,7 +6,6 @@ const Wrapper = styled.div`
   width: 100%;
   min-height: 150px;
   background-color: white;
-  //   border: 1px solid red;
   border-bottom: 1px solid darkgrey;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
@@ -19,9 +18,7 @@ const QuestionContainer = styled.div`
   align-items: center;
   justify-content: center;
 `;
-const Q = styled.h3`
-  //   border-bottom: 2px solid #067eed;
-`;
+const Q = styled.h3``;
 const AnswersContainer = styled.div`
   margin-left: 30px;
   margin-bottom: 25px;
@@ -85,7 +82,6 @@ const SurveyQuestion = ({
           ans,
         ];
     }
-    // tempArr[questionIndex] = { question, answers: [ans] };
     setGetAnswers(tempArr);
   };
   const handleOpenQuestion = (e) => {};

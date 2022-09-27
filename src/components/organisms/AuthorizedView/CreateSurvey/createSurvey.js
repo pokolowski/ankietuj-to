@@ -17,24 +17,20 @@ const Wrapper = styled.div`
   background-color: #dae5f4;
   position: relative;
   overflow: hidden;
-  // display: none;
   @media (max-width: 900px) {
     min-height: 100vh;
   }
 `;
 const FlexContainer = styled.div`
-  //   width: 50%;
   width: 800px;
   min-height: 150px;
   height: auto;
-  //   height: 80%;
   position: relative;
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
   border: 1px solid #dae5f4;
   margin-bottom: 40px;
-  // background-color: red;
   @media (max-width: 800px) {
     width: 100%;
   }
@@ -47,8 +43,6 @@ const TitleContainer = styled.div`
   background-color: white;
   box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
     rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
-  //   padding: 10px;
-  //   font-size: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -96,7 +90,6 @@ const Options = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  //   padding: 5px;
   align-items: center;
   transition: 0.2 s;
   @media (max-width: 899px) {
@@ -150,12 +143,6 @@ const SaveBtn = styled.div`
 `;
 
 const CreateSurvey = ({ addSurvey }) => {
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   watch,
-  //   formState: { errors },
-  // } = useForm();
   const [questions, setQuestions] = useState([]);
   const [error, setError] = useState('');
   const [answers, addAnswer] = useState([]);

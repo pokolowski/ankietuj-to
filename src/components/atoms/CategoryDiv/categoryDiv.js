@@ -4,15 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NavLink } from 'react-router-dom';
 
 const Wrapper = styled(NavLink)`
-  // padding: 10px;
   position: relative;
-  // height: 50%;
   width: 20%;
-  // border-right: 2px solid red;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   color: white;
-  // background-color: #4fa2f0;
   cursor: pointer;
   transition: 0.7s;
   text-transform: uppercase;
@@ -29,14 +25,11 @@ const Wrapper = styled(NavLink)`
     top: -20px;
     padding: 20px;
     background-color: #ed9607;
-    // background-color: #ed9f1f;
-    // background-color: #a16400;
   }
   @media (max-width: 600px) {
     width: 40%;
     padding: 10px;
   }
-  //#ED9F1F
 `;
 const Icon = styled.img`
   width: 100px;
@@ -66,10 +59,6 @@ const CategoryDiv = ({ text, icon, path = '/' }) => {
     <Wrapper to={`${path}`}>
       <Label>{text}</Label>
       <Icon src={icon} />
-
-      {/* <Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-        <path d={icon} />
-      </Icon> */}
     </Wrapper>
   );
 };

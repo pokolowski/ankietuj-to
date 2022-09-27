@@ -14,7 +14,6 @@ const Wrapper = styled.div`
   height: auto;
   background-color: #0e3854;
   overflow: hidden;
-  // max-width: 100%;
 `;
 
 const ContactPage = () => {

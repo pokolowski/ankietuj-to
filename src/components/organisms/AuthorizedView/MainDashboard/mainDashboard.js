@@ -11,7 +11,6 @@ const Wrapper = styled.div`
   width: 100%;
   min-height: calc(100vh - 100px);
   position: relative;
-  //   background-color: red;
 `;
 const Container = styled.div`
   width: 50%;
@@ -21,8 +20,6 @@ const Container = styled.div`
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  //   border: 1px solid black;
-  // background-color: red;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,7 +28,6 @@ const Container = styled.div`
 const Span = styled.span`
   text-transform: uppercase;
   font-family: 'Alata';
-  // font-weight: bold;
   font-size: 26px;
   text-align: center;
 `;
@@ -66,7 +62,6 @@ const MainDashboard = ({
           .then(function (response) {
             setOtherSurveys(response.data);
             setLoading(false);
-            // addSurveys(response.data);
           });
       } catch (e) {
         console.log(e);

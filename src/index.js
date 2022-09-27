@@ -7,7 +7,6 @@ import Root from 'views/Root';
 import './fonts/Alata/Alata-Regular.ttf';
 import { AuthProvider } from 'hooks/useAuth';
 import { BrowserRouter as Router } from 'react-router-dom';
-// import { ErrorProvider } from 'hooks/useError';
 
 ReactDOM.render(
   <React.StrictMode>

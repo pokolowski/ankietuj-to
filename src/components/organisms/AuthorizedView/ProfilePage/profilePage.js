@@ -53,7 +53,6 @@ const ShowMenu = styled.div`
   border-radius: 20px;
   display: none;
   transition: display 0.1 7 linear;
-  // background-color: blue;
 `;
 const Arrow = styled.img`
   width: 70%;
@@ -72,12 +71,6 @@ const ProfilePage = () => {
     <>
       <AuthorizedHeader />
       <Wrapper>
-        {/* <ShowMenu
-          className={move ? styles.showArrow : ''}
-          onClick={() => setMove(!move)}
-        >
-          <Arrow src={RightArrow} />
-        </ShowMenu> */}
         <ProfileContainer
           className={move ? styles.ProfileContainer : ''}
           move={move}

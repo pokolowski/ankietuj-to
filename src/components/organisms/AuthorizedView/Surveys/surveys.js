@@ -11,12 +11,10 @@ const Wrapper = styled.div`
   position: relative;
   width: 100%;
   min-height: calc(100vh - 100px);
-  // height: auto;
   background-color: #bde0fe;
   display: flex;
   justify-content: center;
   align-items: center;
-  // overflow: scroll;
   @media (max-width: 500px) {
     min-height: 100vh;
   }
@@ -25,13 +23,8 @@ const Container = styled.div`
   width: 70%;
   min-height: 700px;
   height: auto;
-  // background-color: red;
-  // border: 1px solid black;
   margin-top: 50px;
   position: relative;
-  // top: 50%;
-  // left: 50%;
-  // transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -44,9 +37,6 @@ const CreateSurvey = styled.div`
   background-color: white;
   border-radius: 10px;
   border: 2px dotted #067eed;
-  // position: absolute;
-  // top: 30px;
-  // left: calc(50% - 100px);
   font-size: 14px;
   font-weight: bold;
   cursor: pointer;
@@ -75,7 +65,6 @@ const Hr = styled.div`
   height: 2px;
   position: absolute;
   bottom: -100px;
-  // background-color: grey;
   background: rgb(189, 224, 254);
   background: linear-gradient(
     90deg,
@@ -83,7 +72,6 @@ const Hr = styled.div`
     rgba(6, 126, 237, 1) 50%,
     rgba(189, 224, 254, 1) 100%
   );
-  // color: red;
   &::after {
     content: 'Twoje ankiety';
     position: relative;
@@ -92,15 +80,10 @@ const Hr = styled.div`
 `;
 const YourSurveys = styled.div`
   position: relative;
-  // top: 50%;
-  // bottom: ;
-  // left: 0;
   width: 100%;
   min-height: 300px;
   height: auto;
   margin-top: 50px;
-  // background-color: red;
-  // padding: 10px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -143,7 +126,6 @@ const Info = styled.div`
   font-weight: bold;
   color: #a89797;
   letter-spacing: 1px;
-  // background-color: red;
 `;
 const GIF = styled.img`
   width: 80px;

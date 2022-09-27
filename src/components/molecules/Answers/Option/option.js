@@ -19,7 +19,6 @@ export const Circle = styled.div`
 const Input = styled.input`
   background-color: transparent;
   width: 400px;
-  // font-weight: bold;
   font-family: 'Alata';
   border: 0;
   border-bottom: 2px solid grey;
@@ -29,7 +28,6 @@ const Input = styled.input`
     border: 0;
     outline: none;
     border-bottom: 2px solid #067eed;
-    // background-color: #f2f2f2;
   }
 `;
 const IMG = styled.img`

@@ -74,12 +74,6 @@ const Login = ({ handleSignIn, LoginOrRegister, setLoginOrRegister }) => {
         />
         <RegistryForm display={LoginOrRegister ? 'none' : ''} />
         <StyledDiv>
-          {/* <Button
-          text={displayOff ? 'Zarejestruj się' : 'Zaloguj się'}
-          alignSelf="center"
-          fontSize="15"
-          className={styles.styledBtn}
-        /> */}
           <P>
             {LoginOrRegister
               ? 'Posiadasz już konto? '

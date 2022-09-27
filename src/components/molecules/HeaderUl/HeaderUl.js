@@ -1,8 +1,6 @@
 import React from 'react';
-// import './HeaderUl.css';
 import styled from 'styled-components';
 import styles from './HeaderUl.module.css';
-// import { scroller } from 'react-scroll';
 
 const Wrapper = styled.ul`
   list-style: none;
@@ -15,8 +13,6 @@ const Wrapper = styled.ul`
   color: #0e3854;
   justify-content: center;
   align-items: center;
-  // background-color: red;
-  // background-color: blue;
   padding: 0;
   @media (max-width: 500px) {
     font-size: 18px;
@@ -28,7 +24,6 @@ const ListItems = styled.li`
   padding: 20px;
   cursor: pointer;
   text-align: center;
-  // background-color: green;
 `;
 
 const HeaderUl = ({ direction, deactivateLeftPanel }) => (

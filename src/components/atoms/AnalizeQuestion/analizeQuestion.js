@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-//test
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,8 +10,6 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-
-//koniec testu
 
 const Wrapper = styled.div`
   width: 100%;

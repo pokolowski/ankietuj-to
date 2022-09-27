@@ -22,7 +22,6 @@ const SurveysContainer = styled.div`
   justify-content: space-around;
   align-items: space-around;
   position: relative;
-  // background-color: red;
   top: 100px;
   left: 50%;
   transform: translateX(-50%);
@@ -37,7 +36,6 @@ const AnswersContainer = styled.div`
   top: 100px;
   left: 50%;
   transform: translateX(-50%);
-  // border: 1px solid black;
   margin-bottom: 100px;
 `;
 const Title = styled.span`

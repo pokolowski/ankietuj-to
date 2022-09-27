@@ -6,8 +6,6 @@
   text-align: center;
   color: #0e3854;
   font-size: 15px;
-  /* Check gradient on text */
-  /* font-size: 72px; */
   background: linear-gradient(90deg, #0e3854, #067eed);
   font-size: 16px;
   -webkit-background-clip: text;

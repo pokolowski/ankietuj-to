@@ -12,7 +12,6 @@ const Wrapper = styled.div`
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  // background-color: white;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -22,8 +21,6 @@ const Wrapper = styled.div`
     align-items: center;
     height: 55%;
     bottom: 70px;
-    // background-color: red;
-    // justify-content: flex-start;
   }
 `;
 const Title = styled.h1`

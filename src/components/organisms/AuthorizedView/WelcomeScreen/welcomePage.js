@@ -17,9 +17,6 @@ const Wrapper = styled.div`
   background-color: #067eed;
   position: relative;
   overflow: hidden;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
   @media (max-width: 600px) {
     height: 100vh;
   }
@@ -34,14 +31,12 @@ const Question = styled.h1`
   font-size: 2em;
   font-family: 'Alata';
   text-align: center;
-  // margin-bottom: 5px;
 `;
 const FlexContainer = styled.div`
   position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  // background-color: #4fa2f0;
   width: 80%;
   height: 60%;
 

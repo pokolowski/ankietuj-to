@@ -112,8 +112,6 @@ const Root = () => {
     } catch (e) {
       console.log(e);
     }
-
-    //
   };
   const handleShowSurvey = (index) => {
     setShowSurvey(index);

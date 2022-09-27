@@ -6,7 +6,6 @@ import gif from 'assets/gifs/register.gif';
 
 const Wrapper = styled.div`
   min-width: 100%;
-  // max-width: 100%;
   min-height: 100vh;
   position: relative;
   min-width: 350px;
@@ -15,7 +14,6 @@ const Wrapper = styled.div`
   box-shadow: 0 5px 10px 2px #04a8d6, 0 10px 10px 5px #73d9d9;
   z-index: 4;
   overflow: hidden;
-  // margin-bottom: 100px;
 
   @media screen and (max-width: 500px) {
     font-size: 5px;

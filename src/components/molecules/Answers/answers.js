@@ -7,13 +7,11 @@ import OpenQuestionPrev from 'components/atoms/OpenQuestionPrev/openQuestionPrev
 const Wrapper = styled.div`
   width: calc(100% - 20px);
   min-height: 200px;
-  // border: 1px solid black;
   margin-top: 50px;
   margin-left: 20px;
   margin-bottom: 20px;
 `;
 const Button = styled.div`
-  // width: 150px;
   display: flex;
   align-items: center;
   font-family: 'Alata';
@@ -31,7 +29,6 @@ const Input = styled.input`
     border: 0;
     outline: none;
     border-bottom: 2px solid #067eed;
-    // background-color: #f2f2f2;
   }
 `;
 
@@ -58,8 +55,6 @@ const Answers = ({ type, changeAnswers, idx }) => {
       {type === '1' || type === '2' ? (
         <>
           <Option
-            // number={counting[counting.length - 1]}
-            // answers={counting}
             answers={options}
             deleteAnswer={handleDeleteOption}
             changeAnswer={handleChangeOption}

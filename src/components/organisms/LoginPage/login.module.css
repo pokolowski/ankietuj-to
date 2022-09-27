@@ -3,7 +3,6 @@
     text-transform: uppercase;
     font-weight: bold;
     align-self: center;
-    /* margin-bottom:50px; */
 }
 .styledBtn{
     align-self: center !important;
@@ -15,8 +14,6 @@
     display: block;
     position: absolute;
     width: 20px;
-    /* height: 10px; */
     top: 30px;
     left: 30px;
-    /* background-color: red; */
 }

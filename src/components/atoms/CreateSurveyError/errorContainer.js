@@ -39,7 +39,6 @@ const Btn = styled.div`
 const Span = styled.span`
   color: red;
   font-weight: bold;
-  //   margin-top: 50px;
   text-align: center;
 `;
 

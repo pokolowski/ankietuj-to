@@ -11,7 +11,6 @@ const Wrapper = styled.div`
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  // background-color: white;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -20,12 +19,10 @@ const Wrapper = styled.div`
   @media (max-width: 1000px) {
     bottom: 40px;
     flex-direction: column;
-    // overflow: hidden;
     justify-content: flex-start;
   }
   @media (min-width: 900px) and (max-width: 1000px) {
     bottom: 60px;
-    // display: none;
   }
 `;
 const Title = styled.h1`
@@ -36,8 +33,6 @@ const Title = styled.h1`
   text-align: center;
 `;
 const StyledInput = styled.div`
-  // width: 100%;
-  // position: relative;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -47,9 +42,7 @@ const StyledInput = styled.div`
     position: relative;
     justify-content: space-around;
     flex-wrap: wrap;
-    // background-color: white;
     margin-top: 10px;
-    // border: 2px solid red;
   }
 `;
 const StyledButton = styled.button`
@@ -91,13 +84,10 @@ const StyledButtonSave = styled.button`
 `;
 const FlexChild = styled.div`
   width: 50%;
-  // overflow: hidden;
   position: relative;
-  // top: 30px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  // background-color: red;
   @media (max-width: 1000px) {
     width: 100%;
   }
@@ -190,14 +180,6 @@ const LoginData = ({ ...props }) => {
                 className={styles.inputClass}
                 onChange={formHandler}
               />
-              {/* Powtórz hasło:{' '}
-              <input
-                name="repeatPassword"
-                type="password"
-                value={formValue.repeatPassword}
-                className={styles.inputClass}
-                onChange={formHandler}
-              /> */}
             </StyledInput>
             <StyledInput className={styles.repeatPassword}>
               <Span>Potwierdź hasło: </Span>

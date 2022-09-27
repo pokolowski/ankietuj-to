@@ -23,11 +23,9 @@ const Input = styled.input`
   margin-left: 50px;
   outline: none;
   &:active {
-    // width: auto;
     min-width: 30px;
   }
   &:focus {
-    // min-width: 20px;
     width: auto;
     max-width: 50px;
     border: 2px solid #067eed;

@@ -26,48 +26,6 @@ const AnswersContainer = styled.div`
 
 const AnalizeSurvey = (survey, analizedId) => {
   const surv = survey.survey;
-  //   {
-  //     "id": 7,
-  //     "title": "Druga ankieta patryka",
-  //     "description": "opis ",
-  //     "createdAt": "2022-08-24T20:59:49",
-  //     "editedAt": null,
-  //     "isActive": 0,
-  //     "answersGoal": 100,
-  //     "userId": 4,
-  //     "user": null,
-  //     "categories": [],
-  //     "tags": [],
-  //     "completedSurveys": null,
-  //     "questions": [
-  //         {
-  //             "id": 9,
-  //             "value": "pytanko mam",
-  //             "questionTypeId": 1,
-  //             "surveyId": 7,
-  //             "questionType": null,
-  //             "answers": [],
-  //             "suggestedanswers": [
-  //                 {
-  //                     "id": 16,
-  //                     "value": "asdga",
-  //                     "questionId": 9
-  //                 },
-  //                 {
-  //                     "id": 17,
-  //                     "value": "ggg",
-  //                     "questionId": 9
-  //                 },
-  //                 {
-  //                     "id": 18,
-  //                     "value": "aaaa",
-  //                     "questionId": 9
-  //                 }
-  //             ]
-  //         }
-  //     ],
-  //     "grades": null
-  // }
   return (
     <>
       <ChoosenTitle>{surv.title}</ChoosenTitle>

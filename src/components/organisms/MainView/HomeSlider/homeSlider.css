@@ -1,10 +1,6 @@
 img{
     width: 500px;
     height: 500px;
-    /* position: absolute;
-    left: 100px;
-    top: 50%;
-    transform: translateY(-50%); */
 }
 .titleH1{
     margin: 0;
@@ -25,12 +21,10 @@ img{
   overflow: hidden;
   
 }
-/* #04a8d6 */
 .hamburgerIcon{
     display: none;
 }
 .homeSliderContainer {
-    /* background-color:red; */
     width: 80%;
     height: 90%;
     position: absolute;
@@ -43,19 +37,15 @@ img{
     display: flex;
     justify-content:space-around;
     align-items: center;
-    /* display: none; */
     z-index:1;
 }
 .sliderText{
-    /* background-color: green; */
     text-align: center;
-    /* align-self: flex-start; */
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* overflow: hidden; */
 }
 .animation{
     animation: textInOut 2s;
@@ -75,12 +65,9 @@ img{
     }
     .homeSliderContainer{
         flex-direction: column-reverse;
-        /* background-color: red; */
         justify-content: space-around;
         align-items: center;
         font-size: 14px;
-        /* background-color: purple; */
-        /* display: none; */
     }
 }
 @keyframes textInOut{
