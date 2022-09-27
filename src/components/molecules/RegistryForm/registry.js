@@ -9,7 +9,6 @@ import { useAuth } from 'hooks/useAuth';
 const Wrapper = styled.div`
   color: black;
   width: 100%;
-  // background-color: red;
   position: relative;
   display: ${(props) => (props.display ? 'block' : 'none')};
   transition: 0.5s;

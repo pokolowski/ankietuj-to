@@ -12,7 +12,6 @@ const Wrapper = styled.div`
   background-color: #dae5f4;
   position: relative;
   overflow: hidden;
-  // margin-bottom: 30px;
 `;
 const BackIcon = styled.img`
   width: 30px;
@@ -31,7 +30,6 @@ const SurveyContainer = styled.div`
   top: 40px;
   left: 50%;
   transform: translateX(-50%);
-  // border: 1px solid black;
   margin-bottom: 100px;
 `;
 

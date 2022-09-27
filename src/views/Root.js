@@ -22,6 +22,7 @@ import ShowSurveyView from 'components/organisms/AuthorizedView/ShowSurvey/showS
 import CompleteSurveys from 'components/organisms/AuthorizedView/CompleteSurveys/completeSurveys';
 import ShareUrSurvey from 'components/organisms/AuthorizedView/ShareYourSurvey/shareUrSurvey';
 import AnalizeResults from 'components/organisms/AuthorizedView/AnalizeResults/analizeResults';
+import EditSurvey from 'components/organisms/AuthorizedView/EditSurvey/editSurvey';
 
 const AuthenticatedApp = () => {
   return <>zalogowano</>;
@@ -57,6 +58,7 @@ const Root = () => {
   const [sharedSurveys, setSharedSurveys] = useState([]);
   //wybranie ankiety do udostępnienia
   const [showSurvey, setShowSurvey] = useState(null);
+  const [editSurveyId, setEditSurveyId] = useState(null);
   const [userAnswers, setUserAnswers] = useState([
     { idSurvey: '', questions: [{ question: '', answers: [] }] },
   ]);
@@ -116,6 +118,10 @@ const Root = () => {
   const handleShowSurvey = (index) => {
     setShowSurvey(index);
     navigate('/preview');
+  };
+  const handleEditSurvey = (index) => {
+    setEditSurveyId(index);
+    navigate('/editSurvey');
   };
 
   //koniec danych do przeniesienia
@@ -179,6 +185,7 @@ const Root = () => {
                   surveys={mySurveys}
                   addSurveys={setMySurveys}
                   showSurvey={handleShowSurvey}
+                  editSurvey={handleEditSurvey}
                   deleteSurvey={handleDeleteSurvey}
                 />
               }
@@ -186,6 +193,15 @@ const Root = () => {
             <Route
               path="/createSurvey"
               element={<CreateSurvey addSurvey={handleAddSurvey} />}
+            />
+            <Route
+              path="/editSurvey"
+              element={
+                <EditSurvey
+                  addSurvey={handleAddSurvey}
+                  editSurvey={mySurveys[editSurveyId]}
+                />
+              }
             />
             <Route
               path="/dashboard"

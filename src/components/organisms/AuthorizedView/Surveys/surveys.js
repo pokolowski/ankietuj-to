@@ -132,7 +132,13 @@ const GIF = styled.img`
   height: 80px;
 `;
 
-const Surveys = ({ surveys, addSurveys, deleteSurvey, showSurvey }) => {
+const Surveys = ({
+  surveys,
+  addSurveys,
+  deleteSurvey,
+  showSurvey,
+  editSurvey,
+}) => {
   const [isLoading, setLoading] = useState(true);
   const navigate = useNavigate();
   const handleOnClick = () => {
@@ -204,6 +210,7 @@ const Surveys = ({ surveys, addSurveys, deleteSurvey, showSurvey }) => {
                   key={index}
                   surveyId={survey.id}
                   showSurvey={showSurvey}
+                  editSurvey={editSurvey}
                 />
               ))
             )}

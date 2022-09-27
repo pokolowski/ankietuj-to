@@ -58,7 +58,15 @@ const Span = styled.div`
   }
 `;
 
-const Survey = ({ title, desc, deleteSurvey, idx, showSurvey, surveyId }) => {
+const Survey = ({
+  title,
+  desc,
+  deleteSurvey,
+  idx,
+  showSurvey,
+  surveyId,
+  editSurvey,
+}) => {
   const navigate = useNavigate();
   return (
     <Wrapper>
@@ -66,7 +74,7 @@ const Survey = ({ title, desc, deleteSurvey, idx, showSurvey, surveyId }) => {
       <Line></Line>
       <BtnsContainer>
         <Span onClick={() => showSurvey(idx)}>Zobacz</Span>
-        <Span>Edytuj</Span>
+        <Span onClick={() => editSurvey(idx)}>Edytuj</Span>
         <Span onClick={() => deleteSurvey(surveyId)}>usuń</Span>
         <IMG src={Icon} onClick={() => navigate('/shareSurveys')} />
       </BtnsContainer>
