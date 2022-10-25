@@ -43,6 +43,7 @@ const MainDashboard = ({
   userAnswers,
 }) => {
   const [isLoading, setLoading] = useState(true);
+  const [refresh, forceRefresh] = useState(0);
   useEffect(() => {
     const getSurveys = async () => {
       setLoading(true);
@@ -62,14 +63,17 @@ const MainDashboard = ({
           .then(function (response) {
             setOtherSurveys(response.data);
             setLoading(false);
+            console.log('poszlo');
           });
       } catch (e) {
         console.log(e);
       }
     };
     getSurveys();
-  }, []);
-
+  }, [refresh]);
+  if (refresh === 0) {
+    forceRefresh(1);
+  }
   return (
     <>
       <AuthorizedHeader />

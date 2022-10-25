@@ -41,8 +41,15 @@ const Container = styled.div`
 const IMG = styled.img`
   width: ${(props) => (props.width ? props.width : 'auto')};
   height: ${(props) => (props.height ? props.height : 'auto')};
+  // position: relative;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  @media (max-width: 500px) {
+    width: 100%;
+    height: auto;
+    // height: 200px;
+    order: 2;
+  }
 `;
 const P = styled.div`
   position: relative;
@@ -54,8 +61,15 @@ const P = styled.div`
   align-items: center;
   color: white;
   font-family: 'Alata';
+  overflow: hidden;
+  @media (max-width: 500px) {
+    flex-direction: column;
+    height: auto;
+    margin: 0;
+  }
 `;
 const Description = styled.div`
+  // position: relative;
   margin: 50px;
   min-width: 100px;
   height: 300px;
@@ -63,6 +77,15 @@ const Description = styled.div`
   flex-direction: column;
   align-items: center;
   letter-spacing: 1px;
+  text-align: center;
+  @media (max-width: 500px) {
+    margin: 0;
+    width: 90%;
+    margin-bottom: 30px;
+    order: 1;
+    height: auto;
+    // min-height: 700px;
+  }
 `;
 const PTitle = styled.h1`
   text-transform: uppercase;

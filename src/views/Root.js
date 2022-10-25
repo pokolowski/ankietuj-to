@@ -152,6 +152,16 @@ const Root = () => {
     } catch (e) {
       console.log(e);
     }
+    //refresh other user's surveys
+    try {
+      const response = await axios
+        .get('api/Survey/getOtherUsersSurveys')
+        .then(function (response) {
+          setOtherSurveys(response.data);
+        });
+    } catch (e) {
+      console.log(e);
+    }
   };
   return (
     <ThemeProvider theme={theme}>

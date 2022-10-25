@@ -226,7 +226,7 @@ const LoginData = ({ ...props }) => {
             onClick={() => {
               setFormValue({
                 email: auth.user.email,
-                password: auth.user.haslo,
+                password: '12345678',
                 newPassword: '',
                 repeatPassword: '',
               });

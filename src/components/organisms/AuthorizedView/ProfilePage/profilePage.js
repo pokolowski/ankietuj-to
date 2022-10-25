@@ -19,6 +19,7 @@ const Wrapper = styled.div`
   justify-content: center;
   @media (max-width: 900px) {
     height: 100vh;
+    min-height: 800px;
   }
 `;
 const ProfileContainer = styled.div`

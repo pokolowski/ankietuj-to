@@ -28,7 +28,7 @@ const Wrapper = styled.div`
   overflow: hidden;
   @media (max-width: 900px) {
     width: 90%;
-    min-height: 80%;
+    min-height: 675px;
   }
   @media (min-width: 901px) and (max-width: 1150px) {
     margin-left: 400px;

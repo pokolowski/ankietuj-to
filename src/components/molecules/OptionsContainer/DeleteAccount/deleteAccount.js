@@ -21,6 +21,9 @@ const Wrapper = styled.div`
   color: black;
   padding: 25px;
   font-weight: bold;
+  @media (max-width: 800px) {
+    top: 60%;
+  }
 `;
 const StyledButton = styled.button`
   position: absolute;

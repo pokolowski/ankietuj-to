@@ -204,7 +204,7 @@ const UserData = ({ ...props }) => {
               setFormValue({
                 name: auth.user.imie,
                 surname: auth.user.nazwisko,
-                college: '',
+                college: auth.user.college,
               });
               setActiveButton(true);
               setActiveForm(false);
