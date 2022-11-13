@@ -7,6 +7,7 @@ import ProfileButtons from 'components/molecules/ProfileButtons/profileButtons';
 import OptionsContainer from 'components/molecules/OptionsContainer/optionsContainer';
 import { useAuth } from 'hooks/useAuth';
 import RightArrow from 'assets/icons/arrow-right-solid.svg';
+import GoBack from 'components/atoms/GoBackArrow/goBack';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -71,6 +72,7 @@ const ProfilePage = () => {
   return (
     <>
       <AuthorizedHeader />
+      <GoBack />
       <Wrapper>
         <ProfileContainer
           className={move ? styles.ProfileContainer : ''}

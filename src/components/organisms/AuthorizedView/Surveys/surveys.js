@@ -6,6 +6,7 @@ import Survey from 'components/molecules/Survey/survey';
 import { Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import LoadingIcon from 'assets/gifs/loading.gif';
+import GoBack from 'components/atoms/GoBackArrow/goBack';
 
 const Wrapper = styled.div`
   position: relative;
@@ -30,6 +31,9 @@ const Container = styled.div`
   justify-content: space-around;
   align-items: center;
   margin-bottom: 30px;
+  @media (max-width: 900px) {
+    width: 100%;
+  }
 `;
 const CreateSurvey = styled.div`
   width: 230px;
@@ -103,6 +107,12 @@ const YourSurveys = styled.div`
       rgba(189, 224, 254, 1) 100%
     );
   }
+  @media (max-width: 900px) {
+    width: 90%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
 `;
 const Title = styled.span`
   position: absolute;
@@ -111,6 +121,9 @@ const Title = styled.span`
   font-weight: bold;
   font-size: 16px;
   color: #244a6e;
+  @media (max-width: 500px) {
+    top: -10px;
+  }
 `;
 const Info = styled.div`
   width: 100%;
@@ -180,6 +193,7 @@ const Surveys = ({
     <>
       <AuthorizedHeader />
       <Wrapper>
+        <GoBack path="/" />
         <Container>
           <CreateSurvey onClick={handleOnClick}>
             <Div>

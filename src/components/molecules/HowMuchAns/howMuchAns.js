@@ -7,12 +7,18 @@ const Wrapper = styled.div`
   margin-bottom: 10px;
   background-color: white;
   border-radius: 5px;
+  box-sizing: border-box;
   box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
     rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: 'Alata';
+  @media (max-width: 500px) {
+    order: 2;
+    padding: 15px;
+    height: auto;
+  }
 `;
 const Input = styled.input`
   width: 30px;

@@ -23,6 +23,9 @@ const Wrapper = styled.textarea`
     transition: 0.2s;
     border-radius: 10px;
   }
+  @media (max-width: 500px) {
+    width: 300px;
+  }
 `;
 
 const Textarea = ({

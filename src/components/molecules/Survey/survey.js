@@ -10,6 +10,7 @@ const Wrapper = styled.div`
   max-width: 340px;
   min-height: 150px;
   height: auto;
+  box-sizing: border-box;
   padding: 10px;
   background-color: white;
   margin-top: 30px;
@@ -25,6 +26,12 @@ const Wrapper = styled.div`
   cursor: pointer;
   &:hover {
     border: 1px solid #067eed;
+  }
+  @media (max-width: 900px) {
+    min-width: 100%;
+    margin: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 `;
 const Line = styled.div`
@@ -47,6 +54,7 @@ const BtnsContainer = styled.div`
   justify-content: space-around;
   align-items: center;
   text-transform: uppercase;
+  overflow: hidden;
 `;
 const IMG = styled.img`
   width: 25px;

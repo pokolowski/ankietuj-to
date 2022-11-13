@@ -5,6 +5,7 @@ import Survey from 'components/atoms/SurverForShare/survey';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import GoBack from 'components/atoms/GoBackArrow/goBack';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -218,6 +219,7 @@ const ShareUrSurvey = ({ user, notSharedSurveys, shareSurvey }) => {
   return (
     <>
       <AuthorizedHeader />
+
       {choosenSurvey ? (
         <Confirm>
           <h2>Udostępnianie ankiety</h2>
@@ -232,6 +234,7 @@ const ShareUrSurvey = ({ user, notSharedSurveys, shareSurvey }) => {
         ''
       )}
       <Wrapper blur={choosenSurvey}>
+        <GoBack path="/" />
         <Disclaimer>
           <div>
             <h2>Chcesz udostępnić swoją ankietę?</h2>

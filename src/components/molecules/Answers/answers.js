@@ -10,6 +10,10 @@ const Wrapper = styled.div`
   margin-top: 50px;
   margin-left: 20px;
   margin-bottom: 20px;
+
+  @media (max-width: 500px) {
+    width: calc(100% - 40px);
+  }
 `;
 const Button = styled.div`
   display: flex;

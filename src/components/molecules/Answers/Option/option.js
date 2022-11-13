@@ -10,7 +10,7 @@ const Container = styled.div`
   margin-bottom: 20px;
 `;
 export const Circle = styled.div`
-  width: 15px;
+  width: 15px !important;
   height: 15px;
   background-color: white;
   border-radius: ${(props) => (props.type === '1' ? '50%' : '0')};

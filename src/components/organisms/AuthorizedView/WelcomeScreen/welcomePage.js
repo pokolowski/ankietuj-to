@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './welcomePage.module.css';
 import styled from 'styled-components';
 import CategoryDiv from 'components/atoms/CategoryDiv/categoryDiv';
@@ -8,6 +8,7 @@ import fillIcon from 'assets/headerIcons/FillOut.svg';
 import profileIcon from 'assets/headerIcons/profile.svg';
 import shareIcon from 'assets/headerIcons/share.svg';
 import surveyIcon from 'assets/headerIcons/survey.svg';
+import LogOutIcon from 'assets/headerIcons/logOut.svg';
 import { NavLink } from 'react-router-dom';
 import { useAuth } from 'hooks/useAuth';
 
@@ -55,9 +56,30 @@ const FlexContainer = styled.div`
 `;
 
 const WelcomePage = ({ setMySurveys, setOtherSurveys }) => {
+  const [windowDimensions, setWindowDimensions] = useState(
+    getWindowDimensions()
+  );
+
+  function getWindowDimensions() {
+    const { innerWidth: width, innerHeight: height } = window;
+    return {
+      width,
+      height,
+    };
+  }
+
   useEffect(() => {
     setMySurveys([]);
     setOtherSurveys([]);
+  }, []);
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions());
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const auth = useAuth();
@@ -97,6 +119,15 @@ const WelcomePage = ({ setMySurveys, setOtherSurveys }) => {
           icon={resultIcon}
           path="/analize"
         ></CategoryDiv>
+        {windowDimensions.width <= 600 ? (
+          <CategoryDiv
+            text="Wyloguj się"
+            icon={LogOutIcon}
+            onClick={() => auth.signOut()}
+          ></CategoryDiv>
+        ) : (
+          <></>
+        )}
       </FlexContainer>
     </Wrapper>
   );

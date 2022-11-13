@@ -5,3 +5,8 @@
 .margin{
     margin-left: 30px;
 }
+@media (max-width: 500px){
+    .margin{
+        margin-left: 30px;
+    }
+}

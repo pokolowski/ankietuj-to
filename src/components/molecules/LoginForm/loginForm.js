@@ -1,4 +1,4 @@
-import react, { useState } from 'react';
+import react, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import styles from './loginForm.module.css';
 import FormField from 'components/atoms/FormField/FormField';
@@ -31,13 +31,14 @@ const BtnContainer = styled.div`
   justify-content: center;
 `;
 const LoadingContainer = styled.img`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 50%;
+  width: 50%;
+  height: 50%;
+  position: relative;
+  margin: 0;
+  // top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: red;
+  transform: translateX(-50%);
+  // background-color: red;
 `;
 
 const LoginForm = ({ display, handleSignIn, ...props }) => {
@@ -57,6 +58,12 @@ const LoginForm = ({ display, handleSignIn, ...props }) => {
   const onSubmit = () => {
     handleSubmit(auth.signIn);
   };
+  useEffect(() => {
+    if (auth.loginError != null && isLoading) {
+      setIsLoading(false);
+    }
+  }, [auth.loginError, isLoading]);
+
   return (
     <Wrapper display={display} as="form" onSubmit={handleSubmit(auth.signIn)}>
       {isLoading ? (
@@ -96,11 +103,17 @@ const LoginForm = ({ display, handleSignIn, ...props }) => {
           <P>Zapomniałeś hasła?</P>
           {errors.email && <Error>Zły format adresu email</Error>}
           {errors.password && <Error>{errors.password.message} </Error>}
+          {auth.loginError && <Error>{auth.loginError}</Error>}
         </>
       )}
 
       <BtnContainer>
-        <Button text="Zaloguj się" alignSelf="center" fontSize="15" />
+        <Button
+          text="Zaloguj się"
+          alignSelf="center"
+          fontSize="15"
+          onClick={() => setIsLoading(true)}
+        />
       </BtnContainer>
     </Wrapper>
   );

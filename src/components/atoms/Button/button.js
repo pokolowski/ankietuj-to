@@ -17,9 +17,9 @@ const Btn = styled.button`
   align-self: ${(props) => (props.alignSelf ? props.alignSelf : 'normal')};
 `;
 
-const Button = ({ text, alignSelf, fontSize = 16 }) => {
+const Button = ({ text, alignSelf, fontSize = 16, ...props }) => {
   return (
-    <Btn alignSelf={alignSelf} fontSize={fontSize} type="submit">
+    <Btn alignSelf={alignSelf} fontSize={fontSize} type="submit" {...props}>
       {text}
     </Btn>
   );

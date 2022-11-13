@@ -7,6 +7,7 @@ const AuthContext = React.createContext({});
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loginError, setLoginError] = useState(null);
   const navigate = useNavigate();
   const handleSetUser = (token) => {
     localStorage.setItem('token', token);
@@ -32,6 +33,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const signIn = async ({ email, password }) => {
+    let zmiennatest = 'test';
     try {
       const response = await axios.post('/api/Account/login', {
         email,
@@ -41,8 +43,11 @@ export const AuthProvider = ({ children }) => {
         handleSetUser(response.data);
         navigate(`/`);
         localStorage.setItem('token', response.data);
+      } else {
+        setLoginError('Błędny login lub hasło.');
       }
     } catch (e) {
+      console.log('blad');
       console.log(e);
     }
   };
@@ -77,7 +82,15 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, signIn, signOut, register, deleteAccount, changeUserData }}
+      value={{
+        user,
+        signIn,
+        signOut,
+        register,
+        deleteAccount,
+        changeUserData,
+        loginError,
+      }}
     >
       {children}
     </AuthContext.Provider>

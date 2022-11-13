@@ -9,6 +9,7 @@ import PlusIcon from 'assets/icons/plus.svg';
 import Question from 'components/molecules/Question/question';
 import HowMuchAns from 'components/molecules/HowMuchAns/howMuchAns';
 import ErrorContainer from 'components/atoms/CreateSurveyError/errorContainer';
+import GoBack from 'components/atoms/GoBackArrow/goBack';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -33,10 +34,17 @@ const FlexContainer = styled.div`
   margin-bottom: 40px;
   @media (max-width: 800px) {
     width: 100%;
+    top: 60px;
+  }
+  @media (max-width: 500px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 `;
 const TitleContainer = styled.div`
   width: 100%;
+  min-width: 375px;
   min-height: 250px;
   height: auto;
   border-radius: 5px;
@@ -49,31 +57,32 @@ const TitleContainer = styled.div`
   justify-content: space-around;
   margin-bottom: 20px;
   @media (max-width: 899px) {
-    width: 80%;
+    // width: 80%;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
   }
   @media (max-width: 770px) {
-    width: 70%;
+    // width: 70%;
   }
   @media (max-width: 680px) {
-    width: 60%;
+    // width: 60%;
   }
   @media (max-width: 600px) {
-    width: 50%;
+    // width: 50%;
   }
   @media (max-width: 600px) {
-    width: 50%;
+    // width: 50%;
   }
   @media (max-width: 520px) {
     width: 100%;
     left: 0;
     transform: none;
     margin: 0;
+    margin-bottom: 30px;
   }
   @media (max-width: 300px) {
-    width: 30%;
+    // width: 30%;
   }
 `;
 const Options = styled.div`
@@ -94,22 +103,21 @@ const Options = styled.div`
   transition: 0.2 s;
   @media (max-width: 899px) {
     right: 10%;
-  }
-  @media (max-width: 770px) {
-    right: 15%;
-  }
-  @media (max-width: 680px) {
-    right: 20%;
+    position: relative;
+    // order: -1;
+    z-index: 3;
+    bottom: auto;
   }
   @media (max-width: 520px) {
     width: 100%;
-    left: 50%;
-    bottom: 0;
-    transform: translate(-50%, 110%);
+    left: auto;
+    right: auto;
+    bottom: auto;
+    top: auto;
+    transform: none;
     margin: 0;
-  }
-  @media (max-width: 300px) {
-    right: 25%;
+    margin-bottom: 20px;
+    order: 1;
   }
 `;
 const IMG = styled.img`
@@ -140,6 +148,10 @@ const SaveBtn = styled.div`
   border: 0;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset;
   // rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  @media (max-width: 500px) {
+    order: 3;
+    margin-bottom: 50px;
+  }
 `;
 
 const CreateSurvey = ({ addSurvey }) => {
@@ -207,6 +219,7 @@ const CreateSurvey = ({ addSurvey }) => {
       <AuthorizedHeader />
       <Wrapper>
         {error != '' ? <ErrorContainer err={error} deleteErr={setError} /> : ''}
+        <GoBack />
         <FlexContainer as="form" onSubmit={handleSubmit}>
           <TitleContainer>
             <Textarea

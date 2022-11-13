@@ -54,9 +54,9 @@ const Label = styled.span`
   }
 `;
 
-const CategoryDiv = ({ text, icon, path = '/' }) => {
+const CategoryDiv = ({ text, icon, path = '/', ...props }) => {
   return (
-    <Wrapper to={`${path}`}>
+    <Wrapper to={`${path}`} {...props}>
       <Label>{text}</Label>
       <Icon src={icon} />
     </Wrapper>

@@ -11,6 +11,7 @@ import TrashIcon from 'assets/icons/trash-solid.svg';
 
 const Wrapper = styled.div`
   width: 100%;
+  min-width: 375px;
   min-height: 300px;
   background-color: white;
   box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
@@ -36,6 +37,9 @@ const Type = styled.div`
   &:hover {
     border-bottom: 1px solid #0085ff;
     background-color: #dae5f4;
+  }
+  @media (max-width: 500px) {
+    text-align: center;
   }
 `;
 const IMG = styled.img`

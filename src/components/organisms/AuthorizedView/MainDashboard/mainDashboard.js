@@ -6,6 +6,7 @@ import SharedSurveyDashboard from 'components/molecules/SharedSurveyDashboard/sh
 import EmptyPage from 'assets/gifs/not-found.gif';
 import axios from 'axios';
 import LoadingIcon from 'assets/gifs/loading.gif';
+import GoBack from 'components/atoms/GoBackArrow/goBack';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -78,6 +79,7 @@ const MainDashboard = ({
     <>
       <AuthorizedHeader />
       <Wrapper>
+        <GoBack path="/" />
         <Container>
           {isLoading ? (
             <>
