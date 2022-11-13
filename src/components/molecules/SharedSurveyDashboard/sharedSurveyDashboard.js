@@ -17,6 +17,12 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 10px;
+  box-sizing: border-box;
+  @media (max-width: 500px) {
+    width: calc(100% - 150px);
+    left: 0;
+    transform: translateX(-20%);
+  }
 `;
 const Icon = styled.div`
   width: 50px;
@@ -24,6 +30,9 @@ const Icon = styled.div`
   position: absolute;
   top: 0;
   left: -70px;
+  @media (max-width: 500px) {
+    display: none;
+  }
 `;
 const Span = styled.span`
   font-size: 14px;
@@ -100,7 +109,7 @@ const SharedSurveyDashboard = ({ surveys, showSurvey, idx }) => {
     navigate('/completeSurvey');
   };
   return (
-    <Wrapper>
+    <Wrapper key={idx}>
       <Icon>
         <UserIcon size="50px" />
       </Icon>

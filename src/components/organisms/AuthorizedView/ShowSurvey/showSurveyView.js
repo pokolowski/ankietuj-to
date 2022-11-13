@@ -31,6 +31,10 @@ const SurveyContainer = styled.div`
   left: 50%;
   transform: translateX(-50%);
   margin-bottom: 100px;
+  @media (max-width: 500px) {
+    width: 100%;
+    top: 70px;
+  }
 `;
 
 const ShowSurveyView = ({ idSurvey, surveys }) => {

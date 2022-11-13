@@ -5,6 +5,7 @@ import Survey from 'components/atoms/SurverForShare/survey';
 import AnalizeHeader from 'components/atoms/AnalizeHeader/analizeHeader';
 import axios from 'axios';
 import AnalizeSurvey from 'components/molecules/AnalizeResultPage/analizeSurvey';
+import GoBack from 'components/atoms/GoBackArrow/goBack';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -13,6 +14,9 @@ const Wrapper = styled.div`
   overflow: hidden;
   background-color: #0e3854;
   position: relative;
+  @media (max-width: 500px) {
+    min-height: 100vh;
+  }
 `;
 const SurveysContainer = styled.div`
   width: 80%;
@@ -24,9 +28,13 @@ const SurveysContainer = styled.div`
   position: relative;
   top: 100px;
   left: 50%;
+  text-align: center;
   transform: translateX(-50%);
   flex-wrap: wrap;
   margin-bottom: 100px;
+  @media (max-width: 500px) {
+    top: 150px;
+  }
 `;
 const AnswersContainer = styled.div`
   width: 800px;
@@ -97,6 +105,7 @@ const AnalizeResults = ({ sharedSurveys, answers, setSharedSurveys }) => {
     <>
       <AuthorizedHeader />
       <Wrapper>
+        <GoBack path="/surveys" />
         {analizeId != null ? (
           <>
             <AnalizeSurvey survey={sharedSurveys[analizeId]} />

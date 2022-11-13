@@ -12,6 +12,9 @@ const Wrapper = styled.div`
   width: 100%;
   min-height: calc(100vh - 100px);
   position: relative;
+  @media (max-width: 900px) {
+    min-height: 100vh;
+  }
 `;
 const Container = styled.div`
   width: 50%;
@@ -25,6 +28,12 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   margin-bottom: 30px;
+  @media (max-width: 500px) {
+    top: 70px;
+    width: 100%;
+    // left: 0;
+    // transform: none;
+  }
 `;
 const Span = styled.span`
   text-transform: uppercase;

@@ -13,6 +13,9 @@ const Wrapper = styled.div`
   background-color: #dae5f4;
   position: relative;
   overflow: hidden;
+  @media (max-width: 100vh) {
+    min-height: 100vh;
+  }
 `;
 const SurveyContainer = styled.div`
   width: 800px;
@@ -23,6 +26,10 @@ const SurveyContainer = styled.div`
   left: 50%;
   transform: translateX(-50%);
   margin-bottom: 100px;
+  @media (max-width: 500px) {
+    width: 100%;
+    top: 70px;
+  }
 `;
 const SaveBtn = styled.div`
   width: 100%;

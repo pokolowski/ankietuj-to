@@ -5,11 +5,17 @@ import ShareIconOrange from 'components/atoms/ShareIconOrange/shareIconOrange';
 import Icon from 'assets/headerIcons/share.svg';
 import { useNavigate } from 'react-router-dom';
 const Wrapper = styled.div`
+  position: relative;
   min-width: 20%;
   width: auto;
   max-width: 340px;
   min-height: 150px;
   height: auto;
+  //test
+  min-width: 300px;
+  height: 400px;
+  //koniec testu
+
   box-sizing: border-box;
   padding: 10px;
   background-color: white;
@@ -21,6 +27,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   font-family: 'Alata';
   color: #244a6e;
   cursor: pointer;
@@ -44,6 +51,8 @@ const Line = styled.div`
     rgba(14, 56, 84, 1) 50%,
     rgba(6, 126, 237, 1) 100%
   );
+  position: absolute;
+  top: 1px;
 `;
 const BtnsContainer = styled.div`
   width: 100%;
@@ -55,6 +64,7 @@ const BtnsContainer = styled.div`
   align-items: center;
   text-transform: uppercase;
   overflow: hidden;
+  position: relative;
 `;
 const IMG = styled.img`
   width: 25px;
@@ -79,8 +89,9 @@ const Survey = ({
   return (
     <Wrapper>
       <h2>{title}</h2>
-      <Line></Line>
+
       <BtnsContainer>
+        <Line></Line>
         <Span onClick={() => showSurvey(idx)}>Zobacz</Span>
         <Span onClick={() => editSurvey(idx)}>Edytuj</Span>
         <Span onClick={() => deleteSurvey(surveyId)}>usuń</Span>
