@@ -32,8 +32,9 @@ const SurveysContainer = styled.div`
   transform: translateX(-50%);
   flex-wrap: wrap;
   margin-bottom: 100px;
-  @media (max-width: 500px) {
+  @media (max-width: 800px) {
     top: 150px;
+    margin-bottom: 250px;
   }
 `;
 const AnswersContainer = styled.div`
@@ -105,7 +106,7 @@ const AnalizeResults = ({ sharedSurveys, answers, setSharedSurveys }) => {
     <>
       <AuthorizedHeader />
       <Wrapper>
-        <GoBack path="/surveys" />
+        <GoBack />
         {analizeId != null ? (
           <>
             <AnalizeSurvey survey={sharedSurveys[analizeId]} />

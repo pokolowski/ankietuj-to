@@ -31,6 +31,14 @@ const SurveysContainer = styled.div`
   transform: translateX(-50%);
   flex-wrap: wrap;
   margin-bottom: 100px;
+  @media (max-width: 800px) {
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    text-align: center;
+    // background-color: red;
+    // overflow: hidden;
+  }
 `;
 const Title = styled.span`
   position: absolute;
@@ -40,6 +48,14 @@ const Title = styled.span`
   font-size: 22px;
   font-weight: bold;
   color: #244a6e;
+  @media (max-width: 800px) {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    margin-bottom: 50px;
+    // order: 1;
+  }
 `;
 const Disclaimer = styled.div`
   width: 60%;
@@ -71,6 +87,12 @@ const Counter = styled.span`
   transform: translateY(-50%);
   font-size: 18px;
   color: #244a6e;
+  @media (max-width: 800px) {
+    position: relative;
+    top: auto;
+    right: auto;
+    order: -1;
+  }
 `;
 const Span = styled.span`
   color: blue;

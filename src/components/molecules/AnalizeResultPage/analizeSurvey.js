@@ -20,8 +20,10 @@ const AnswersContainer = styled.div`
   top: 100px;
   left: 50%;
   transform: translateX(-50%);
-  // border: 1px solid black;
   margin-bottom: 300px;
+  @media (max-width: 999px) {
+    width: 100%;
+  }
 `;
 
 const AnalizeSurvey = (survey, analizedId) => {

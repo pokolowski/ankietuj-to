@@ -37,6 +37,12 @@ const OpenQuestionContainer = styled.div`
   padding: 15px;
   box-sizing: border-box;
   box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media (max-width: 800px) {
+    font-size: 20px;
+  }
 `;
 
 const AnalizeQuestion = (q, survey) => {

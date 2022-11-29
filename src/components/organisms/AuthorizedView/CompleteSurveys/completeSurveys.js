@@ -49,6 +49,11 @@ const SaveBtn = styled.div`
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset;
   margin-bottom: 50px;
   margin-top: 20px;
+  @media (max-width: 800px) {
+    overflow: hidden;
+    height: 60px;
+    font-size: 20px;
+  }
 `;
 
 const CompleteSurveys = ({ survey, userAnswers, setUserAnswers, idSurvey }) => {

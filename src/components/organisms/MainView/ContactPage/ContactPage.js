@@ -22,9 +22,9 @@ const ContactPage = () => {
       <div className={styles.flexContainer}>
         <div className={styles.contactContainer}>
           <h1>Kontakt</h1>
-          <p>Patryk Okołowski - nr albumu: 23789</p>
-          <p>Albert Wilczyński - nr albumu 24327</p>
-          <p>Bartosz Walerowicz - nr albumu 23781</p>
+          <p>Patryk Okołowski - FRONTEND</p>
+          <p>Albert Wilczyński - BACKEND</p>
+          <p>Bartosz Walerowicz - TESTER</p>
         </div>
         <div className={styles.formContainer}>
           <h1>Napisz do nas</h1>

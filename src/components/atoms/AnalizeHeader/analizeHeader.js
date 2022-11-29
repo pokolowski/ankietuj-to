@@ -12,6 +12,8 @@ const Wrapper = styled.div`
   align-items: center;
   font-size: 24px;
   font-family: 'Alata';
+  text-align: center;
+  margin-top: 50px;
 `;
 
 const AnalizeHeader = ({ countAnswers }) => {
