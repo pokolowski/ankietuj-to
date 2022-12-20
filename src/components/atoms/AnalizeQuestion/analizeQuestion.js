@@ -44,6 +44,12 @@ const OpenQuestionContainer = styled.div`
     font-size: 20px;
   }
 `;
+const OpenQTitle = styled.h3`
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 30px;
+`;
 
 const AnalizeQuestion = (q, survey) => {
   let labels = [];
@@ -110,9 +116,12 @@ const AnalizeQuestion = (q, survey) => {
       {questionType != 3 ? (
         <Bar options={options} data={data} />
       ) : (
-        answers.map((answer) => (
-          <OpenQuestionContainer>{answer}</OpenQuestionContainer>
-        ))
+        <>
+          <OpenQTitle>{q.q.value}</OpenQTitle>
+          {answers.map((answer) => (
+            <OpenQuestionContainer>{answer}</OpenQuestionContainer>
+          ))}
+        </>
       )}
     </Wrapper>
   );

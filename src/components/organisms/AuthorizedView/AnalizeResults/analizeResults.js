@@ -106,7 +106,7 @@ const AnalizeResults = ({ sharedSurveys, answers, setSharedSurveys }) => {
     <>
       <AuthorizedHeader />
       <Wrapper>
-        <GoBack />
+        <GoBack path="/" />
         {analizeId != null ? (
           <>
             <AnalizeSurvey survey={sharedSurveys[analizeId]} />

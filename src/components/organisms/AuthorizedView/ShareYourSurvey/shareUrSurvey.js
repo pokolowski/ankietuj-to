@@ -116,6 +116,9 @@ const Confirm = styled.div`
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   z-index: 2;
   font-family: 'Alata';
+  @media (max-width: 900px) {
+    width: 90%;
+  }
 `;
 const ConfirmBtn = styled.div`
   position: absolute;
