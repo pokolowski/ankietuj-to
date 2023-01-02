@@ -98,7 +98,7 @@ const Name = styled.span`
   font-weight: bold;
 `;
 
-const SharedSurveyDashboard = ({ surveys, showSurvey, idx }) => {
+const SharedSurveyDashboard = ({ surv, showSurvey, idx }) => {
   let stars = [];
   const navigate = useNavigate();
   for (let i = 0; i < 5; i++) {
@@ -109,16 +109,15 @@ const SharedSurveyDashboard = ({ surveys, showSurvey, idx }) => {
     navigate('/completeSurvey');
   };
   return (
-    <Wrapper key={idx}>
+    <Wrapper>
       <Icon>
         <UserIcon size="50px" />
       </Icon>
       <Span>
-        <Name>{surveys.userName}</Name> zaprasza do wypełnienia jego/jej
-        ankiety:
+        <Name>{surv.userName}</Name> zaprasza do wypełnienia jego/jej ankiety:
       </Span>
-      <Title>{surveys.title}</Title>
-      <Desc>{surveys.description}</Desc>
+      <Title>{surv.title}</Title>
+      <Desc>{surv.description}</Desc>
       <OptionContainer onClick={handleClick}>
         <IMG size="35px" src={RightIcon} />
         <span>wypełnij ankietę</span>

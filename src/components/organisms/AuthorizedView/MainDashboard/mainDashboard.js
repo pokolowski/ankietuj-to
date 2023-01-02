@@ -54,6 +54,15 @@ const MainDashboard = ({
 }) => {
   const [isLoading, setLoading] = useState(true);
   const [refresh, forceRefresh] = useState(0);
+
+  const reverseArray = (arr) => {
+    const tempArr = [];
+    for (let i = 0; i <= arr.length; i++) {
+      if (arr[i]) tempArr.unshift(arr[i]);
+    }
+    return tempArr;
+  };
+
   useEffect(() => {
     const getSurveys = async () => {
       setLoading(true);
@@ -71,9 +80,9 @@ const MainDashboard = ({
         const response = await axios
           .get('api/Survey/getOtherUsersSurveys')
           .then(function (response) {
-            setOtherSurveys(response.data);
+            const reversedArr = reverseArray(response.data);
+            setOtherSurveys(reversedArr);
             setLoading(false);
-            console.log('poszlo');
           });
       } catch (e) {
         console.log(e);
@@ -99,8 +108,8 @@ const MainDashboard = ({
             otherSurveys.map((survey, index) => {
               return (
                 <SharedSurveyDashboard
-                  key={index}
-                  surveys={survey}
+                  key={survey.id}
+                  surv={survey}
                   idx={index}
                   showSurvey={showSurvey}
                 />

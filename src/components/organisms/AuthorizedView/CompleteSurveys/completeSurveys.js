@@ -77,6 +77,7 @@ const CompleteSurveys = ({ survey, userAnswers, setUserAnswers, idSurvey }) => {
           <SurveyHeader title={survey.title} desc={survey.description} />
           {survey.questions.map((q, index) => (
             <SurveyQuestion
+              key={index}
               question={q.value}
               questionID={q.id}
               type={q.questionTypeId}

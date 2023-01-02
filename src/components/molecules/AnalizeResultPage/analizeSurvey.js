@@ -33,8 +33,8 @@ const AnalizeSurvey = (survey, analizedId) => {
       <ChoosenTitle>{surv.title}</ChoosenTitle>
       <AnswersContainer>
         <AnalizeHeader countAnswers={surv.completedSurveysCount} />
-        {surv.questions.map((question) => {
-          return <AnalizeQuestion survey={surv} q={question} />;
+        {surv.questions.map((question, index) => {
+          return <AnalizeQuestion key={index} survey={surv} q={question} />;
         })}
       </AnswersContainer>
     </>

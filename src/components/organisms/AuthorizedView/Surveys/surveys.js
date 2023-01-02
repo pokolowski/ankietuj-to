@@ -157,9 +157,18 @@ const Surveys = ({
   const handleOnClick = () => {
     navigate('/createSurvey');
   };
+  const reverseArray = (arr) => {
+    const tempArr = [];
+    for (let i = 0; i <= arr.length; i++) {
+      if (arr[i]) tempArr.unshift(arr[i]);
+    }
+    return tempArr;
+  };
   const [sur, setSur] = useState([]);
   useEffect(() => {
-    setSur(surveys);
+    // console.log(surveys);
+    const reversedSurveysArr = reverseArray(surveys);
+    setSur(reversedSurveysArr);
   }, [surveys]);
 
   useEffect(() => {
@@ -179,7 +188,9 @@ const Surveys = ({
         const response = await axios
           .get('api/Survey/getUserSurveys')
           .then(function (response) {
-            setSur(response.data);
+            const reversedSurveysArr = reverseArray(response.data);
+            setSur(reversedSurveysArr);
+            // setSur(response.data);
             addSurveys(response.data);
             setLoading(false);
           });

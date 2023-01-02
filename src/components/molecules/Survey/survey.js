@@ -75,6 +75,13 @@ const Span = styled.div`
     color: #067eed;
   }
 `;
+const DisableSpan = styled.div`
+  color: grey;
+  text-decoration: line-through;
+  &:hover {
+    color: grey;
+  }
+`;
 
 const Survey = ({
   title,
@@ -92,8 +99,8 @@ const Survey = ({
 
       <BtnsContainer>
         <Line></Line>
-        <Span onClick={() => showSurvey(idx)}>Zobacz</Span>
-        <Span onClick={() => editSurvey(idx)}>Edytuj</Span>
+        <Span onClick={() => showSurvey(surveyId)}>Zobacz</Span>
+        <DisableSpan onClick={() => /*editSurvey(idx)*/ ''}>Edytuj</DisableSpan>
         <Span onClick={() => deleteSurvey(surveyId)}>usuń</Span>
         <IMG src={Icon} onClick={() => navigate('/shareSurveys')} />
       </BtnsContainer>

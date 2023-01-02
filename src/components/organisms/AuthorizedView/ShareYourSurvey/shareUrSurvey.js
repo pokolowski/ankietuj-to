@@ -236,7 +236,7 @@ const ShareUrSurvey = ({ user, notSharedSurveys, shareSurvey }) => {
     setChoosenSurvey(null);
     navigate('/shareSurveys');
     setRefresh(refresh + 1);
-    this.render();
+    // this.render();
   };
   const cancelClick = () => {
     setChoosenSurvey(null);

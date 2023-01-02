@@ -104,7 +104,7 @@ const SurveyQuestion = ({
       <AnswersContainer>
         {type === 1 ? (
           answers.map((answer, index) => (
-            <AnswerContainer>
+            <AnswerContainer key={index}>
               <Radio
                 type="radio"
                 name={`question${questionIndex}`}
@@ -120,7 +120,7 @@ const SurveyQuestion = ({
           ))
         ) : type === 2 ? (
           answers.map((answer, index) => (
-            <AnswerContainer>
+            <AnswerContainer key={index}>
               <Radio
                 type="checkbox"
                 name={`question${questionIndex}`}

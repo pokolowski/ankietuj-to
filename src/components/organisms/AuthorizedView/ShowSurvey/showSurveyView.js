@@ -38,7 +38,18 @@ const SurveyContainer = styled.div`
 `;
 
 const ShowSurveyView = ({ idSurvey, surveys }) => {
-  const surv = surveys[idSurvey];
+  let surv;
+  const breakError = {};
+  try {
+    surveys.forEach((survey) => {
+      if (survey.id == idSurvey) {
+        surv = survey;
+        throw breakError;
+      }
+    });
+  } catch (err) {
+    if (err !== breakError) throw err;
+  }
   return (
     <>
       <AuthorizedHeader />
@@ -56,6 +67,7 @@ const ShowSurveyView = ({ idSurvey, surveys }) => {
               type={q.questionTypeId}
               answers={q.suggestedanswers}
               questionIndex={index}
+              key={index}
             />
           ))}
         </SurveyContainer>
