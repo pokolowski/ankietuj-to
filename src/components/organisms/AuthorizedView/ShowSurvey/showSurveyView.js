@@ -4,6 +4,7 @@ import AuthorizedHeader from '../AuthorizedHeader/authorizedHeader';
 import SurveyHeader from 'components/atoms/SurveyHeader/surveyHeader';
 import SurveyQuestion from 'components/atoms/SurveyQuestion/surveyQuestion';
 import GoBack from 'components/atoms/GoBackArrow/goBack';
+import { useAPI } from 'hooks/useAPI';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -37,12 +38,13 @@ const SurveyContainer = styled.div`
   }
 `;
 
-const ShowSurveyView = ({ idSurvey, surveys }) => {
+const ShowSurveyView = () => {
   let surv;
+  const api = useAPI();
   const breakError = {};
   try {
-    surveys.forEach((survey) => {
-      if (survey.id == idSurvey) {
+    api.usersSurveys.forEach((survey) => {
+      if (survey.id == api.surveyIDToPreview) {
         surv = survey;
         throw breakError;
       }

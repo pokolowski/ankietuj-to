@@ -7,7 +7,7 @@ import EmptyPage from 'assets/gifs/not-found.gif';
 import axios from 'axios';
 import LoadingIcon from 'assets/gifs/loading.gif';
 import GoBack from 'components/atoms/GoBackArrow/goBack';
-
+import { useAPI } from 'hooks/useAPI';
 const Wrapper = styled.div`
   width: 100%;
   min-height: calc(100vh - 100px);
@@ -46,14 +46,10 @@ const GIF = styled.img`
   height: 80px;
 `;
 
-const MainDashboard = ({
-  otherSurveys,
-  setOtherSurveys,
-  showSurvey,
-  userAnswers,
-}) => {
+const MainDashboard = () => {
   const [isLoading, setLoading] = useState(true);
   const [refresh, forceRefresh] = useState(0);
+  const api = useAPI();
 
   const reverseArray = (arr) => {
     const tempArr = [];
@@ -62,56 +58,27 @@ const MainDashboard = ({
     }
     return tempArr;
   };
-
   useEffect(() => {
-    const getSurveys = async () => {
-      setLoading(true);
-      let authToken = localStorage.getItem('token');
-      axios.interceptors.request.use(
-        (config) => {
-          config.headers.authorization = `Bearer ${authToken}`;
-          return config;
-        },
-        (error) => {
-          return Promise.reject(error);
-        }
-      );
-      try {
-        const response = await axios
-          .get('api/Survey/getOtherUsersSurveys')
-          .then(function (response) {
-            const reversedArr = reverseArray(response.data);
-            setOtherSurveys(reversedArr);
-            setLoading(false);
-          });
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    getSurveys();
-  }, [refresh]);
-  if (refresh === 0) {
-    forceRefresh(1);
-  }
+    api.getOtherUsersSurveys();
+  }, []);
   return (
     <>
       <AuthorizedHeader />
       <Wrapper>
         <GoBack path="/" />
         <Container>
-          {isLoading ? (
+          {api.isLoading ? (
             <>
               <GIF src={LoadingIcon} />
               <Span>Ładowanie ankiet</Span>
             </>
-          ) : otherSurveys.length > 0 ? (
-            otherSurveys.map((survey, index) => {
+          ) : api.otherUsersSurveys.length > 0 ? (
+            api.otherUsersSurveys.map((survey, index) => {
               return (
                 <SharedSurveyDashboard
                   key={survey.id}
                   surv={survey}
-                  idx={index}
-                  showSurvey={showSurvey}
+                  idx={survey.id}
                 />
               );
             })

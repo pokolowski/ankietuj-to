@@ -4,6 +4,7 @@ import styles from './survey.module.css';
 import ShareIconOrange from 'components/atoms/ShareIconOrange/shareIconOrange';
 import Icon from 'assets/headerIcons/share.svg';
 import { useNavigate } from 'react-router-dom';
+import { useAPI } from 'hooks/useAPI';
 const Wrapper = styled.div`
   position: relative;
   min-width: 20%;
@@ -83,25 +84,23 @@ const DisableSpan = styled.div`
   }
 `;
 
-const Survey = ({
-  title,
-  desc,
-  deleteSurvey,
-  idx,
-  showSurvey,
-  surveyId,
-  editSurvey,
-}) => {
+const Survey = ({ title, surveyId, editSurvey }) => {
   const navigate = useNavigate();
+  const api = useAPI();
+
+  const handleShowPreview = () => {
+    api.setSurveyIDToPreview(surveyId);
+    navigate('/preview');
+  };
   return (
     <Wrapper>
       <h2>{title}</h2>
 
       <BtnsContainer>
         <Line></Line>
-        <Span onClick={() => showSurvey(surveyId)}>Zobacz</Span>
+        <Span onClick={handleShowPreview}>Zobacz</Span>
         <DisableSpan onClick={() => /*editSurvey(idx)*/ ''}>Edytuj</DisableSpan>
-        <Span onClick={() => deleteSurvey(surveyId)}>usuń</Span>
+        <Span onClick={() => api.deleteSurvey(surveyId)}>usuń</Span>
         <IMG src={Icon} onClick={() => navigate('/shareSurveys')} />
       </BtnsContainer>
     </Wrapper>

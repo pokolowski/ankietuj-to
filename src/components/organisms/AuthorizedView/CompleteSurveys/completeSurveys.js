@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import AuthorizedHeader from '../AuthorizedHeader/authorizedHeader';
 import GoBack from 'components/atoms/GoBackArrow/goBack';
 import SurveyHeader from 'components/atoms/SurveyHeader/surveyHeader';
 import SurveyQuestion from 'components/atoms/SurveyQuestion/surveyQuestion';
 import { useNavigate } from 'react-router-dom';
+import { useAPI } from 'hooks/useAPI';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -56,12 +57,27 @@ const SaveBtn = styled.div`
   }
 `;
 
-const CompleteSurveys = ({ survey, userAnswers, setUserAnswers, idSurvey }) => {
+const CompleteSurveys = ({ userAnswers, setUserAnswers, idSurvey }) => {
+  let survey;
   const [getAnswers, setGetAnswers] = useState([
     { question: '', questionId: '', answers: [] },
   ]);
   const navigate = useNavigate();
+  const api = useAPI();
+  const breakError = {};
+  try {
+    api.otherUsersSurveys.forEach((surv) => {
+      if (surv.id == api.surveyIDToPreview) {
+        survey = surv;
+        console.log(`survey: ${survey}`);
+        throw breakError;
+      }
+    });
+  } catch (err) {
+    if (err !== breakError) throw err;
+  }
   const handleClick = () => {
+    api.getOtherUsersSurveys();
     setUserAnswers({
       idSurvey: survey.id,
       questionsWithAnswers: getAnswers,

@@ -6,6 +6,7 @@ import RightIcon from 'assets/icons/right-arrow.svg';
 import IMG from 'components/atoms/IMG/img.js';
 import StarIcon from 'assets/icons/star-solid.svg';
 import { useNavigate } from 'react-router-dom';
+import { useAPI } from 'hooks/useAPI';
 
 const Wrapper = styled.div`
   width: 50%;
@@ -98,14 +99,16 @@ const Name = styled.span`
   font-weight: bold;
 `;
 
-const SharedSurveyDashboard = ({ surv, showSurvey, idx }) => {
+const SharedSurveyDashboard = ({ surv, idx }) => {
   let stars = [];
+  const api = useAPI();
   const navigate = useNavigate();
   for (let i = 0; i < 5; i++) {
     stars.push('wartosc');
   }
   const handleClick = () => {
-    showSurvey(idx);
+    // showSurvey(idx);
+    api.setSurveyIDToPreview(idx);
     navigate('/completeSurvey');
   };
   return (

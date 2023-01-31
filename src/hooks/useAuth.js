@@ -9,6 +9,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loginError, setLoginError] = useState(null);
   const navigate = useNavigate();
+
   const handleSetUser = (token) => {
     localStorage.setItem('token', token);
     let decoded = jwt_decode(token);

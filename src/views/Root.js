@@ -23,7 +23,6 @@ import CompleteSurveys from 'components/organisms/AuthorizedView/CompleteSurveys
 import ShareUrSurvey from 'components/organisms/AuthorizedView/ShareYourSurvey/shareUrSurvey';
 import AnalizeResults from 'components/organisms/AuthorizedView/AnalizeResults/analizeResults';
 import EditSurvey from 'components/organisms/AuthorizedView/EditSurvey/editSurvey';
-
 const AuthenticatedApp = () => {
   return <>zalogowano</>;
 };
@@ -48,8 +47,6 @@ const UnauthenticatedApp = ({ handleSignIn }) => {
 
 const Root = () => {
   const [displayOff, setDisplayOff] = useState(false);
-  //ankiety użytkownika
-  const [mySurveys, setMySurveys] = useState([]);
   //Ankiety innych użytkowników, które można wypełniać
   const [otherSurveys, setOtherSurveys] = useState([]);
   //Ankiety możliwe do udostepnienia
@@ -87,34 +84,6 @@ const Root = () => {
     }
     navigate('/surveys');
   };
-  const handleDeleteSurvey = async (index) => {
-    let authToken = localStorage.getItem('token');
-    axios.interceptors.request.use(
-      (config) => {
-        config.headers.authorization = `Bearer ${authToken}`;
-        return config;
-      },
-      (error) => {
-        return Promise.reject(error);
-      }
-    );
-    try {
-      const response = await axios.delete(
-        `/api/Survey/deleteSurvey?surveyId=${index}`
-      );
-    } catch (e) {
-      console.log(e);
-    }
-    try {
-      const response = await axios
-        .get('api/Survey/getUserSurveys')
-        .then(function (response) {
-          setMySurveys(response.data);
-        });
-    } catch (e) {
-      console.log(e);
-    }
-  };
   const handleShowSurvey = (index) => {
     setShowSurvey(index);
     navigate('/preview');
@@ -127,12 +96,6 @@ const Root = () => {
   //koniec danych do przeniesienia
   const auth = useAuth();
   let goToChoice = 'login';
-  const handleSetMySur = () => {
-    setMySurveys([]);
-  };
-  const handleSetOtherSur = () => {
-    setOtherSurveys([]);
-  };
   const handlePostAnswers = async (userAnswers) => {
     setUserAnswers(userAnswers);
     let authToken = localStorage.getItem('token');
@@ -178,27 +141,11 @@ const Root = () => {
         <Route path="/Register" element={<Login />} />
         {auth.user ? (
           <>
-            <Route
-              path="/"
-              element={
-                <AuthorizedView
-                  setMySurveys={setMySurveys}
-                  setOtherSurveys={setOtherSurveys}
-                />
-              }
-            />
+            <Route path="/" element={<AuthorizedView />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route
               path="/surveys"
-              element={
-                <Surveys
-                  surveys={mySurveys}
-                  addSurveys={setMySurveys}
-                  showSurvey={handleShowSurvey}
-                  editSurvey={handleEditSurvey}
-                  deleteSurvey={handleDeleteSurvey}
-                />
-              }
+              element={<Surveys editSurvey={handleEditSurvey} />}
             />
             <Route
               path="/createSurvey"
@@ -206,39 +153,13 @@ const Root = () => {
             />
             <Route
               path="/editSurvey"
-              element={
-                <EditSurvey
-                  addSurvey={handleAddSurvey}
-                  editSurvey={mySurveys[editSurveyId]}
-                />
-              }
+              element={<EditSurvey addSurvey={handleAddSurvey} />}
             />
-            <Route
-              path="/dashboard"
-              element={
-                <MainDashboard
-                  otherSurveys={otherSurveys}
-                  setOtherSurveys={setOtherSurveys}
-                  showSurvey={handleShowSurvey}
-                  userAnswers={userAnswers}
-                />
-              }
-            />
-            <Route
-              path="/preview"
-              element={
-                <ShowSurveyView idSurvey={showSurvey} surveys={mySurveys} />
-              }
-            />
+            <Route path="/dashboard" element={<MainDashboard />} />
+            <Route path="/preview" element={<ShowSurveyView />} />
             <Route
               path="/completeSurvey"
-              element={
-                <CompleteSurveys
-                  survey={otherSurveys[showSurvey]}
-                  userAnswers={userAnswers}
-                  setUserAnswers={handlePostAnswers}
-                />
-              }
+              element={<CompleteSurveys setUserAnswers={handlePostAnswers} />}
             />
             <Route
               path="/shareSurveys"

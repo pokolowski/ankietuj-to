@@ -18,7 +18,7 @@ const Wrapper = styled.div`
   background-color: #067eed;
   position: relative;
   overflow: hidden;
-  @media (max-width: 600px) {
+  @media (max-width: 900px) {
     height: 100vh;
   }
 `;
@@ -55,7 +55,7 @@ const FlexContainer = styled.div`
   }
 `;
 
-const WelcomePage = ({ setMySurveys, setOtherSurveys }) => {
+const WelcomePage = () => {
   const [windowDimensions, setWindowDimensions] = useState(
     getWindowDimensions()
   );
@@ -67,11 +67,6 @@ const WelcomePage = ({ setMySurveys, setOtherSurveys }) => {
       height,
     };
   }
-
-  useEffect(() => {
-    setMySurveys([]);
-    setOtherSurveys([]);
-  }, []);
 
   useEffect(() => {
     function handleResize() {

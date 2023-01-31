@@ -30,7 +30,7 @@ const Wrapper = styled.div`
   position: relative;
   top: 0;
   left: 0;
-  overflow: hidden;
+  // overflow: hidden;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -39,6 +39,7 @@ const Wrapper = styled.div`
     rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
   background-color: white;
   z-index: 5;
+
   @media (max-width: 900px) {
     display: none;
   }
@@ -46,13 +47,20 @@ const Wrapper = styled.div`
 const Bookmarks = styled.div`
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
-  dispaly: flex;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
 `;
 const Icon = styled.img`
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  color: green;
+`;
+const IconProfile = styled.img`
   width: 35px;
   height: 35px;
   margin-right: 60px;
@@ -64,8 +72,32 @@ const ProfileContainer = styled.div`
   position: absolute;
   right: 20px;
 `;
+const IconTitle = styled.p`
+  position: absolute;
+  bottom: -30px;
+  font-weight: 500;
+  // left: -30px;
+  // transform: translateX(-50%);
+  // color: #0085ff;
+  text-transform: uppercase;
+`;
+const IconContainer = styled.div`
+  width: 55px;
+  height: 55px;
+  color: #0085ff;
+  margin-right: 60px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  // background-color: red;
+  &:hover {
+    // color: orange;
+  }
+`;
 
-const AuthorizedHeader = ({ setMySurveys, setOtherSurveys }) => {
+const AuthorizedHeader = () => {
   const auth = useAuth();
   const navigate = useNavigate();
   const handleHover = (e) => {
@@ -138,44 +170,56 @@ const AuthorizedHeader = ({ setMySurveys, setOtherSurveys }) => {
     <Wrapper>
       <Logo to="/">Ankietuj to</Logo>
       <Bookmarks>
-        <Icon
-          name="1"
-          src={surveyIcon}
-          onMouseOver={handleHover}
-          onMouseLeave={handleMouseLeave}
-          onClick={handleClick}
-        />
-        <Icon
-          name="2"
-          src={fillIcon}
-          onMouseOver={handleHover}
-          onMouseLeave={handleMouseLeave}
-          onClick={handleClick}
-        />
-        <Icon
-          name="3"
-          src={shareIcon}
-          onMouseOver={handleHover}
-          onMouseLeave={handleMouseLeave}
-          onClick={handleClick}
-        />
-        <Icon
-          name="4"
-          src={resultIcon}
-          onMouseOver={handleHover}
-          onMouseLeave={handleMouseLeave}
-          onClick={handleClick}
-        />
+        <IconContainer>
+          <Icon
+            name="1"
+            src={surveyIcon}
+            onMouseOver={handleHover}
+            onMouseLeave={handleMouseLeave}
+            onClick={handleClick}
+          />
+          <IconTitle>Stwórz</IconTitle>
+        </IconContainer>
+        <IconContainer>
+          <Icon
+            name="2"
+            src={fillIcon}
+            onMouseOver={handleHover}
+            onMouseLeave={handleMouseLeave}
+            onClick={handleClick}
+          />
+          <IconTitle>Wypełnij</IconTitle>
+        </IconContainer>
+        <IconContainer>
+          <Icon
+            name="3"
+            src={shareIcon}
+            onMouseOver={handleHover}
+            onMouseLeave={handleMouseLeave}
+            onClick={handleClick}
+          />
+          <IconTitle>Udostępnij</IconTitle>
+        </IconContainer>
+        <IconContainer>
+          <Icon
+            name="4"
+            src={resultIcon}
+            onMouseOver={handleHover}
+            onMouseLeave={handleMouseLeave}
+            onClick={handleClick}
+          />
+          <IconTitle>Analizuj</IconTitle>
+        </IconContainer>
       </Bookmarks>
       <ProfileContainer>
-        <Icon
+        <IconProfile
           name="5"
           src={profileIcon}
           onMouseOver={handleHover}
           onMouseLeave={handleMouseLeave}
           onClick={handleClick}
         />
-        <Icon
+        <IconProfile
           name="6"
           src={logOutIcon}
           onMouseOver={handleHover}

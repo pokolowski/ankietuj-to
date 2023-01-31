@@ -7,6 +7,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import LoadingIcon from 'assets/gifs/loading.gif';
 import GoBack from 'components/atoms/GoBackArrow/goBack';
+import { useAPI } from 'hooks/useAPI';
 
 const Wrapper = styled.div`
   position: relative;
@@ -145,15 +146,11 @@ const GIF = styled.img`
   height: 80px;
 `;
 
-const Surveys = ({
-  surveys,
-  addSurveys,
-  deleteSurvey,
-  showSurvey,
-  editSurvey,
-}) => {
-  const [isLoading, setLoading] = useState(true);
+const Surveys = ({ surveys, editSurvey }) => {
+  const [sur, setSur] = useState([]);
   const navigate = useNavigate();
+  const api = useAPI();
+
   const handleOnClick = () => {
     navigate('/createSurvey');
   };
@@ -164,39 +161,15 @@ const Surveys = ({
     }
     return tempArr;
   };
-  const [sur, setSur] = useState([]);
-  useEffect(() => {
-    // console.log(surveys);
-    const reversedSurveysArr = reverseArray(surveys);
-    setSur(reversedSurveysArr);
-  }, [surveys]);
+
+  // useEffect(() => {
+  //   const reversedSurveysArr = reverseArray(surveys);
+  //   setSur(reversedSurveysArr);
+  // }, [surveys]);
 
   useEffect(() => {
-    const getSurveys = async () => {
-      setLoading(true);
-      let authToken = localStorage.getItem('token');
-      axios.interceptors.request.use(
-        (config) => {
-          config.headers.authorization = `Bearer ${authToken}`;
-          return config;
-        },
-        (error) => {
-          return Promise.reject(error);
-        }
-      );
-      try {
-        const response = await axios
-          .get('api/Survey/getUserSurveys')
-          .then(function (response) {
-            const reversedSurveysArr = reverseArray(response.data);
-            setSur(reversedSurveysArr);
-            // setSur(response.data);
-            addSurveys(response.data);
-            setLoading(false);
-          });
-      } catch (e) {
-        setLoading(false);
-      }
+    const getSurveys = () => {
+      api.getUsersSurveys();
     };
     getSurveys();
   }, []);
@@ -215,26 +188,24 @@ const Surveys = ({
           </CreateSurvey>
           <YourSurveys>
             <Title>Twoje ankiety</Title>
-            {isLoading ? (
+            {api.isLoading ? (
               <Info>
                 <GIF src={LoadingIcon} />
                 <br />
                 <span>Trwa ładowanie Twoich ankiet</span>
               </Info>
-            ) : sur.length <= 0 ? (
+            ) : api.usersSurveys.length == 0 ? (
               <Info>
                 <span>posiadasz narazie 0 ankiet</span>
               </Info>
             ) : (
-              sur.map((survey, index) => (
+              api.usersSurveys.map((survey, index) => (
                 <Survey
                   title={survey.title}
                   desc={survey.description}
-                  deleteSurvey={deleteSurvey}
                   idx={index}
                   key={index}
                   surveyId={survey.id}
-                  showSurvey={showSurvey}
                   editSurvey={editSurvey}
                 />
               ))
