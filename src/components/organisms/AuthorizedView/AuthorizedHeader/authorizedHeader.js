@@ -30,7 +30,7 @@ const Wrapper = styled.div`
   position: relative;
   top: 0;
   left: 0;
-  // overflow: hidden;
+  overflow: hidden;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -76,9 +76,7 @@ const IconTitle = styled.p`
   position: absolute;
   bottom: -30px;
   font-weight: 500;
-  // left: -30px;
-  // transform: translateX(-50%);
-  // color: #0085ff;
+  font-size: 15px;
   text-transform: uppercase;
 `;
 const IconContainer = styled.div`
@@ -91,10 +89,6 @@ const IconContainer = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  // background-color: red;
-  &:hover {
-    // color: orange;
-  }
 `;
 
 const AuthorizedHeader = () => {

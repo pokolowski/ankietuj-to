@@ -10,6 +10,8 @@ import Question from 'components/molecules/Question/question';
 import HowMuchAns from 'components/molecules/HowMuchAns/howMuchAns';
 import ErrorContainer from 'components/atoms/CreateSurveyError/errorContainer';
 import GoBack from 'components/atoms/GoBackArrow/goBack';
+import { useAPI } from 'hooks/useAPI';
+import { useNavigate } from 'react-router-dom';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -154,16 +156,17 @@ const SaveBtn = styled.div`
   }
 `;
 
-const CreateSurvey = ({ addSurvey }) => {
+const CreateSurvey = () => {
   const [questions, setQuestions] = useState([]);
   const [error, setError] = useState('');
-  const [answers, addAnswer] = useState([]);
   const [surveyData, setSurveyData] = useState({
     title: '',
     desc: '',
     countAnswers: 100,
   });
   const [titleHeight, setTitleHeight] = useState(50);
+  const api = useAPI();
+  const navigate = useNavigate();
   const handleAddQuestion = () => {
     setQuestions([
       ...questions,
@@ -206,12 +209,13 @@ const CreateSurvey = ({ addSurvey }) => {
     ) {
       setError('Ilość odpowiedzi została źle podana!');
     } else {
-      addSurvey(
+      api.handleAddSurvey(
         surveyData.title,
         surveyData.desc,
         surveyData.countAnswers,
         questions
       );
+      navigate('/surveys');
     }
   };
   return (

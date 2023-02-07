@@ -6,6 +6,7 @@ import AnalizeHeader from 'components/atoms/AnalizeHeader/analizeHeader';
 import axios from 'axios';
 import AnalizeSurvey from 'components/molecules/AnalizeResultPage/analizeSurvey';
 import GoBack from 'components/atoms/GoBackArrow/goBack';
+import { useAPI } from 'hooks/useAPI';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -65,41 +66,14 @@ const ChoosenTitle = styled.span`
   font-family: 'Alata';
 `;
 
-const AnalizeResults = ({ sharedSurveys, answers, setSharedSurveys }) => {
+const AnalizeResults = () => {
   const [analizeId, setAnalizeId] = useState(null);
+  const api = useAPI();
   const handleChoose = (index) => {
     setAnalizeId(index);
   };
-  const getAnswers = (id) => {
-    answers.map((answer, index) => {
-      if (answer.idSurvey == id) {
-        return index;
-      }
-    });
-  };
   useEffect(() => {
-    const getSurveys = async () => {
-      let authToken = localStorage.getItem('token');
-      axios.interceptors.request.use(
-        (config) => {
-          config.headers.authorization = `Bearer ${authToken}`;
-          return config;
-        },
-        (error) => {
-          return Promise.reject(error);
-        }
-      );
-      try {
-        const response = await axios
-          .get('api/Survey/getUserActiveSurveys')
-          .then(function (response) {
-            setSharedSurveys(response.data);
-          });
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    getSurveys();
+    api.updateSharedSurveys();
   }, []);
 
   return (
@@ -109,14 +83,14 @@ const AnalizeResults = ({ sharedSurveys, answers, setSharedSurveys }) => {
         <GoBack path="/" />
         {analizeId != null ? (
           <>
-            <AnalizeSurvey survey={sharedSurveys[analizeId]} />
+            <AnalizeSurvey survey={api.sharedSurveys[analizeId]} />
           </>
         ) : (
           <SurveysContainer>
             <Title>
               Wybierz, z której ankiety wyniki chcesz przeanalizować
             </Title>
-            {sharedSurveys.map((surv, index) => (
+            {api.sharedSurveys.map((surv, index) => (
               <Survey
                 key={index}
                 title={surv.title}

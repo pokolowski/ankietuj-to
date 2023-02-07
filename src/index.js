@@ -8,16 +8,20 @@ import './fonts/Alata/Alata-Regular.ttf';
 import { AuthProvider } from 'hooks/useAuth';
 import { APIProvider } from 'hooks/useAPI';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from 'REDUX/store';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <AuthProvider>
-        <APIProvider>
-          <Root />
-        </APIProvider>
-      </AuthProvider>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <AuthProvider>
+          <APIProvider>
+            <Root />
+          </APIProvider>
+        </AuthProvider>
+      </Router>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

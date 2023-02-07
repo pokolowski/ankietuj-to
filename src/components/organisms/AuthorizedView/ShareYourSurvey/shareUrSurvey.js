@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import GoBack from 'components/atoms/GoBackArrow/goBack';
+import { useAPI } from 'hooks/useAPI.js';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -137,9 +138,11 @@ const ConfirmBtn = styled.div`
   left: 25%;
   transform: translateX(-50%);
   transition: 0.2s linear;
+  background-color: ${(props) => (props.err ? 'grey' : 'white')};
+  opacity: 0.5;
   &:hover {
-    background-color: #0e3854;
-    color: white;
+    background-color: ${(props) => (props.err ? 'grey' : '#0e3854')};
+    color: ${(props) => (props.err ? 'black' : 'white')};
   }
 `;
 const CancelBtn = styled.div`
@@ -164,8 +167,11 @@ const CancelBtn = styled.div`
     color: white;
   }
 `;
+const Err = styled.p`
+  color: red;
+`;
 
-const ShareUrSurvey = ({ user, notSharedSurveys, shareSurvey }) => {
+const ShareUrSurvey = () => {
   //gdy użytkownik wybierze jedną z ankiet do udostępnienia doda się ona do stanu
   //gdy ankieta jest wybrana pojawia się okno z potwierdzeniem
   //po anulowaniu stan ankiety się czyści, a po wybraniu OK idzie post do bazy
@@ -174,69 +180,16 @@ const ShareUrSurvey = ({ user, notSharedSurveys, shareSurvey }) => {
   const [points, setPoints] = useState(0);
   const [refresh, setRefresh] = useState(0);
   const navigate = useNavigate();
+  const api = useAPI();
   useEffect(() => {
-    const getSurveys = async () => {
-      setLoading(true);
-      let authToken = localStorage.getItem('token');
-      axios.interceptors.request.use(
-        (config) => {
-          config.headers.authorization = `Bearer ${authToken}`;
-          return config;
-        },
-        (error) => {
-          return Promise.reject(error);
-        }
-      );
-      //Pobieranie ankiet mozliwych do udostępnienia
-      try {
-        const response = await axios
-          .get('api/Survey/getUserInactiveSurveys')
-          .then(function (response) {
-            shareSurvey(response.data);
-            setLoading(false);
-          });
-      } catch (e) {
-        console.log(e);
-      }
-      //Pobieranie ilościu punktów
-      try {
-        const response = await axios
-          .get('api/Account/getUserPoints')
-          .then(function (response) {
-            setPoints(response.data);
-          });
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    getSurveys();
+    api.updateUsersPoints();
+    api.getNotSharedUserSurveys();
   }, [refresh]);
-  const handleShareSurvey = async (id) => {
-    let authToken = localStorage.getItem('token');
-    axios.interceptors.request.use(
-      (config) => {
-        config.headers.authorization = `Bearer ${authToken}`;
-        return config;
-      },
-      (error) => {
-        return Promise.reject(error);
-      }
-    );
-    const count = 100;
-    try {
-      const response = await axios.post(
-        `/api/Survey/shareSurvey?surveyid=${id}`
-      );
-    } catch (e) {
-      console.log(e);
-    }
-  };
   const confirmClick = () => {
-    handleShareSurvey(choosenSurvey.id);
+    api.shareSurvey(choosenSurvey.id);
     setChoosenSurvey(null);
     navigate('/shareSurveys');
     setRefresh(refresh + 1);
-    // this.render();
   };
   const cancelClick = () => {
     setChoosenSurvey(null);
@@ -251,8 +204,20 @@ const ShareUrSurvey = ({ user, notSharedSurveys, shareSurvey }) => {
           <p>
             Czy na pewno chcesz udostępnić ankietę o tytule{' '}
             <Span>{choosenSurvey.title}</Span>?
+            <br />
+            {api.usersPoints < 5 ? (
+              <Err>
+                Masz za mało punktów! Wypełnij kilka ankiet, aby ubierać punkty
+              </Err>
+            ) : (
+              <></>
+            )}
           </p>
-          <ConfirmBtn onClick={confirmClick}>OK</ConfirmBtn>
+          {api.usersPoints < 5 ? (
+            <ConfirmBtn err="true">OK</ConfirmBtn>
+          ) : (
+            <ConfirmBtn onClick={confirmClick}>OK</ConfirmBtn>
+          )}
           <CancelBtn onClick={cancelClick}>Anuluj</CancelBtn>
         </Confirm>
       ) : (
@@ -275,17 +240,16 @@ const ShareUrSurvey = ({ user, notSharedSurveys, shareSurvey }) => {
         <SurveysContainer>
           <Title>Wybierz, którą ankietę chcesz udostępnić</Title>
           <Counter>
-            Masz obecnie {points} punktów. Dzięki temu możesz udostępnić{' '}
-            {Math.floor(points / 5)} swoich ankiet.
+            Masz obecnie {api.usersPoints} punktów. Dzięki temu możesz
+            udostępnić {Math.floor(points / 5)} swoich ankiet.
           </Counter>
-          {notSharedSurveys.map((surv, index) => (
+          {api.notSharedSurveys.map((surv, index) => (
             <Survey
               key={index}
               title={surv.title}
               description={surv.description}
               survey={surv}
               setSurvey={setChoosenSurvey}
-              onClick={handleShareSurvey}
             />
           ))}
         </SurveysContainer>

@@ -57,7 +57,7 @@ const SaveBtn = styled.div`
   }
 `;
 
-const CompleteSurveys = ({ userAnswers, setUserAnswers, idSurvey }) => {
+const CompleteSurveys = () => {
   let survey;
   const [getAnswers, setGetAnswers] = useState([
     { question: '', questionId: '', answers: [] },
@@ -78,7 +78,11 @@ const CompleteSurveys = ({ userAnswers, setUserAnswers, idSurvey }) => {
   }
   const handleClick = () => {
     api.getOtherUsersSurveys();
-    setUserAnswers({
+    // setUserAnswers({
+    //   idSurvey: survey.id,
+    //   questionsWithAnswers: getAnswers,
+    // });
+    api.postAnswers({
       idSurvey: survey.id,
       questionsWithAnswers: getAnswers,
     });
