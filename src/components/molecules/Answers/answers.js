@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Option from './Option/option';
 import { Circle } from './Option/option';
@@ -41,6 +41,7 @@ const Answers = ({ type, changeAnswers, idx }) => {
   const [options, setOptions] = useState([{ option: 'Odpowiedź 1' }]);
   const handleAddOption = () => {
     setOptions([...options, { option: `Odpowiedź ${options.length + 1}` }]);
+    const tempArr = [...options];
   };
   const handleDeleteOption = (index) => {
     const tempArr = [...options];
@@ -54,6 +55,7 @@ const Answers = ({ type, changeAnswers, idx }) => {
     setOptions(tempArr);
     changeAnswers(tempArr, idx);
   };
+
   return (
     <Wrapper>
       {type === '1' || type === '2' ? (

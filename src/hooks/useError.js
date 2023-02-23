@@ -5,12 +5,9 @@ const ErrorContext = React.createContext({});
 export const ErrorProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
-  const dispatchError = useCallback((message) => {
+  const dispatchError = (message) => {
     setError(message);
-    setTimeout(() => {
-      setError('');
-    }, 7000);
-  }, []);
+  };
 
   return (
     <ErrorContext.Provider value={{ error, dispatchError }}>

@@ -199,6 +199,12 @@ const CreateSurvey = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    let emptyQuestion = false;
+    questions.forEach((obj) => {
+      if (obj.question == '') {
+        emptyQuestion = true;
+      }
+    });
 
     if (surveyData.title == '') {
       setError('Nazwa ankiety nie może być pusta!');
@@ -208,6 +214,11 @@ const CreateSurvey = () => {
       surveyData.countAnswers > 200
     ) {
       setError('Ilość odpowiedzi została źle podana!');
+    } else if (emptyQuestion) {
+      console.log(emptyQuestion);
+      setError(
+        'Nie można utworzyć ankiety z odpowiedziami bez pytania. Wpisz brakujące pytanie.'
+      );
     } else {
       api.handleAddSurvey(
         surveyData.title,

@@ -7,7 +7,8 @@ const StyledInput = styled.input`
   margin-top: 10px;
   margin-bottom: ${(props) => props.marginBottom}px;
   color: ${(props) => props.fontColor} !important;
-  padding: 1px;
+  box-sizing: border-box;
+  padding: 5px;
   ${(props) => (props.width ? 'width: ' + props.width + ';' : '')}
   ${(props) => (props.height ? 'height: ' + props.height + ';' : '')}
   ${(props) => (props.fontSize ? 'font-size: ' + props.fontSize + ';' : '')}

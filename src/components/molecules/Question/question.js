@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import styles from './question.module.css';
 import SquareList from 'assets/icons/list-solid.svg';
@@ -71,6 +71,7 @@ const Question = ({
   const handleDeleteQuestion = () => {
     deleteQuestion(idx);
   };
+
   return (
     <Wrapper>
       <TypeBox>

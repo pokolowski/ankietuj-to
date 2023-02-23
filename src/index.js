@@ -10,15 +10,18 @@ import { APIProvider } from 'hooks/useAPI';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from 'REDUX/store';
+import { ErrorProvider } from 'hooks/useError';
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <Router>
         <AuthProvider>
-          <APIProvider>
-            <Root />
-          </APIProvider>
+          <ErrorProvider>
+            <APIProvider>
+              <Root />
+            </APIProvider>
+          </ErrorProvider>
         </AuthProvider>
       </Router>
     </Provider>
