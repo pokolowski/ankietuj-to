@@ -41,7 +41,10 @@ const Answers = ({ type, changeAnswers, idx }) => {
   const [options, setOptions] = useState([{ option: 'Odpowiedź 1' }]);
   const handleAddOption = () => {
     setOptions([...options, { option: `Odpowiedź ${options.length + 1}` }]);
-    const tempArr = [...options];
+    changeAnswers(
+      [...options, { option: `Odpowiedź ${options.length + 1}` }],
+      idx
+    );
   };
   const handleDeleteOption = (index) => {
     const tempArr = [...options];
@@ -55,6 +58,9 @@ const Answers = ({ type, changeAnswers, idx }) => {
     setOptions(tempArr);
     changeAnswers(tempArr, idx);
   };
+  useEffect(() => {
+    changeAnswers([{ option: 'Odpowiedź 1' }], idx);
+  }, []);
 
   return (
     <Wrapper>
