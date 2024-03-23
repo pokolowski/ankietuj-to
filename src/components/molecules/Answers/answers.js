@@ -50,7 +50,7 @@ const Answers = ({ type, changeAnswers, idx }) => {
     const tempArr = [...options];
     tempArr.splice(index, 1);
     setOptions(tempArr);
-    changeAnswers(tempArr);
+    changeAnswers(tempArr, idx);
   };
   const handleChangeOption = (e, index) => {
     const tempArr = [...options];
